@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// backend
-Route::prefix('admin')->group(function () {
-    Route::get('dashboard',[dashboardController::class,'index']);
-});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// backend
+Route::prefix('admin')->group(function () {
+    Route::get('dashboard', [dashboardController::class, 'index']);
+});
