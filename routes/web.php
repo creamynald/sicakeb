@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\dashboardController;
+use App\Http\Controllers\backend\opdController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // backend
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', [dashboardController::class, 'index']);
+    Route::resource('opd', opdController::class);
 });
