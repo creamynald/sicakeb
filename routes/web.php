@@ -23,7 +23,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // backend
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [dashboardController::class, 'index']);
-    Route::resource('opd', opdController::class);
+
+    // for admin only
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('opd', opdController::class);
+    });
 });

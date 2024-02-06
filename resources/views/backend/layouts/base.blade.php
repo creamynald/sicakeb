@@ -385,8 +385,8 @@
                                 <!--begin::Timeline heading-->
                                 <div class="mb-5 pe-3">
                                     <!--begin::Title-->
-                                    <a href="#"
-                                        class="fs-5 fw-semibold text-gray-800 text-hover-primary mb-2">3 New Incoming
+                                    <a href="#" class="fs-5 fw-semibold text-gray-800 text-hover-primary mb-2">3
+                                        New Incoming
                                         Project Files:</a>
                                     <!--end::Title-->
                                     <!--begin::Description-->
@@ -537,8 +537,7 @@
                                         <!--end::Info-->
                                         <!--begin::User-->
                                         <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
-                                            data-bs-boundary="window" data-bs-placement="top"
-                                            title="Marcus Dotson">
+                                            data-bs-boundary="window" data-bs-placement="top" title="Marcus Dotson">
                                             <img src="assets/media/avatars/300-2.jpg" alt="img" />
                                         </div>
                                         <!--end::User-->
@@ -887,8 +886,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
                                 <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                        Cox</a>
                                     <span class="text-muted fs-7 mb-1">2 mins</span>
                                 </div>
                                 <!--end::Details-->
@@ -945,8 +944,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
                                 <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                        Cox</a>
                                     <span class="text-muted fs-7 mb-1">1 Hour</span>
                                 </div>
                                 <!--end::Details-->
@@ -1002,8 +1001,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
                                 <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                        Cox</a>
                                     <span class="text-muted fs-7 mb-1">3 Hours</span>
                                 </div>
                                 <!--end::Details-->
@@ -1061,8 +1060,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
                                 <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                        Cox</a>
                                     <span class="text-muted fs-7 mb-1">5 Hours</span>
                                 </div>
                                 <!--end::Details-->
@@ -1118,8 +1117,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
                                 <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                        Cox</a>
                                     <span class="text-muted fs-7 mb-1">Just now</span>
                                 </div>
                                 <!--end::Details-->
@@ -1173,8 +1172,7 @@
     <div id="kt_shopping_cart" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="cart"
         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
         data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end"
-        data-kt-drawer-toggle="#kt_drawer_shopping_cart_toggle"
-        data-kt-drawer-close="#kt_drawer_shopping_cart_close">
+        data-kt-drawer-toggle="#kt_drawer_shopping_cart_toggle" data-kt-drawer-close="#kt_drawer_shopping_cart_close">
         <!--begin::Messenger-->
         <div class="card card-flush w-100 rounded-0">
             <!--begin::Card header-->
@@ -4740,6 +4738,7 @@
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     @stack('js')
+    @stack('scripts')
     <!--end::Javascript-->
 </body>
 <!--end::Body-->

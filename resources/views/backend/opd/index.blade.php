@@ -206,43 +206,22 @@
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="fw-semibold text-gray-600">
+                            <tbody class="fw-bold fs-6 text-gray-600">
                                 <tr>
                                     <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" />
+                                        <div
+                                            class="form-check
+                                                form-check-sm form-check-custom form-check-solid">
+                                            <input
+                                                class="form-check
+                                                    input"
+                                                type="checkbox" value="1" />
                                         </div>
                                     </td>
-                                    <td>
-                                        <a href="apps/customers/view.html"
-                                            class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-600 text-hover-primary mb-1">smith@kpmg.com</a>
-                                    </td>
-                                    
-                                    <td class="text-end">
-                                        <a href="#"
-                                            class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                            <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="apps/customers/view.html" class="menu-link px-3">View</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"
-                                                    data-kt-customer-table-filter="delete_row">Delete</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
+                                    <td>gdsasdasd</td>
+                                    <td>asdasfsdfsd</td>
+
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -292,8 +271,8 @@
                                             <label class="required fs-6 fw-semibold mb-2">Name</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid"
-                                                placeholder="" name="name" value="Sean Bean" />
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="name" value="Sean Bean" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -313,8 +292,8 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="email" class="form-control form-control-solid"
-                                                placeholder="" name="email" value="sean@dellito.com" />
+                                            <input type="email" class="form-control form-control-solid" placeholder=""
+                                                name="email" value="sean@dellito.com" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -324,8 +303,8 @@
                                             <label class="fs-6 fw-semibold mb-2">Description</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid"
-                                                placeholder="" name="description" />
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="description" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -698,8 +677,7 @@
                                     <button type="submit" id="kt_modal_add_customer_submit" class="btn btn-primary">
                                         <span class="indicator-label">Submit</span>
                                         <span class="indicator-progress">Please wait...
-                                            <span
-                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
                                     <!--end::Button-->
                                 </div>
