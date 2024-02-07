@@ -161,8 +161,7 @@
                                 <div class="dataTables_filter ">
 
                                     <input type="text" aria-controls="myTable"
-                                        class="form-control form-control-solid w-250px ps-12"
-                                        placeholder="Cari data OPD..." />
+                                    class="form-control form-control-solid w-250px ps-12" placeholder="Cari data OPD..." />
                                 </div>
                             </div>
                             <!--end::Search-->
@@ -214,21 +213,20 @@
                 <!--end::Card-->
                 <!--begin::Modals-->
                 <!--begin::Modal - Customers - Add-->
-                <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
                     <!--begin::Modal dialog-->
                     <div class="modal-dialog modal-dialog-centered mw-650px">
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            @if (Request::segment(5) == 'edit')
+                            @if (Request::segment(4) == 'edit')
                                 <form action="{{ route('opd.update', $penerimaan->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                 @else
-                                    <form action="{{ route('opd.store') }}" method="POST" enctype="multipart/form-data"
-                                        id="editForm">
+                                    <form action="{{ route('opd.store') }}" method="POST" enctype="multipart/form-data">
                             @endif
                             @csrf
-                            @if (Request::segment(5) == 'edit')
+                            @if (Request::segment(4) == 'edit')
                                 @method('put')
                             @endif
                             <!--begin::Modal header-->
@@ -259,8 +257,8 @@
                                         <label class="required fs-6 fw-semibold mb-2">Nama</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" id="nama" class="form-control form-control-solid"
-                                            placeholder="" name="nama" value="" />
+                                        <input type="text" class="form-control form-control-solid" placeholder=""
+                                            name="nama" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -270,8 +268,8 @@
                                         <label class="required fs-6 fw-semibold mb-2">Singkatan</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" id="singkatan" class="form-control form-control-solid"
-                                            placeholder="" name="singkatan" />
+                                        <input type="text" class="form-control form-control-solid" placeholder=""
+                                            name="singkatan" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -282,7 +280,8 @@
                             <!--begin::Modal footer-->
                             <div class="modal-footer flex-center">
                                 <!--begin::Button-->
-                                <button type="reset" data-dismiss="modal" class="btn btn-light me-3">Batal</button>
+                                <button type="reset" id="kt_modal_add_customer_cancel"
+                                    class="btn btn-light me-3">Batal</button>
                                 <!--end::Button-->
                                 <!--begin::Button-->
                                 <button type="submit" class="btn btn-primary">
@@ -298,10 +297,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- MODAL EDIT --}}
-                
-                {{-- END MODAL EDIT --}}
                 <!--end::Modal - Customers - Add-->
                 <!--end::Modals-->
             </div>
@@ -357,21 +352,21 @@
                     searching: true,
                     ajax: "{{ route('opd.index') }}",
                     columns: [{
-                            data: 'DT_RowIndex',
-                            name: 'DT_RowIndex'
-                        },
-                        {
-                            data: 'nama',
-                            name: 'nama'
-                        },
-                        {
-                            data: 'singkatan',
-                            name: 'singkatan'
-                        },
-                        {
-                            data: 'action',
-                            name: 'action',
-                        },
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'singkatan',
+                        name: 'singkatan'
+                    },
+                    {
+                        data: 'action', 
+                        name: 'action',
+                    },
                     ],
                 });
             });
