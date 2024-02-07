@@ -28,7 +28,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [dashboardController::class, 'index']);
 
     // for admin only
-    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
         Route::resource('opd', opdController::class);
     });
 
