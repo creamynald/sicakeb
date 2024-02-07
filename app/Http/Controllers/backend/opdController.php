@@ -4,8 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DataTables;
 use App\Models\opd;
+use DataTables;
 class opdController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class opdController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        // begin::get data using yajra
         if($request->ajax()){
             $data = opd::latest()->get();
             return DataTables::of($data)
@@ -21,12 +21,12 @@ class opdController extends Controller
                 ->addColumn('action', function($row){
                     $actionBtn = '
                     <div class="d-flex justify-content-end flex-shrink-0">
-                        <a href="javascript:void(0)" onclick="openEditModal('.$row->id.')" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 modal-trigger">
+                        <button data-id="'.$row->id.'" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
                             <i class="ki-duotone ki-pencil fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>
-                        </a>
+                        </button>
                         <button onclick="deleteItem('.$row->id.')" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
                             <i class="ki-duotone ki-trash fs-2">
                                 <span class="path1"></span>
@@ -42,8 +42,26 @@ class opdController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        // end::get data using yajra
         return view('backend.opd.index');
     }
+
+    // begin::additional method    
+    public function getData($id)
+    {
+        $data = opd::findOrFail($id);
+        return response()->json($data);
+    }
+
+    public function saveData(Request $request)
+    {
+        $data = opd::updateOrCreate(
+            ['id' => $request->dataId],
+            ['nama' => $request->nama, 'singkatan' => $request->singkatan]
+        );
+        return response()->json($data);
+    }
+    // end::additional method
 
     /**
      * Show the form for creating a new resource.
@@ -59,18 +77,6 @@ class opdController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'nama' => 'required',
-            'singkatan' => 'required',
-        ],
-        [
-            'nama.required' => 'Nama Objek harus diisi',
-            'singkatan.required' => 'Singkatan Penerimaan harus diisi',
-        ]);
-
-        opd::create($request->all());
-
-        return to_route('opd.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -105,7 +111,6 @@ class opdController extends Controller
         //
         $item = opd::findOrFail($id);
         $item->delete();
-
         return response()->json(['success' => true]);
     }
 }
