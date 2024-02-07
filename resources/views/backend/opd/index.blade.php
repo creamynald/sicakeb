@@ -173,8 +173,8 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                                 <!--begin::Add customer-->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_customer">Tambah Data</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    id="btnTambah">Tambah Data</button>
                                 <!--end::Add customer-->
                             </div>
                             <!--end::Toolbar-->
@@ -213,92 +213,48 @@
                 </div>
                 <!--end::Card-->
                 <!--begin::Modals-->
-                <!--begin::Modal - Customers - Add-->
-                <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
+                <!-- Modal Tambah/Edit -->
+                <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <!--begin::Form-->
-                            @if (Request::segment(4) == 'edit')
-                                <form action="{{ route('opd.update', $penerimaan->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                @else
-                                    <form action="{{ route('opd.store') }}" method="POST" enctype="multipart/form-data">
-                            @endif
-                            @csrf
-                            @if (Request::segment(4) == 'edit')
-                                @method('put')
-                            @endif
-                            <!--begin::Modal header-->
-                            <div class="modal-header" id="kt_modal_add_customer_header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bold">Tambah Data @urlSegment(2)</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
-                                    <i class="ki-duotone ki-cross fs-1">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </div>
-                                <!--end::Close-->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="formModalLabel">Form Data @urlSegment(2)</h5>
                             </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body py-10 px-lg-17">
-                                <!--begin::Scroll-->
-                                <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true"
-                                    data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
-                                    data-kt-scroll-dependencies="#kt_modal_add_customer_header"
-                                    data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">Nama</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="nama" value="" />
-                                        <!--end::Input-->
+                            <form id="formData" method="POST">
+                                <div class="modal-body">
+                                    @csrf
+                                    <input type="hidden" id="dataId" name="dataId">
+                                    <div class="form-group">
+                                        <label for="nama" class="required fs-6 fw-semibold mb-2">Nama</label>
+                                        <input type="text" class="form-control" id="nama" name="nama">
                                     </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-15">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">Singkatan</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="singkatan" />
-                                        <!--end::Input-->
+                                    <div class="form-group mt-4">
+                                        <label for="singkatan" class="required fs-6 fw-semibold mb-2">Singkatan</label>
+                                        <input type="text" class="form-control" id="singkatan" name="singkatan">
                                     </div>
-                                    <!--end::Input group-->
                                 </div>
-                                <!--end::Scroll-->
-                            </div>
-                            <!--end::Modal body-->
-                            <!--begin::Modal footer-->
-                            <div class="modal-footer flex-center">
-                                <!--begin::Button-->
-                                <button type="reset" id="kt_modal_add_customer_cancel"
-                                    class="btn btn-light me-3">Batal</button>
-                                <!--end::Button-->
-                                <!--begin::Button-->
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="indicator-label">Simpan</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
-                                <!--end::Button-->
-                            </div>
-                            <!--end::Modal footer-->
+                                <!--begin::Modal footer-->
+                                <div class="modal-footer flex-center">
+                                    <!--begin::Button-->
+                                    <button type="button" id="kt_modal_add_customer_cancel" class="btn btn-warning me-3"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <!--end::Button-->
+                                    <!--begin::Button-->
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label" id="btnSimpan">Simpan</span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2">
+                                            </span>
+                                        </span>
+                                    </button>
+                                    <!--end::Button-->
+                                </div>
+                                <!--end::Modal footer-->
                             </form>
-                            <!--end::Form-->
                         </div>
                     </div>
                 </div>
-                <!--end::Modal - Customers - Add-->
                 <!--end::Modals-->
             </div>
             <!--end::Content container-->
@@ -345,6 +301,7 @@
         <!--end::Custom Javascript-->
     @endpush
     @push('scripts')
+        {{-- begin::fetching data using yajra --}}
         <script type="text/javascript">
             $(function() {
                 var table = $('#myTable').DataTable({
@@ -372,6 +329,48 @@
                 });
             });
         </script>
+        {{-- end::fetching data using yajra --}}
+
+        {{-- begin::create and edit js --}}
+        <script>
+            $(document).ready(function() {
+                // Tambah Data
+                $('#btnTambah').click(function() {
+                    $('#formData')[0].reset();
+                    $('#formModal').modal('show');
+                });
+
+                // Edit Data
+                $(document).on('click', '.btn-edit', function() {
+                    var id = $(this).data('id');
+                    $.get('admin/opd/get-data/' + id, function(data) {
+                        $('#dataId').val(data.id);
+                        $('#nama').val(data.nama);
+                        $('#singkatan').val(data.singkatan);
+                        $('#formModal').modal('show');
+                    });
+                });
+
+                // Simpan Data
+                $('#formData').submit(function(e) {
+                    e.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: 'admin/opd/save',
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            $('#formModal').modal('hide');
+                            // Refresh data tabel atau manipulasi DOM sesuai kebutuhan
+                            $('#myTable').DataTable().ajax.reload();
+                        }
+                    });
+                });
+            });
+        </script>
+        {{-- begin::create and edit js --}}
+
+        {{-- begin::delete data using swall --}}
         <script>
             function deleteItem(id) {
                 Swal.fire({
@@ -391,14 +390,14 @@
                             data: {
                                 _token: '{{ csrf_token() }}',
                             },
-                            success: function (data) {
+                            success: function(data) {
                                 if (data.success) {
                                     Swal.fire({
                                         title: 'Terhapus!',
                                         text: 'Data berhasil dihapus.',
                                         icon: 'success',
-                                        timer: 1500, // Time in milliseconds (2 seconds in this example)
-                                        showConfirmButton: false // Hide the "OK" button
+                                        timer: 1500,
+                                        showConfirmButton: false
                                     }).then(() => {
                                         $('#myTable').DataTable().ajax.reload();
                                     });
@@ -409,7 +408,8 @@
                 });
             }
         </script>
-        
+        {{-- end::delete data using swall --}}
+
     @endpush
     {{-- end::aditional js --}}
 @endsection
