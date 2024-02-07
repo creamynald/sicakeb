@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\backend\opdController;
+use App\Http\Controllers\backend\rolesAndPermission\rolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // for admin only
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('opd', opdController::class);
+    });
+
+    // for super admin only
+    Route::group(['middleware' => ['role:Super-Admin']], function () {
+        // roles and permission
+        Route::resource('roles', rolesController::class);
     });
 });
