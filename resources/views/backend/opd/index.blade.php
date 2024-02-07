@@ -361,8 +361,15 @@
                         data: formData,
                         success: function(response) {
                             $('#formModal').modal('hide');
-                            // Refresh data tabel atau manipulasi DOM sesuai kebutuhan
-                            $('#myTable').DataTable().ajax.reload();
+                            Swal.fire({
+                                title: 'Tersimpan!',
+                                text: 'Data berhasil disimpan.',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: true
+                            }).then(() => {
+                                $('#myTable').DataTable().ajax.reload();
+                            });
                         }
                     });
                 });
