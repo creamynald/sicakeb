@@ -27,7 +27,7 @@ class opdController extends Controller
                                 <span class="path2"></span>
                             </i>
                         </a>
-                        <a href="#" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                        <button onclick="deleteItem('.$row->id.')" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
                             <i class="ki-duotone ki-trash fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
@@ -35,7 +35,7 @@ class opdController extends Controller
                                 <span class="path4"></span>
                                 <span class="path5"></span>
                             </i>
-                        </a>
+                        </button>
                     </div>';
                     return $actionBtn;
                 })
@@ -103,5 +103,9 @@ class opdController extends Controller
     public function destroy(string $id)
     {
         //
+        $item = opd::findOrFail($id);
+        $item->delete();
+
+        return response()->json(['success' => true]);
     }
 }

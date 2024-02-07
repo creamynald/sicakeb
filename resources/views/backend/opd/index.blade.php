@@ -161,7 +161,8 @@
                                 <div class="dataTables_filter ">
 
                                     <input type="text" aria-controls="myTable"
-                                    class="form-control form-control-solid w-250px ps-12" placeholder="Cari data OPD..." />
+                                        class="form-control form-control-solid w-250px ps-12"
+                                        placeholder="Cari data OPD..." />
                                 </div>
                             </div>
                             <!--end::Search-->
@@ -352,25 +353,63 @@
                     searching: true,
                     ajax: "{{ route('opd.index') }}",
                     columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'nama',
-                        name: 'nama'
-                    },
-                    {
-                        data: 'singkatan',
-                        name: 'singkatan'
-                    },
-                    {
-                        data: 'action', 
-                        name: 'action',
-                    },
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex'
+                        },
+                        {
+                            data: 'nama',
+                            name: 'nama'
+                        },
+                        {
+                            data: 'singkatan',
+                            name: 'singkatan'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                        },
                     ],
                 });
             });
         </script>
+        <script>
+            function deleteItem(id) {
+                Swal.fire({
+                    title: 'Apakah kamu yakin?',
+                    text: 'Data akan terhapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Tidak, Batal!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Send AJAX request to delete
+                        $.ajax({
+                            url: '/admin/opd/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                            },
+                            success: function (data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: 'Terhapus!',
+                                        text: 'Data berhasil dihapus.',
+                                        icon: 'success',
+                                        timer: 1500, // Time in milliseconds (2 seconds in this example)
+                                        showConfirmButton: false // Hide the "OK" button
+                                    }).then(() => {
+                                        $('#myTable').DataTable().ajax.reload();
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+        
     @endpush
     {{-- end::aditional js --}}
 @endsection
