@@ -30,6 +30,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // for admin only
     Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
         Route::resource('opd', opdController::class);
+        // begin:additional route (!= resource)
+        Route::get('opd/get-data/{id}', [opdController::class, 'getData']);
+        Route::post('opd/save', [opdController::class, 'saveData']);
+        // end:additional route
     });
 
     // for super admin only
