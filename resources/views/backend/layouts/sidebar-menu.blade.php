@@ -271,11 +271,17 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link" href="{{ route('opd.index') }}">
+                <a class="menu-link @if(Request::segment(2)=='opd') active @endif" href="{{ route('opd.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">OPD</span>
+                </a>
+                <a class="menu-link @if(Request::segment(2)=='pegawai')active @endif" href="{{ route('pegawai.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Pegawai</span>
                 </a>
                 <!--end:Menu link-->
             </div>
