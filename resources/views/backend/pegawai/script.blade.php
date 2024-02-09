@@ -8,7 +8,8 @@
             ajax: "{{ route('pegawai.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    name: 'DT_RowIndex',
+                    orderable : false
                 },
                 {
                     data: 'opd.nama', name: 'opd.nama'
