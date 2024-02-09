@@ -200,8 +200,8 @@
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-30px">No</th>
-                                    <th class="min-w-30px">ID OPD</th>
-                                    <th class="min-w-125px">Nama</th>
+                                    <th class="min-w-30px">Nama OPD</th>
+                                    <th class="min-w-125px">Nama Pegawai</th>
                                     <th class="min-w-125px">NIP</th>
                                     <th class="min-w-125px">Jabatan</th>
                                     <th class="min-w-125px">Golongan</th>
