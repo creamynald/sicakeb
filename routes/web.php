@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\backend\opdController;
+use App\Http\Controllers\backend\opd\pegawaiController;
 use App\Http\Controllers\backend\rolesAndPermission\rolesController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 Auth::routes();
 
@@ -35,6 +36,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('opd/save', [opdController::class, 'saveData']);
         // end:additional route
     });
+
+    // begin::pegawai controller that can be access by super admin and admin only
+    Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::resource('pegawai', pegawaiController::class);
+        // begin:additional route (!= resource)
+        Route::post('pegawai/save', [pegawaiController::class, 'saveData']);
+        // end:additional route
+    });
+    // end::pegawai controller
 
     // for super admin only
     Route::group(['middleware' => ['role:Super-Admin']], function () {

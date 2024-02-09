@@ -12,12 +12,12 @@ class opd extends Model
     // define name of table in database
     protected $table = 'opds';
     
-    // begin::define column that fillable
+    // begin::define fillable column 
     protected $fillable = [
         'nama',
         'singkatan'
     ];
-    // end::define column that fillable
+    // end::define fillable column 
 
     // begin::relation to pegawai model
     public function pegawai()
