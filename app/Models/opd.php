@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Opd\Pegawai;
+use App\Models\Opd\Sasaran;
 
 class opd extends Model
 {
@@ -23,6 +24,13 @@ class opd extends Model
     public function pegawai()
     {
         return $this->hasMany(Pegawai::class);
+    }
+    // end::relation to pegawai model
+
+    // begin::relation to sasaran model
+    public function sasaran()
+    {
+        return $this->hasMany(Sasaran::class);
     }
     // end::relation to pegawai model
 }
