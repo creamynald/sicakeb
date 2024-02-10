@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\backend\opdController;
 use App\Http\Controllers\backend\opd\pegawaiController;
+use App\Http\Controllers\backend\opd\SasaranController;
 use App\Http\Controllers\backend\rolesAndPermission\rolesController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         // end:additional route
     });
     // end::pegawai controller
+
+    // begin::sasaran controller that can be access by super admin and admin only
+    Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::resource('sasaran', SasaranController::class);
+        // begin:additional route (!= resource)
+        Route::post('sasaran/save', [SasaranController::class, 'saveData']);
+        // end:additional route
+    });
+    // end::sasaran controller
 
     // for super admin only
     Route::group(['middleware' => ['role:Super-Admin']], function () {

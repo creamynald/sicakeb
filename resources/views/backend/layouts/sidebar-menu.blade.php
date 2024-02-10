@@ -283,6 +283,12 @@
                     </span>
                     <span class="menu-title">Pegawai</span>
                 </a>
+                <a class="menu-link @if(Request::segment(2)=='sasaran')active @endif" href="{{ route('sasaran.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Sasaran</span>
+                </a>
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
