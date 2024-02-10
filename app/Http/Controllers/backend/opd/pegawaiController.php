@@ -71,12 +71,12 @@ class pegawaiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // show the data based on id by clicking on edit button
         $data = Pegawai::findOrFail($id);
         return response()->json($data);
     }
 
-    // begin::additional method
+    // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
         $data = Pegawai::updateOrCreate(
@@ -115,7 +115,7 @@ class pegawaiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //delete data by id
         $item = Pegawai::findOrFail($id);
         $item->delete();
         return response()->json(['success' => true]);
