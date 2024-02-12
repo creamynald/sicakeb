@@ -18,23 +18,16 @@ class userController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn =
-                        '
+                    $actionBtn = '
                     <div class="d-flex justify-content-end flex-shrink-0">
-                        <button data-id="' .
-                        $row->id .
-                        '" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
-                            <i class="ki-duotone
-                            ki-pencil fs-2">
+                        <button data-id="'.$row->id.'" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
+                            <i class="ki-duotone ki-pencil fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>
                         </button>
-                        <button onclick="deleteItem(' .
-                        $row->id .
-                        ')" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
-                            <i class="ki-duotone
-                            ki-trash fs-2">
+                        <button onclick="deleteItem('.$row->id.')" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                            <i class="ki-duotone ki-trash fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                                 <span class="path3"></span>
@@ -71,5 +64,12 @@ class userController extends Controller
     {
         $data = User::findOrFail($id);
         return response()->json($data);
+    }
+
+    public function destroy(string $id)
+    {
+        $item = User::findOrFail($id);
+        $item->delete();
+        return response()->json(['success' => true]);
     }
 }

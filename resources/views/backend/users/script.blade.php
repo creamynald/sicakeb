@@ -55,6 +55,7 @@
                 $('#name').val(data.name);
                 $('#email').val(data.email);
                 $('#password').val(data.password);
+                $('#formModal').modal('show');
             });
         });
 
@@ -83,4 +84,58 @@
     });
 </script>
 {{-- begin::create and edit js --}}
+
+{{-- begin::delete data using swall --}}
+<script>
+    function deleteItem(id) {
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            text: 'Data akan terhapus permanen!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Tidak, Batal!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Send AJAX request to delete
+                $.ajax({
+                    url: '/admin/users/' + id,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            Swal.fire({
+                                title: 'Terhapus!',
+                                text: 'Data berhasil dihapus.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                $('#myTable').DataTable().ajax.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+    var handleSearchDatatable = () => {
+        const filterSearch = document.querySelector('[data-kt-docs-table-filter="search"]');
+        filterSearch.addEventListener('keyup', function(e) {
+            // Check if datatable is properly initialized
+            if (datatable) {
+                datatable.search(e.target.value).draw();
+            } else {
+                console.error('Datatable is not properly initialized.');
+            }
+        });
+    }
+</script>
+{{-- end::delete data using swall --}}
+
 

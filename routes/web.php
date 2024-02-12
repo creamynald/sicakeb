@@ -102,5 +102,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         // roles and permission
         Route::resource('roles', rolesController::class);
         Route::resource('users', userController::class);
+        Route::post('users/save', [userController::class, 'saveData']);
     });
 });
