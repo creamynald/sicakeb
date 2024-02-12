@@ -2,7 +2,8 @@
 
 namespace App\Models\Opd;
 
-use App\Models\opd;
+use App\Models\Opd\Tujuan;
+use App\Models\Opd\Program;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,15 +15,22 @@ class Sasaran extends Model
 
     // begin::define fillable column
     protected $fillable = [
-        'opd_id',
+        'tujuan_id',
         'nama'
     ];
     // end::define fillable column
 
-    // begin::relation to opd model
-    public function opd()
+    // begin::relation to tujuan model
+    public function tujuan()
     {
-        return $this->belongsTo(opd::class);
+        return $this->belongsTo(Tujuan::class);
     }
-    // end::relation to opd model
+    // end::relation to tujuan model
+
+    // begin::relation to Program model
+    public function program()
+    {
+        return $this->hasMany(Program::class);
+    }
+    // end::relation to Program model
 }
