@@ -283,11 +283,35 @@
                     </span>
                     <span class="menu-title">Pegawai</span>
                 </a>
+                <a class="menu-link @if(Request::segment(2)=='tujuan')active @endif" href="{{ route('tujuan.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Tujuan</span>
+                </a>
                 <a class="menu-link @if(Request::segment(2)=='sasaran')active @endif" href="{{ route('sasaran.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Sasaran</span>
+                </a>
+                <a class="menu-link @if(Request::segment(2)=='program')active @endif" href="{{ route('program.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Program</span>
+                </a>
+                <a class="menu-link @if(Request::segment(2)=='kegiatan')active @endif" href="{{ route('kegiatan.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Kegiatan</span>
+                </a>
+                <a class="menu-link @if(Request::segment(2)=='subkegiatan')active @endif" href="{{ route('subkegiatan.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Sub Kegiatan</span>
                 </a>
                 <!--end:Menu link-->
             </div>
