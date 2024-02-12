@@ -11,7 +11,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        Customer List</h1>
+                        @urlSegment(2) List</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -160,9 +160,7 @@
                                 </i>
                                 <div class="dataTables_filter ">
                                     {{-- begin::pencarian manual untuk data opd --}}
-                                    {{-- <input type="text" aria-controls="myTable"
-                                        class="form-control form-control-solid w-250px ps-12"
-                                        placeholder="Cari data OPD..." /> --}}
+                                    <input type="text" id="search" data-kt-docs-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search.."/>
                                     {{-- end::pencarian manual untuk data opd --}}
                                 </div>
                             </div>
@@ -200,7 +198,7 @@
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-30px">No</th>
-                                    <th class="min-w-30px">Nama OPD</th>
+                                    <th class="min-w-30px">Tujuan</th>
                                     <th class="min-w-125px">Sasaran</th>
                                     <th class="text-end min-w-70px">Aksi</th>
                                 </tr>
@@ -227,15 +225,15 @@
                                     @csrf
                                     <input type="hidden" id="dataId" name="dataId">
                                     <div class="form-group">
-                                        <label for="opd_id" class="required fs-6 fw-semibold mb-2">Nama OPD</label>
-                                        <select name="opd_id" id="opd_id" class="form-select form-select-solid">
-                                            @foreach ($opd as $item)                                                
+                                        <label for="tujuan_id" class="required fs-6 fw-semibold mb-2">Tujuan</label>
+                                        <select name="tujuan_id" id="tujuan_id" class="form-select form-select-solid">
+                                            @foreach ($tujuan as $item)                                                
                                                 <option value="{{$item->id}}">{{$item->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nama" class="required fs-6 fw-semibold mb-2">Nama</label>
+                                        <label for="nama" class="required fs-6 fw-semibold mb-2">Sasaran</label>
                                         <input type="text" class="form-control" id="nama" name="nama">
                                     </div>
                                 </div>
@@ -307,7 +305,7 @@
     @endpush
     {{-- begin::custom js --}}
     @push('scripts')
-        @include('backend.sasaran.script')
+        @include('backend.'.Request::segment(2).'.script')
     @endpush
     {{-- end::custom js --}}
     {{-- end::aditional js --}}

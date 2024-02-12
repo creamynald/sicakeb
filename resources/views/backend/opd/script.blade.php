@@ -24,6 +24,12 @@
                     },
                 ],
             });
+
+            // begin::search
+            $('#search').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+            // end::search
         });
     </script>
     {{-- end::fetching data using yajra --}}
@@ -72,6 +78,7 @@
                     }
                 });
             });
+
         });
     </script>
     {{-- end::create and edit js --}}
@@ -110,6 +117,19 @@
                             }
                         }
                     });
+                }
+            });
+        }
+
+        // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+        var handleSearchDatatable = () => {
+            const filterSearch = document.querySelector('[data-kt-docs-table-filter="search"]');
+            filterSearch.addEventListener('keyup', function(e) {
+                // Check if datatable is properly initialized
+                if (datatable) {
+                    datatable.search(e.target.value).draw();
+                } else {
+                    console.error('Datatable is not properly initialized.');
                 }
             });
         }

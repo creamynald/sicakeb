@@ -9,31 +9,44 @@
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
-                    orderable : false
+                    orderable: false
                 },
                 {
-                    data: 'opd.nama', name: 'opd.nama'
+                    data: 'opd.nama',
+                    name: 'opd.nama'
                 },
                 {
-                    data: 'nama', name: 'nama'
+                    data: 'nama',
+                    name: 'nama'
                 },
                 {
-                    data: 'nip', name: 'nip'
+                    data: 'nip',
+                    name: 'nip'
                 },
                 {
-                    data: 'jabatan', name: 'jabatan'
+                    data: 'jabatan',
+                    name: 'jabatan'
                 },
                 {
-                    data: 'golongan', name: 'golongan'
+                    data: 'golongan',
+                    name: 'golongan'
                 },
                 {
-                    data: 'eselon', name: 'eselon'
+                    data: 'eselon',
+                    name: 'eselon'
                 },
                 {
-                    data: 'action', name: 'action',
+                    data: 'action',
+                    name: 'action',
                 },
             ],
         });
+
+        // begin::search
+        $('#search').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+        // end::search
     });
 </script>
 {{-- end::fetching data using yajra --}}
@@ -124,6 +137,19 @@
                         }
                     }
                 });
+            }
+        });
+    }
+
+    // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+    var handleSearchDatatable = () => {
+        const filterSearch = document.querySelector('[data-kt-docs-table-filter="search"]');
+        filterSearch.addEventListener('keyup', function(e) {
+            // Check if datatable is properly initialized
+            if (datatable) {
+                datatable.search(e.target.value).draw();
+            } else {
+                console.error('Datatable is not properly initialized.');
             }
         });
     }
