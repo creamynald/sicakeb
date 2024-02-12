@@ -5,6 +5,7 @@ use App\Http\Controllers\backend\opdController;
 use App\Http\Controllers\backend\opd\pegawaiController;
 use App\Http\Controllers\backend\opd\SasaranController;
 use App\Http\Controllers\backend\rolesAndPermission\rolesController;
+use App\Http\Controllers\backend\users\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,5 +61,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::group(['middleware' => ['role:Super-Admin']], function () {
         // roles and permission
         Route::resource('roles', rolesController::class);
+        Route::resource('users', userController::class);
     });
 });
