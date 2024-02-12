@@ -410,7 +410,7 @@
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
-                <i class="ki-outline ki-key-square fs-2"></i>
+                <i class="ki-outline ki-user-square fs-2"></i>
             </span>
             <span class="menu-title">Users</span>
             <span class="menu-arrow"></span>
