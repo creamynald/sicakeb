@@ -20,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'opd_id',
         'email',
         'password',
     ];
@@ -55,5 +56,10 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function opd()
+    {
+        return $this->belongsTo(opd::class);
     }
 }

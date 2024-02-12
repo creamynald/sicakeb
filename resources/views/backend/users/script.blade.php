@@ -1,0 +1,86 @@
+    {{-- begin::fetching data using yajra --}}
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#myTable').DataTable({
+                processing: true,
+                serverSide: true,
+                searching: true,
+                ajax: "{{ route('users.index') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'opd.nama',
+                        name: 'opd.nama'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+        });
+    </script>
+    {{-- end::fetching data using yajra --}}
+
+
+    {{-- begin::create and edit js --}}
+<script>
+    $(document).ready(function() {
+        // Tambah Data
+        $('#btnTambah').click(function() {
+            $('#formData')[0].reset();
+            // Kosongkan data ID
+            $('#dataId').val('');
+            $('#formModal').modal('show');
+        });
+
+        // Edit Data
+        $(document).on('click', '.btn-edit', function() {
+            var id = $(this).data('id');
+            $.get('admin/users/' + id, function(data) {
+                $('#dataId').val(data.id);
+                $('#opd_id').val(data.opd_id);
+                $('#name').val(data.name);
+                $('#email').val(data.email);
+                $('#password').val(data.password);
+            });
+        });
+
+        // Simpan Data
+        $('#formData').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                url: 'admin/users/save',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#formModal').modal('hide');
+                    Swal.fire({
+                        title: 'Tersimpan!',
+                        text: 'Data berhasil disimpan.',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: true
+                    }).then(() => {
+                        $('#myTable').DataTable().ajax.reload();
+                    });
+                }
+            });
+        });
+    });
+</script>
+{{-- begin::create and edit js --}}
+
