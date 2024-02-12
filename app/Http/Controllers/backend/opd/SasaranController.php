@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend\opd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Opd\Sasaran;
-use App\Models\opd;
+use App\Models\Opd\Tujuan;
 use DataTables;
 
 class SasaranController extends Controller
@@ -18,7 +18,7 @@ class SasaranController extends Controller
         // begin::get data using yajra
         if($request->ajax()){
             // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Sasaran::with('opd')->latest()->get();
+            $data = Sasaran::with('Tujuan')->latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -46,8 +46,8 @@ class SasaranController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        $opd = opd::get();
-        return view('backend.sasaran.index', compact('opd'));
+        $tujuan = Tujuan::get();
+        return view('backend.sasaran.index', compact('tujuan'));
     }
 
     /**
@@ -82,7 +82,7 @@ class SasaranController extends Controller
         $data = Sasaran::updateOrCreate(
             ['id' => $request->dataId],
             [
-                'opd_id' => $request->opd_id,
+                'tujuan_id' => $request->tujuan_id,
                 'nama' => $request->nama
             ]
         );
