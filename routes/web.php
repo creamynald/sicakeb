@@ -98,7 +98,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // end::subkegiatan controller
 
     // for super admin only
-    Route::group(['middleware' => ['role:Super-Admin']], function () {
+    Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
         // roles and permission
         Route::resource('roles', rolesController::class);
         Route::resource('users', userController::class);

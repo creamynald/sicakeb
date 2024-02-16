@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             account\userSeeder::class,
+            data\opdSeeder::class,
+            data\pegawaiSeeder::class
         ]);
     }
 }
