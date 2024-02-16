@@ -112,7 +112,7 @@ class TujuanController extends Controller
     public function destroy(string $id)
     {
         //delete data by id
-        $item = Sasaran::findOrFail($id);
+        $item = Tujuan::findOrFail($id);
         $item->delete();
         return response()->json(['success' => true]);
     }
