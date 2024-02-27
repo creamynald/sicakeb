@@ -13,6 +13,9 @@ use App\Http\Controllers\backend\rolesAndPermission\permissionsController;
 use App\Http\Controllers\backend\rolesAndPermission\rolesController;
 use App\Http\Controllers\backend\rolesAndPermission\userToRoleController;
 use App\Http\Controllers\backend\users\userController;
+use App\Http\Controllers\backend\perjanjianKinerja\RealisasiController;
+use App\Http\Controllers\backend\perjanjianKinerja\TargetController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,7 +52,7 @@ Route::prefix('admin')
         });
 
         // begin::pegawai controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('pegawai', pegawaiController::class);
             // begin:additional route (!= resource)
             Route::post('pegawai/save', [pegawaiController::class, 'saveData']);
@@ -58,7 +61,7 @@ Route::prefix('admin')
         // end::pegawai controller
 
         // begin::tujuan controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('tujuan', TujuanController::class);
             // begin:additional route (!= resource)
             Route::post('tujuan/save', [TujuanController::class, 'saveData']);
@@ -67,7 +70,7 @@ Route::prefix('admin')
         // end::tujuan controller
 
         // begin::sasaran controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('sasaran', SasaranController::class);
             // begin:additional route (!= resource)
             Route::post('sasaran/save', [SasaranController::class, 'saveData']);
@@ -76,7 +79,7 @@ Route::prefix('admin')
         // end::sasaran controller
 
         // begin::program controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('program', ProgramController::class);
             // begin:additional route (!= resource)
             Route::post('program/save', [ProgramController::class, 'saveData']);
@@ -85,7 +88,7 @@ Route::prefix('admin')
         // end::program controller
 
         // begin::kegiatan controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('kegiatan', KegiatanController::class);
             // begin:additional route (!= resource)
             Route::post('kegiatan/save', [KegiatanController::class, 'saveData']);
@@ -94,7 +97,7 @@ Route::prefix('admin')
         // end::kegiatan controller
 
         // begin::subkegiatan controller that can be access by super admin and admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('subkegiatan', SubkegiatanController::class);
             // begin:additional route (!= resource)
             Route::post('subkegiatan/save', [SubkegiatanController::class, 'saveData']);
@@ -113,14 +116,38 @@ Route::prefix('admin')
             // roles and permission
             Route::resource('roles', rolesController::class);
             Route::post('roles/save', [rolesController::class, 'saveData']);
-            
+
             Route::resource('permissions', permissionsController::class);
             Route::post('permissions/save', [permissionsController::class, 'saveData']);
-            
+
             Route::resource('assignable', assignRolePermission::class);
             Route::post('assignable/save', [assignRolePermission::class, 'saveData']);
-            
+
             Route::resource('assign-to-user', userToRoleController::class);
             Route::post('assign-to-user/save', [userToRoleController::class, 'saveData']);
         });
+
+        // begin::target controller that can be access by super admin and admin only
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::resource('target', TargetController::class);
+            // begin:additional route (!= resource)
+            Route::post('target/save', [TargetController::class, 'saveData']);
+            Route::post('target/data-pegawai', [TargetController::class, 'dataPegawai']);
+            Route::get('target/rincian/{id}', [TargetController::class, 'rincianTarget'])->name('rincianTarget');
+            // end:additional route
+        });
+        // end::target controller
+
+        // begin::realisasi controller that can be access by super admin and admin only
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::resource('realisasi', RealisasiController::class);
+            // begin:additional route (!= resource)
+            Route::post('realisasi/save', [RealisasiController::class, 'saveData']);
+            Route::post('realisasi/data-pegawai', [RealisasiController::class, 'dataPegawai']);
+            Route::get('realisasi/rincian/{id}', [RealisasiController::class, 'rincianRealisasi'])->name('rincianRealisasi');
+            // end:additional route
+        });
+        // end::realisasi controller
+
+        // for super admin & admin
     });
