@@ -18,11 +18,12 @@ class pegawaiController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            if (auth()->user()->hasRole(Role::findByName('admin')) || auth()->user()->hasRole(Role::findByName('Super-admin'))) {
-                $data = Pegawai::with('opd')->latest()->get();
-            }
-            else{
-                dd('salah cuyt');
+            // if user login has role admin get all data pegawai
+            if(auth()->user()->hasRole('admin', 'super-admin')){
+                $data = Pegawai::with('opd')->get();
+            }else{
+                // if user login has role opd get data pegawai based on opd_id
+                $data = Pegawai::with('opd')->where('opd_id', auth()->user()->opd_id)->get();
             }
             return DataTables::of($data)
                 ->addIndexColumn()
