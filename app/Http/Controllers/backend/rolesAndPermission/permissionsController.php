@@ -4,10 +4,10 @@ namespace App\Http\Controllers\backend\rolesAndPermission;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use DataTables;
 
-class rolesController extends Controller
+class permissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class rolesController extends Controller
         // begin::get data using yajra
         if($request->ajax()){
             // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Role::latest()->get();
+            $data = Permission::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -45,7 +45,7 @@ class rolesController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        return view('backend.rolesAndPermission.roles.index');
+        return view('backend.rolesAndPermission.permissions.index');
     }
 
     /**
@@ -70,14 +70,14 @@ class rolesController extends Controller
     public function show(string $id)
     {
         // show the data based on id by clicking on edit button
-        $data = Role::findOrFail($id);
+        $data = Permission::findOrFail($id);
         return response()->json($data);
     }
 
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
-        $data = Role::updateOrCreate(
+        $data = Permission::updateOrCreate(
             ['id' => $request->dataId],
             [
                 'name' => $request->name,
@@ -109,7 +109,7 @@ class rolesController extends Controller
     public function destroy(string $id)
     {
         //delete data by id
-        $item = Role::findOrFail($id);
+        $item = Permission::findOrFail($id);
         $item->delete();
         return response()->json(['success' => true]);
     }

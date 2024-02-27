@@ -271,43 +271,49 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link @if(Request::segment(2)=='opd') active @endif" href="{{ route('opd.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'opd') active @endif" href="{{ route('opd.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">OPD</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='pegawai')active @endif" href="{{ route('pegawai.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'pegawai') active @endif"
+                    href="{{ route('pegawai.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Pegawai</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='tujuan')active @endif" href="{{ route('tujuan.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'tujuan') active @endif"
+                    href="{{ route('tujuan.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Tujuan</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='sasaran')active @endif" href="{{ route('sasaran.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'sasaran') active @endif"
+                    href="{{ route('sasaran.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Sasaran</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='program')active @endif" href="{{ route('program.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'program') active @endif"
+                    href="{{ route('program.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Program</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='kegiatan')active @endif" href="{{ route('kegiatan.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'kegiatan') active @endif"
+                    href="{{ route('kegiatan.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Kegiatan</span>
                 </a>
-                <a class="menu-link @if(Request::segment(2)=='subkegiatan')active @endif" href="{{ route('subkegiatan.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'subkegiatan') active @endif"
+                    href="{{ route('subkegiatan.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
@@ -377,11 +383,17 @@
         </span>
         <!--end:Menu link-->
         <!--begin:Menu sub-->
-        <div class="menu-sub menu-sub-accordion">
+        <div class="menu-sub menu-sub-accordion
+        @if (Request::segment(2) == 'roles' ||
+                Request::segment(2) == 'permissions' ||
+                Request::segment(2) == 'assignable' ||
+                Request::segment(2) == 'assign-to-user') show @endif
+        ">
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link" href="{{ route('roles.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'roles') active @endif"
+                    href="{{ route('roles.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
@@ -393,7 +405,8 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
+                <a class="menu-link @if (Request::segment(2) == 'permissions') active @endif"
+                    href="{{ route('permissions.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
@@ -405,23 +418,12 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
+                <a class="menu-link @if (Request::segment(2) == 'assignable') active @endif"
+                    href="{{ route('assignable.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Assign Permission</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Permission to Users</span>
                 </a>
                 <!--end:Menu link-->
             </div>
@@ -470,8 +472,7 @@
     <!--begin:Menu item-->
     <div class="menu-item">
         <!--begin:Menu link-->
-        <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs/base/utilities"
-            target="_blank">
+        <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs/base/utilities" target="_blank">
             <span class="menu-icon">
                 <i class="ki-outline ki-rocket fs-2"></i>
             </span>
