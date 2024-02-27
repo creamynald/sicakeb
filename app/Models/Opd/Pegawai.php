@@ -3,6 +3,7 @@
 namespace App\Models\Opd;
 
 use App\Models\opd;
+use App\Models\PerjanjianKinerja\Target;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,4 +30,13 @@ class Pegawai extends Model
         return $this->belongsTo(opd::class);
     }
     // end::relation to opd model
+
+    // begin::relation to opd model
+    public function target()
+    {
+        return $this->hasMany(Target::class);
+    }
+    // end::relation to opd model
+
+
 }

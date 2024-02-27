@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend\opd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Models\Opd\Pegawai;
 use App\Models\opd;
 use DataTables;
@@ -17,8 +18,12 @@ class pegawaiController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Pegawai::with('opd')->latest()->get();
+            if (auth()->user()->hasRole(Role::findByName('admin')) || auth()->user()->hasRole(Role::findByName('Super-admin'))) {
+                $data = Pegawai::with('opd')->latest()->get();
+            }
+            else{
+                dd('salah cuyt');
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
