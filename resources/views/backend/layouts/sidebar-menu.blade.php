@@ -255,6 +255,7 @@
         <!--end:Menu content-->
     </div>
     <!--end:Menu item-->
+
     <!--begin:Menu item-->
     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
         <!--begin:Menu link-->
@@ -271,12 +272,14 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link @if (Request::segment(2) == 'opd') active @endif" href="{{ route('opd.index') }}">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">OPD</span>
-                </a>
+                @role ('admin|Super-Admin')
+                    <a class="menu-link @if (Request::segment(2) == 'opd') active @endif" href="{{ route('opd.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">OPD</span>
+                    </a>
+                @endrole
                 <a class="menu-link @if (Request::segment(2) == 'pegawai') active @endif"
                     href="{{ route('pegawai.index') }}">
                     <span class="menu-bullet">
@@ -322,123 +325,26 @@
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Permissions</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Assign Permission</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link" href="pages/user-profile/projects.html">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Permission to Users</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
         </div>
         <!--end:Menu sub-->
     </div>
     <!--end:Menu item-->
-    <!--begin:Menu item-->
-    <div class="menu-item pt-5">
-        <!--begin:Menu content-->
-        <div class="menu-content">
-            <span class="menu-heading fw-bold text-uppercase fs-7">Administrator</span>
-        </div>
-        <!--end:Menu content-->
-    </div>
-    <!--end:Menu item-->
+
     <!--begin:Menu item-->
     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
-                <i class="ki-outline ki-key-square fs-2"></i>
+                <i class="ki-duotone ki-graph-up fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                </i>
             </span>
-            <span class="menu-title">Roles & Permission</span>
-            <span class="menu-arrow"></span>
-        </span>
-        <!--end:Menu link-->
-        <!--begin:Menu sub-->
-        <div class="menu-sub menu-sub-accordion
-        @if (Request::segment(2) == 'roles' ||
-                Request::segment(2) == 'permissions' ||
-                Request::segment(2) == 'assignable' ||
-                Request::segment(2) == 'assign-to-user') show @endif
-        ">
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link @if (Request::segment(2) == 'roles') active @endif"
-                    href="{{ route('roles.index') }}">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Roles</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link @if (Request::segment(2) == 'permissions') active @endif"
-                    href="{{ route('permissions.index') }}">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Permissions</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-            <!--begin:Menu item-->
-            <div class="menu-item">
-                <!--begin:Menu link-->
-                <a class="menu-link @if (Request::segment(2) == 'assignable') active @endif"
-                    href="{{ route('assignable.index') }}">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Assign Permission</span>
-                </a>
-                <!--end:Menu link-->
-            </div>
-            <!--end:Menu item-->
-        </div>
-        <!--end:Menu sub-->
-    </div>
-    <!--end:Menu item--><!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-        <!--begin:Menu link-->
-        <span class="menu-link">
-            <span class="menu-icon">
-                <i class="ki-outline ki-user-square fs-2"></i>
-            </span>
-            <span class="menu-title">Users</span>
+            <span class="menu-title">Perjanjian Kinerja</span>
             <span class="menu-arrow"></span>
         </span>
         <!--end:Menu link-->
@@ -447,11 +353,19 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link" href="{{ route('users.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'target') active @endif"
+                    href="{{ route('target.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                    <span class="menu-title">user</span>
+                    <span class="menu-title">Target</span>
+                </a>
+                <a class="menu-link @if (Request::segment(2) == 'realisasi') active @endif"
+                    href="{{ route('realisasi.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Realisasi</span>
                 </a>
                 <!--end:Menu link-->
             </div>
@@ -460,50 +374,112 @@
         <!--end:Menu sub-->
     </div>
     <!--end:Menu item-->
-    <!--begin:Menu item-->
-    <div class="menu-item pt-5">
-        <!--begin:Menu content-->
-        <div class="menu-content">
-            <span class="menu-heading fw-bold text-uppercase fs-7">Help</span>
+
+    @role ('admin|Super-Admin')
+        <!--begin:Menu item-->
+        <div class="menu-item pt-5">
+            <!--begin:Menu content-->
+            <div class="menu-content">
+                <span class="menu-heading fw-bold text-uppercase fs-7">Administrator</span>
+            </div>
+            <!--end:Menu content-->
         </div>
-        <!--end:Menu content-->
-    </div>
-    <!--end:Menu item-->
+        <!--end:Menu item-->
+    @endrole
+
     <!--begin:Menu item-->
-    <div class="menu-item">
-        <!--begin:Menu link-->
-        <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs/base/utilities" target="_blank">
-            <span class="menu-icon">
-                <i class="ki-outline ki-rocket fs-2"></i>
+    @role('Super-Admin')
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+            <!--begin:Menu link-->
+            <span class="menu-link">
+                <span class="menu-icon">
+                    <i class="ki-outline ki-key-square fs-2"></i>
+                </span>
+                <span class="menu-title">Roles & Permission</span>
+                <span class="menu-arrow"></span>
             </span>
-            <span class="menu-title">Components</span>
-        </a>
-        <!--end:Menu link-->
-    </div>
+            <!--end:Menu link-->
+            <!--begin:Menu sub-->
+            <div class="menu-sub menu-sub-accordion
+            @if (Request::segment(2) == 'roles' ||
+                    Request::segment(2) == 'permissions' ||
+                    Request::segment(2) == 'assignable' ||
+                    Request::segment(2) == 'assign-to-user') show @endif
+            ">
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link @if (Request::segment(2) == 'roles') active @endif"
+                        href="{{ route('roles.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Roles</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link @if (Request::segment(2) == 'permissions') active @endif"
+                        href="{{ route('permissions.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Permissions</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link @if (Request::segment(2) == 'assignable') active @endif"
+                        href="{{ route('assignable.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Assign Permission</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu sub-->
+        </div>
+    @endrole
     <!--end:Menu item-->
+
     <!--begin:Menu item-->
-    <div class="menu-item">
-        <!--begin:Menu link-->
-        <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs" target="_blank">
-            <span class="menu-icon">
-                <i class="ki-outline ki-abstract-26 fs-2"></i>
+    @role ('admin|Super-Admin')
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+            <!--begin:Menu link-->
+            <span class="menu-link">
+                <span class="menu-icon">
+                    <i class="ki-outline ki-user-square fs-2"></i>
+                </span>
+                <span class="menu-title">Users</span>
+                <span class="menu-arrow"></span>
             </span>
-            <span class="menu-title">Documentation</span>
-        </a>
-        <!--end:Menu link-->
-    </div>
-    <!--end:Menu item-->
-    <!--begin:Menu item-->
-    <div class="menu-item">
-        <!--begin:Menu link-->
-        <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs/getting-started/changelog"
-            target="_blank">
-            <span class="menu-icon">
-                <i class="ki-outline ki-code fs-2"></i>
-            </span>
-            <span class="menu-title">Changelog v8.2.1</span>
-        </a>
-        <!--end:Menu link-->
-    </div>
+            <!--end:Menu link-->
+            <!--begin:Menu sub-->
+            <div class="menu-sub menu-sub-accordion">
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('users.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">user</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu sub-->
+        </div>
+    @endrole
     <!--end:Menu item-->
 </div>
