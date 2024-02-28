@@ -16,19 +16,19 @@ class pegawaiSeeder extends Seeder
         Pegawai::insert([
                 [
                     'opd_id' => '1', //diskominfotik
-                    'nama' => 'Agus Salim',
-                    'nip' => '192.168.100.1',
+                    'nama' => 'Dr. Suwarto, S.Pd, M.Pd',
+                    'nip' => '19690909 198908 1 001',
                     'jabatan' => 'Kepala Dinas',
-                    'golongan' => 'IV/c',
-                    'eselon' => 'IV'
+                    'golongan' => 'IV/b',
+                    'eselon' => 'II'
                 ],
                 [
                     'opd_id' => '2', //disperindag
-                    'nama' => 'Heri Maulana',
-                    'nip' => '192.168.100.2',
-                    'jabatan' => 'Sekretaris',
-                    'golongan' => 'IV/a',
-                    'eselon' => 'IV'
+                    'nama' => 'Zulpan, ST',
+                    'nip' => '19730402 2000312 1 002',
+                    'jabatan' => 'Kepala Dinas',
+                    'golongan' => 'III/d',
+                    'eselon' => 'III'
                 ],
             ]);
     }
