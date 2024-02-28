@@ -40,10 +40,14 @@
     $(document).ready(function() {
         // begin::add Data
         $('#btnTambah').click(function() {
+            // mengambil data opd_id yang sedang login
+            var opd_id = '{{auth()->user()->opd_id}}';
             // empty the data in form
             $('#formData')[0].reset();
             // empty the data ID
             $('#dataId').val('');
+            // memilih opd_id berdasarkan user yang login
+            $('#opd_id').val(opd_id);
             // open modal
             $('#formModal').modal('show');
         });

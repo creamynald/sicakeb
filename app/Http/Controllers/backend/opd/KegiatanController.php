@@ -17,8 +17,13 @@ class KegiatanController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Kegiatan::with('Program')->latest()->get();
+            if(auth()->user()->hasAnyRole(['admin', 'Super-Admin'])){
+                $data = Kegiatan::withWhereHas('program')->latest()->get();
+            }else{
+                $data = Kegiatan::withWhereHas('program.sasaran.tujuan', function($q){
+                    $q->where('opd_id', auth()->user()->opd_id);
+                })->latest()->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -46,7 +51,9 @@ class KegiatanController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        $program = Program::get();
+        $program = Program::withWhereHas('sasaran.tujuan', function($q){
+            $q->where('opd_id', auth()->user()->opd_id);
+        })->latest()->get();
         return view('backend.'.request()->segment(2).'.index', compact('program'));
     }
 

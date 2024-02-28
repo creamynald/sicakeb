@@ -17,8 +17,13 @@ class ProgramController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Program::with('Sasaran')->latest()->get();
+            if(auth()->user()->hasAnyRole(['admin', 'Super-Admin'])){
+                $data = Program::with('sasaran.tujuan')->latest()->get();
+            }else{
+                $data = Program::withWhereHas('sasaran.tujuan', function($q){
+                    $q->where('opd_id', auth()->user()->opd_id);
+                })->latest()->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -46,7 +51,12 @@ class ProgramController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        $sasaran = Sasaran::get();
+
+        // Menampilkan data Sasaran Berdasarkan Yang Login
+        $sasaran = Sasaran::withWhereHas('tujuan', function($q){
+            $q->where('opd_id', auth()->user()->opd_id);
+        })->latest()->get();
+
         return view('backend.program.index', compact('sasaran'));
     }
 

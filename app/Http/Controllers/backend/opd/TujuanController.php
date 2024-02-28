@@ -17,8 +17,12 @@ class TujuanController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Tujuan::with('opd')->latest()->get();
+            if(auth()->user()->hasAnyRole(['admin', 'Super-Admin'])){
+                $data = Tujuan::with('opd')->latest()->get();
+            }else{
+                // if user login has role opd get data pegawai based on opd_id
+                $data = Tujuan::with('opd')->where('opd_id', auth()->user()->opd_id)->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

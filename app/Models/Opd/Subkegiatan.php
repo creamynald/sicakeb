@@ -26,11 +26,4 @@ class Subkegiatan extends Model
         return $this->belongsTo(Kegiatan::class);
     }
     // end::relation to Kegiatan model
-
-    // begin::relation to Perjanjian Kinerja model
-    // public function subkegiatan()
-    // {
-    //     return $this->hasMany(Subkegiatan::class);
-    // }
-    // end::relation to Perjanjian Kinerja model
 }

@@ -19,7 +19,7 @@ class pegawaiController extends Controller
         // begin::get data using yajra
         if($request->ajax()){
             // if user login has role admin get all data pegawai
-            if(auth()->user()->hasRole('admin', 'super-admin')){
+            if(auth()->user()->hasAnyRole(['admin', 'Super-Admin'])){
                 $data = Pegawai::with('opd')->get();
             }else{
                 // if user login has role opd get data pegawai based on opd_id

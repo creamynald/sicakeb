@@ -16,9 +16,15 @@ class SasaranController extends Controller
     public function index(Request $request)
     {
         // begin::get data using yajra
+        $tujuan = Tujuan::where('opd_id', auth()->user()->opd_id)->first();
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Sasaran::with('Tujuan')->latest()->get();
+            if(auth()->user()->hasAnyRole(['admin', 'Super-Admin'])){
+                $data = Sasaran::with('tujuan')->latest()->get();
+            }else{
+                $data = Sasaran::with('tujuan')->whereHas('tujuan', function($q){
+                    $q->where('opd_id', auth()->user()->opd_id);
+                })->latest()->get();
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -46,7 +52,7 @@ class SasaranController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        $tujuan = Tujuan::get();
+        $tujuan = Tujuan::whereOpdId(auth()->user()->opd_id)->get();
         return view('backend.sasaran.index', compact('tujuan'));
     }
 

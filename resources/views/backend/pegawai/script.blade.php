@@ -37,7 +37,7 @@
                 },
                 {
                     data: 'action',
-                    name: 'action',
+                    name: 'action'
                 },
             ],
         });
@@ -56,9 +56,12 @@
     $(document).ready(function() {
         // Tambah Data
         $('#btnTambah').click(function() {
+            // mengambil opd_id dari user yang login
+            var opd_id = '{{auth()->user()->opd_id}}';
             $('#formData')[0].reset();
             // Kosongkan data ID
             $('#dataId').val('');
+            $('#opd_id').val(opd_id);
             $('#formModal').modal('show');
         });
 
