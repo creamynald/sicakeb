@@ -882,8 +882,7 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div class="mb-0 me-2">
-                                    <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bold">Banner
-                                        {{asset('')}}/assets</a>
+                                    <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bold">BannerAassets</a>
                                     <div class="text-gray-500 fs-7">Collection of banner
                                         images</div>
                                 </div>
@@ -1587,12 +1586,13 @@
                     <!--begin::Username-->
                     <div class="d-flex flex-column">
                         <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-                            <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Administrator</span>
+                            <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ucfirst(Auth::user()->getRoleNames()->first())}}</span>
                         </div>
                         <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                     </div>
                     <!--end::Username-->
                 </div>
+                <a href="#" class="fw-bold text-primary fs-7 px-3">{{ Auth::user()->opd->nama }}</a>
             </div>
             <!--end::Menu item-->
             <!--begin::Menu separator-->
