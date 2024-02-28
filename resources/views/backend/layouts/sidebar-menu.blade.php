@@ -268,7 +268,13 @@
         </span>
         <!--end:Menu link-->
         <!--begin:Menu sub-->
-        <div class="menu-sub menu-sub-accordion">
+        <div class="menu-sub menu-sub-accordion @if(Request::segment(2) == 'pegawai'
+        || Request::segment(2) == 'opd'
+        || Request::segment(2) == 'sasaran'
+        || Request::segment(2) == 'program'
+        || Request::segment(2) == 'kegiatan'
+        || Request::segment(2) == 'subkegiatan'
+        || Request::segment(2) == 'tujuan') show @endif">
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
@@ -349,7 +355,7 @@
         </span>
         <!--end:Menu link-->
         <!--begin:Menu sub-->
-        <div class="menu-sub menu-sub-accordion">
+        <div class="menu-sub menu-sub-accordion @if(Request::segment(2) == 'target' || Request::segment(2) == 'realisasi') show @endif">
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
