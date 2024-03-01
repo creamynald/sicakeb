@@ -67,19 +67,23 @@ class RealisasiController extends Controller
 
         // Jika 2 maka akan menampilkan data Program
         if ($data_eselon->eselon == 'II') {
-            $data_pk = Program::get();
+            $data_pk = Program::withWhereHas('sasaran.tujuan', function($q){
+                $q->where('opd_id', auth()->user()->opd_id);
+            })->get();
             $jenis_master = 'program';
             // Jika 3 maka akan menampilkan data Kegiatan
         } elseif ($data_eselon->eselon == 'III') {
-            $data_pk = Kegiatan::get();
+            $data_pk = Kegiatan::tujuan()->get();
             $jenis_master = 'kegiatan';
             // Jika 4 maka akan menampilkan data Subkegiatan
         } else {
-            $data_pk = Subkegiatan::get();
+            $data_pk = Subkegiatan::withWhereHas('kegiatan.program.sasaran.tujuan', function($q){
+                $q->where('opd_id', auth()->user()->opd_id);
+            })->get();
             $jenis_master = 'subkegiatan';
         }
 
-        $target = Target::wherePegawaiId($id)->get();
+        $target = Target::wherePegawaiId($id)->where('tahun', date("Y"))->get();
         $realisasi = new Realisasi;
         $pegawai = Pegawai::findOrFail( $id );
         return view('backend.realisasi.rincian', compact('target','pegawai','data_pk','jenis_master','realisasi'));

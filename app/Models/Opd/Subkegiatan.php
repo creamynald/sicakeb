@@ -26,4 +26,10 @@ class Subkegiatan extends Model
         return $this->belongsTo(Kegiatan::class);
     }
     // end::relation to Kegiatan model
+
+    public function scopeTujuan(){
+        return $this->withWhereHas('kegiatan.program.sasaran.tujuan', function($q){
+            $q->where('opd_id', auth()->user()->opd_id);
+        });
+    }
 }

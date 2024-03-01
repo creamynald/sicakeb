@@ -34,4 +34,10 @@ class Kegiatan extends Model
         return $this->hasMany(Subkegiatan::class);
     }
     // end::relation to Sub Kegiatan model
+
+    public function scopeTujuan(){
+        return $this->withWhereHas('program.sasaran.tujuan', function($q){
+            $q->where('opd_id', auth()->user()->opd_id);
+        });
+    }
 }
