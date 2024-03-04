@@ -79,7 +79,7 @@ class TargetController extends Controller
 
         // Jika 2 maka akan menampilkan data Program
         if ($data_eselon->eselon == 'II') {
-            $data_pk = Program::withWhererHas('sasaran.tujuan',function($q){
+            $data_pk = Program::withWhereHas('sasaran.tujuan',function($q){
                 $q->where('opd_id', auth()->user()->opd_id);
             })->get();
             $jenis_master = 'program';
