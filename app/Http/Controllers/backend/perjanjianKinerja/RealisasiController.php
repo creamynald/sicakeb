@@ -8,9 +8,9 @@ use App\Models\PerjanjianKinerja\Realisasi;
 use App\Models\PerjanjianKinerja\Target;
 use App\Models\Opd\Pegawai;
 use App\Models\opd;
-use App\Models\opd\Kegiatan;
-use App\Models\opd\Subkegiatan;
-use App\Models\opd\Program;
+use App\Models\Opd\Kegiatan;
+use App\Models\Opd\Subkegiatan;
+use App\Models\Opd\Program;
 use DataTables;
 
 class RealisasiController extends Controller
