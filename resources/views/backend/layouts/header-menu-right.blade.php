@@ -1592,7 +1592,9 @@
                     </div>
                     <!--end::Username-->
                 </div>
-                <a href="#" class="fw-bold text-primary fs-7 px-3">{{ Auth::user()->opd->nama }}</a>
+                @role ('operator')
+                    <a href="#" class="fw-bold text-primary fs-7 px-3">{{ Auth::user()->opd->nama }}</a>
+                @endrole
             </div>
             <!--end::Menu item-->
             <!--begin::Menu separator-->
