@@ -12,13 +12,13 @@ class opd extends Model
     use HasFactory;
     // define name of table in database
     protected $table = 'opds';
-    
-    // begin::define fillable column 
+
+    // begin::define fillable column
     protected $fillable = [
         'nama',
         'singkatan'
     ];
-    // end::define fillable column 
+    // end::define fillable column
 
     // begin::relation to pegawai model
     public function pegawai()
@@ -31,6 +31,14 @@ class opd extends Model
     public function tujuan()
     {
         return $this->hasMany(Tujuan::class);
+    }
+    // end::relation to tujuan model
+
+
+    // begin::relation to tujuan model
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
     // end::relation to tujuan model
 }
