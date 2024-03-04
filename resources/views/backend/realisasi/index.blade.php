@@ -172,8 +172,8 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                                 <!--begin::Add customer-->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    id="btnTambah">Tambah Data</button>
+                                {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    id="btnTambah">Tambah Data</button> --}}
                                 <!--end::Add customer-->
                             </div>
                             <!--end::Toolbar-->
