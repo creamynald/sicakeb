@@ -27,7 +27,8 @@ class Target extends Model
         'tw3',
         'tw4',
         'satuan',
-        'anggaran'
+        'anggaran',
+        'target_kinerja_tahunan',
     ];
 
     // begin::relation to opd model
