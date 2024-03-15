@@ -67,6 +67,7 @@
                 $('#tw4').val(data.tw4);
                 $('#pendukung').val(data.pendukung);
                 $('#penghambat').val(data.penghambat);
+                $('#solusi').val(data.solusi);
                 // end::fill value based on id from url to form
                 // open modal
                 $('#formModal').modal('show');
