@@ -78,6 +78,7 @@
                                     <th class="text-center" colspan="4">Realisasi</th>
                                     <th class="text-center middle-align" rowspan="2">Penghambat</th>
                                     <th class="text-center middle-align" rowspan="2">Pendukung</th>
+                                    <th class="text-center middle-align" rowspan="2">Solusi</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
                                 </tr>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
@@ -100,6 +101,7 @@
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
+                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->solusi??'' }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center flex-shrink-0">
                                                 <button data-id="{{$realisasi->getRealisasi($item->id)->id??''}}" data-target-pk="{{$item->id}}"
