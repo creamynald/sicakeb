@@ -20,7 +20,7 @@ class RealisasiController extends Controller
         // begin::get data using yajra
         if($request->ajax()){
             // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
-            $data = Pegawai::with('opd')->latest()->get();
+            $data = Pegawai::with('opd')->whereOpdId(auth()->user()->opd_id)->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -34,7 +34,7 @@ class RealisasiController extends Controller
                 ->make(true);
         }
         // end::get data using yajra
-        $pegawai = Pegawai::get();
+        $pegawai = Pegawai::whereOpdId(auth()->user()->opd_id)->get();
         $opd = opd::get();
         return view('backend.realisasi.index', compact('opd','pegawai'));
     }
