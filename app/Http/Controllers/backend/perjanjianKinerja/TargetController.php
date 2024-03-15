@@ -140,6 +140,8 @@ class TargetController extends Controller
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
                 'tw4' => $request->tw4,
+                'anggaran' => $request->anggaran,
+                'target_kinerja_tahunan' => $request->target_kinerja_tahunan,
             ]
         );
         return response()->json($data);
