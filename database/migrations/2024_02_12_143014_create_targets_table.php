@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('tw4')->nullable();
             $table->string('satuan');
             $table->string('anggaran')->nullable();
+            $table->string('target_kinerja_tahunan')->nullable();
 
             $table->timestamps();
         });
