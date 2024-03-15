@@ -201,6 +201,7 @@
                                     <th class="text-center middle-align" rowspan="2">No</th>
                                     <th class="text-center middle-align" rowspan="2">Sasaran</th>
                                     <th class="text-center middle-align" rowspan="2">Indikator</th>
+                                    <th class="text-center middle-align" rowspan="2">Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Tahun</th>
                                     <th class="text-center" colspan="4">Target</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
@@ -218,6 +219,7 @@
                                         <td>{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
+                                        <td>{{ $item->anggaran }}</td>
                                         <td class="text-center">{{ $item->tahun }}</td>
                                         <td>{{ $item->tw1 }}</td>
                                         <td>{{ $item->tw2 }}</td>
@@ -287,6 +289,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-4">
+                                        <label for="anggaran" class="required fs-6 fw-semibold mb-2">Anggaran</label>
+                                        <input type="text" class="form-control" id="anggaran" name="anggaran">
+                                    </div>
+                                    <div class="form-group mb-4">
                                         <label for="sasaran" class="required fs-6 fw-semibold mb-2">Sasaran
                                             Strategis</label>
                                         <input type="text" class="form-control" id="sasaran" name="sasaran">
@@ -307,15 +313,15 @@
                                             <input type="text" class="form-control" id="tw1" name="tw1">
                                         </div>
                                         <div class="form-group mb-4 col-3">
-                                            <label for="tw2" class="required fs-6 fw-semibold mb-2">TW II</label>
+                                            <label for="tw2" class="fs-6 fw-semibold mb-2">TW II</label>
                                             <input type="text" class="form-control" id="tw2" name="tw2">
                                         </div>
                                         <div class="form-group mb-4 col-3">
-                                            <label for="tw3" class="required fs-6 fw-semibold mb-2">TW III</label>
+                                            <label for="tw3" class="fs-6 fw-semibold mb-2">TW III</label>
                                             <input type="text" class="form-control" id="tw3" name="tw3">
                                         </div>
                                         <div class="form-group mb-4 col-3">
-                                            <label for="tw4" class="required fs-6 fw-semibold mb-2">TW IV</label>
+                                            <label for="tw4" class="fs-6 fw-semibold mb-2">TW IV</label>
                                             <input type="text" class="form-control" id="tw4" name="tw4">
                                         </div>
                                     </div>
