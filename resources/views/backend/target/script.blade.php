@@ -111,6 +111,7 @@
                 $('#tw3').val(data.tw3);
                 $('#tw4').val(data.tw4);
                 $('#anggaran').val(data.anggaran);
+                $('#target_kinerja_tahunan').val(data.target_kinerja_tahunan);
                 // end::fill value based on id from url to form
                 // open modal
                 $('#formModal').modal('show');

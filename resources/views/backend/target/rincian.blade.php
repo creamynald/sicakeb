@@ -203,6 +203,7 @@
                                     <th class="text-center middle-align" rowspan="2">Indikator</th>
                                     <th class="text-center middle-align" rowspan="2">Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Tahun</th>
+                                    <th class="text-center middle-align" rowspan="2">Target Kinerja Tahunan</th>
                                     <th class="text-center" colspan="4">Target</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
                                 </tr>
@@ -221,6 +222,7 @@
                                         <td>{{ $item->indikator }}</td>
                                         <td>{{ $item->anggaran }}</td>
                                         <td class="text-center">{{ $item->tahun }}</td>
+                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td>{{ $item->tw1 }}</td>
                                         <td>{{ $item->tw2 }}</td>
                                         <td>{{ $item->tw3 }}</td>
@@ -301,6 +303,11 @@
                                         <label for="indikator" class="required fs-6 fw-semibold mb-2">Indikator
                                             Kinerja</label>
                                         <input type="text" class="form-control" id="indikator" name="indikator">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="target_kinerja_tahunan" class="required fs-6 fw-semibold mb-2">Target Kinerja Tahunan
+                                            Kinerja</label>
+                                        <input type="text" class="form-control" id="target_kinerja_tahunan" name="target_kinerja_tahunan">
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="satuan" class="required fs-6 fw-semibold mb-2">Satuan
