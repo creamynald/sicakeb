@@ -110,6 +110,7 @@
                 $('#tw2').val(data.tw2);
                 $('#tw3').val(data.tw3);
                 $('#tw4').val(data.tw4);
+                $('#anggaran').val(data.anggaran);
                 // end::fill value based on id from url to form
                 // open modal
                 $('#formModal').modal('show');
