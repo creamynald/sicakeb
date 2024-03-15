@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('sasaran');
             $table->year('tahun');
             $table->string('tw1');
-            $table->string('tw2');
-            $table->string('tw3');
-            $table->string('tw4');
+            $table->string('tw2')->nullable();
+            $table->string('tw3')->nullable();
+            $table->string('tw4')->nullable();
             $table->string('satuan');
+            $table->string('anggaran')->nullable();
 
             $table->timestamps();
         });
