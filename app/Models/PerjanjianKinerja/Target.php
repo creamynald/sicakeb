@@ -26,7 +26,8 @@ class Target extends Model
         'tw2',
         'tw3',
         'tw4',
-        'satuan'
+        'satuan',
+        'anggaran'
     ];
 
     // begin::relation to opd model

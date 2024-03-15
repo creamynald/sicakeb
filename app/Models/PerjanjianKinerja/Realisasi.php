@@ -19,7 +19,8 @@ class Realisasi extends Model
         'tw3',
         'tw4',
         'penghambat',
-        'pendukung'
+        'pendukung',
+        'solusi',
     ] ;
 
     public function program(){
