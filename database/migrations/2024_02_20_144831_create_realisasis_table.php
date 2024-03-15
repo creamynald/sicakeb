@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tw4')->nullable();
             $table->string('pendukung')->nullable();
             $table->string('penghambat')->nullable();
+            $table->string('solusi')->nullable();
             $table->timestamps();
         });
     }
