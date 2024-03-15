@@ -22,29 +22,33 @@
                     </div> --}}
                     <div class="row">
                         <div class="form-group mb-4 col-3">
-                            <label for="tw1" class="required fs-6 fw-semibold mb-2">Realisasi TW I</label>
+                            <label for="tw1" class="fs-6 fw-semibold mb-2">Realisasi TW I</label>
                             <input type="text" class="form-control" id="tw1" name="tw1">
                         </div>
                         <div class="form-group mb-4 col-3">
-                            <label for="tw2" class="required fs-6 fw-semibold mb-2">Realisasi TW II</label>
+                            <label for="tw2" class="fs-6 fw-semibold mb-2">Realisasi TW II</label>
                             <input type="text" class="form-control" id="tw2" name="tw2">
                         </div>
                         <div class="form-group mb-4 col-3">
-                            <label for="tw3" class="required fs-6 fw-semibold mb-2">Realisasi TW III</label>
+                            <label for="tw3" class="fs-6 fw-semibold mb-2">Realisasi TW III</label>
                             <input type="text" class="form-control" id="tw3" name="tw3">
                         </div>
                         <div class="form-group mb-4 col-3">
-                            <label for="tw4" class="required fs-6 fw-semibold mb-2">Realisasi TW IV</label>
+                            <label for="tw4" class="fs-6 fw-semibold mb-2">Realisasi TW IV</label>
                             <input type="text" class="form-control" id="tw4" name="tw4">
                         </div>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="pendukung" class="required fs-6 fw-semibold mb-2">Pendukung</label>
+                        <label for="pendukung" class="fs-6 fw-semibold mb-2">Faktor Pendukung</label>
                         <input type="text" class="form-control" id="pendukung" name="pendukung">
                     </div>
                     <div class="form-group mb-4">
-                        <label for="penghambat" class="required fs-6 fw-semibold mb-2">Penghambat</label>
+                        <label for="penghambat" class="fs-6 fw-semibold mb-2">Faktor Penghambat</label>
                         <input type="text" class="form-control" id="penghambat" name="penghambat">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="solusi" class="fs-6 fw-semibold mb-2">Solusi</label>
+                        <input type="text" class="form-control" id="solusi" name="solusi">
                     </div>
                 </div>
                 <!--begin::Modal footer-->
