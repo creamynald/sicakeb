@@ -127,6 +127,7 @@ class RealisasiController extends Controller
                 'tw4' => $request->tw4,
                 'pendukung' => $request->pendukung,
                 'penghambat' => $request->penghambat,
+                'solusi' => $request->solusi,
             ]
         );
         return response()->json($data);
