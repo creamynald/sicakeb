@@ -337,7 +337,7 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::segment(2) == 'target' || Request::segment(2) == 'realisasi') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -355,7 +355,7 @@
         </span>
         <!--end:Menu link-->
         <!--begin:Menu sub-->
-        <div class="menu-sub menu-sub-accordion @if(Request::segment(2) == 'target' || Request::segment(2) == 'realisasi') show @endif">
+        <div class="menu-sub menu-sub-accordion">
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
