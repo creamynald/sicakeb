@@ -39,15 +39,15 @@ class Target extends Model
     // end::relation to opd model
 
     public function program(){
-        return $this->hasMany(Program::class);
+        return $this->belongsTo(Program::class, 'master_id', 'id');
     }
 
     public function kegiatan(){
-        return $this->hasMany(Kegiatan::class);
+        return $this->hasMany(Kegiatan::class, 'master_id', 'id');
     }
 
     public function subkegiatan(){
-        return $this->hasMany(Kegiatan::class);
+        return $this->hasMany(Kegiatan::class, 'master_id', 'id');
     }
 
     public function realisasi(){

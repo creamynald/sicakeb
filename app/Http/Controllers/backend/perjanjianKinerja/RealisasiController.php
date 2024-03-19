@@ -160,4 +160,16 @@ class RealisasiController extends Controller
         $item->delete();
         return response()->json(['success' => true]);
     }
+
+
+    public function capaian(){
+        $data_pegawai = Pegawai::whereOpdId(auth()->user()->opd_id)->orderBy('eselon', 'ASC')->get();
+        // Extracting IDs from $data_pegawai collection
+        $pegawai_ids = $data_pegawai->pluck('id')->toArray();
+        $year = isset($_GET['periode']) ? $_GET['periode'] : date('Y');
+
+        $target = Target::whereIn('pegawai_id', $pegawai_ids)->whereTahun($year)->get();
+
+        return view('backend.capaian.index', compact('target'));
+    }
 }

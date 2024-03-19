@@ -140,6 +140,7 @@ Route::prefix('admin')
 
         // begin::realisasi controller that can be access by super admin and admin only
         Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::get('capaian', [RealisasiController::class, 'capaian'])->name('capaian');
             Route::resource('realisasi', RealisasiController::class);
             // begin:additional route (!= resource)
             Route::post('realisasi/save', [RealisasiController::class, 'saveData']);

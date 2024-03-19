@@ -337,7 +337,7 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::segment(2) == 'target' || Request::segment(2) == 'realisasi') show @endif">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::segment(2) == 'target' || Request::segment(2) == 'realisasi' || Request::segment(2) == 'capaian') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -372,6 +372,13 @@
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Realisasi</span>
+                </a>
+                <a class="menu-link @if (Request::segment(2) == 'capaian') active @endif"
+                    href="{{ route('capaian') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Capaian</span>
                 </a>
                 <!--end:Menu link-->
             </div>

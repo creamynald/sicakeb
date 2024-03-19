@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Opd\Sasaran;
 use App\Models\Opd\Kegiatan;
+use App\Models\PerjanjianKinerja\Target;
 
 class Program extends Model
 {
@@ -32,6 +33,13 @@ class Program extends Model
     public function kegiatan()
     {
         return $this->hasMany(Kegiatan::class);
+    }
+    // end::relation to Kegiatan model
+
+    // begin::relation to Kegiatan model
+    public function target()
+    {
+        return $this->hasMany(Target::class);
     }
     // end::relation to Kegiatan model
 }
