@@ -113,7 +113,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $item->indikator }}</td>
-                                        <td class="text-center">{{ $item->anggaran ?? '-' }}</td>
+                                        <td class="text-center">@rp($item->anggaran)</td>
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td>{{ $item->tw1 }}</td>
                                         <td>{{ $item->tw2 }}</td>
