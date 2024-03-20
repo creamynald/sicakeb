@@ -210,24 +210,14 @@
 </script>
 {{-- end::delete data using swall --}}
 
-<script>
-    function selectChange() {
-        var kategori = document.getElementById("kategori").value;
-        var kegiatanSelect = document.getElementById("kegiatan");
-        var programSelect = document.getElementById("program");
+{{-- Script for add coma in thousand sparator --}}
+<script type="text/javascript">
+    function addcommas(x) {
+        //remove commas
+        retVal = x ? parseFloat(x.replace(/,/g, '')) : 0;
 
-        if (kategori === "II") {
-            kegiatanSelect.style.display = "block";
-            programSelect.style.display = "none";
-        } else if (kategori === "III") {
-            kegiatanSelect.style.display = "none";
-            programSelect.style.display = "block";
-        } else if (kategori === "IV") {
-            kegiatanSelect.style.display = "none";
-            programSelect.style.display = "block";
-        } else {
-            kegiatanSelect.style.display = "none";
-            programSelect.style.display = "none";
-        }
+        //apply formatting
+        return retVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 </script>
+{{-- End --}}
