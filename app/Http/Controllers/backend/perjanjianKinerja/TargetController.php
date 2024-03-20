@@ -126,6 +126,9 @@ class TargetController extends Controller
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
+        $anggaran = explode(",",$request->anggaran); //memecah angka jika terdapat koma pada bilangan ribuan
+        $a = implode($anggaran); //menyatukan kembali menjadi angka utuh tanpa koma
+
         $data = Target::updateOrCreate(
             ['id' => $request->dataId],
             [
@@ -140,7 +143,7 @@ class TargetController extends Controller
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
                 'tw4' => $request->tw4,
-                'anggaran' => $request->anggaran,
+                'anggaran' => $a,
                 'target_kinerja_tahunan' => $request->target_kinerja_tahunan,
             ]
         );
