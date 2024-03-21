@@ -2,6 +2,7 @@
 
 namespace App\Models\Opd;
 
+use App\Models\PerjanjianKinerja\Target;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Opd\Kegiatan;
@@ -26,6 +27,13 @@ class Subkegiatan extends Model
         return $this->belongsTo(Kegiatan::class);
     }
     // end::relation to Kegiatan model
+
+    // begin::relation to Target model
+    public function target()
+    {
+        return $this->belongsTo(Target::class);
+    }
+    // end::relation to Target model
 
     public function scopeTujuan(){
         return $this->withWhereHas('kegiatan.program.sasaran.tujuan', function($q){
