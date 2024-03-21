@@ -31,7 +31,7 @@ class Subkegiatan extends Model
     // begin::relation to Target model
     public function target()
     {
-        return $this->belongsTo(Target::class);
+        return $this->hasMany(Target::class);
     }
     // end::relation to Target model
 

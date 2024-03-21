@@ -106,9 +106,9 @@
                                         <td>
                                             @if ($item->jenis_master == 'program')
                                                 {{$item->program->nama}}
-                                            @elseif ($item->jenis_master == 'kegiatan')
+                                                @elseif ($item->jenis_master == 'kegiatan')
                                                 {{$item->kegiatan->nama}}
-                                            @elseif ($item->jenis_master == 'subkegiatan')
+                                                @elseif ($item->jenis_master == 'subkegiatan')
                                                 {{$item->subkegiatan->nama}}
                                             @endif
                                         </td>

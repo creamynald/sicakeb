@@ -6,6 +6,7 @@ use App\Models\Opd\Kegiatan;
 use App\Models\Opd\Pegawai;
 use App\Models\opd;
 use App\Models\Opd\Program;
+use App\Models\Opd\Subkegiatan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,11 +44,11 @@ class Target extends Model
     }
 
     public function kegiatan(){
-        return $this->hasMany(Kegiatan::class, 'master_id', 'id');
+        return $this->belongsTo(Kegiatan::class, 'master_id', 'id');
     }
 
     public function subkegiatan(){
-        return $this->hasMany(Kegiatan::class, 'master_id', 'id');
+        return $this->belongsTo(Subkegiatan::class, 'master_id', 'id');
     }
 
     public function realisasi(){
