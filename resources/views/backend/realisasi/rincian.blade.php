@@ -75,17 +75,27 @@
                                     <th class="text-center middle-align" rowspan="2">Sasaran</th>
                                     <th class="text-center middle-align" rowspan="2">Indikator</th>
                                     <th class="text-center middle-align" rowspan="2">Tahun</th>
-                                    <th class="text-center" colspan="4">Realisasi</th>
+                                    <th class="text-center" colspan="2">TW I</th>
+                                    <th class="text-center" colspan="2">TW II</th>
+                                    <th class="text-center" colspan="2">TW III</th>
+                                    <th class="text-center" colspan="2">TW IV</th>
                                     <th class="text-center middle-align" rowspan="2">Penghambat</th>
                                     <th class="text-center middle-align" rowspan="2">Pendukung</th>
                                     <th class="text-center middle-align" rowspan="2">Solusi</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
                                 </tr>
-                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="text-center">TW I</th>
-                                    <th class="text-center">TW II</th>
-                                    <th class="text-center">TW III</th>
-                                    <th class="text-center">TW IV</th>
+                                <tr>
+                                    <th class="text-center">T</th>
+                                    <th class="text-center">R</th>
+
+                                    <th class="text-center">T</th>
+                                    <th class="text-center">R</th>
+
+                                    <th class="text-center">T</th>
+                                    <th class="text-center">R</th>
+
+                                    <th class="text-center">T</th>
+                                    <th class="text-center">R</th>
                                 </tr>
                             </thead>
                             <tbody class="fs-6 text-gray-600">
@@ -95,9 +105,13 @@
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
                                         <td class="text-center">{{ $item->tahun }}</td>
+                                        <td class="text-center">{{ $item->tw1 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw1??'' }}</td>
+                                        <td class="text-center">{{ $item->tw2 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw2??'' }}</td>
+                                        <td class="text-center">{{ $item->tw3 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw3??'' }}</td>
+                                        <td class="text-center">{{ $item->tw4 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
