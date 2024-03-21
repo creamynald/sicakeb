@@ -13,9 +13,10 @@
                     name: 'DT_RowIndex',
                     orderable : false
                 },
-                {
+                @role('admin|Super-Admin'){
                     data: 'opd.nama', name: 'opd.nama'
                 },
+                @endrole
                 {
                     data: 'nama', name: 'nama'
                 },
