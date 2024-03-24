@@ -42,4 +42,17 @@ class Realisasi extends Model
     public function getRealisasi($target_id){
         return $this->where('target_id', $target_id)->first();
     }
+
+    // public function countRealisasi($tw1, $tw2, $tw3, $tw4, $target_tahunan){
+    //     return $this->round(($tw1+$tw2+$tw3+$tw4)/$target_tahunan*100,2);
+    // }
+
+    public function converTw($tw){
+        if($tw == '-' || $tw == ''){
+            $convert = 0;
+        }else{
+            $convert = $tw;
+        }
+         return $convert;
+    }
 }

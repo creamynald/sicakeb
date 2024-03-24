@@ -73,7 +73,8 @@
                             <!--begin::Search-->
                             <div class="d-flex align-items-center position-relative my-1">
                                 <div class="dataTables_filter ">
-                                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+                                    <h1
+                                        class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
                                         @urlSegment(2) Tahun @php echo isset ($_GET['periode']) ? $_GET['periode'] : date('Y') @endphp </h1>
                                 </div>
                             </div>
@@ -105,19 +106,57 @@
                                         <td class="text-center align-middle">{{ $data + 1 }}</td>
                                         <td>
                                             @if ($item->jenis_master == 'program')
-                                                {{$item->program->nama}}
-                                                @elseif ($item->jenis_master == 'kegiatan')
-                                                {{$item->kegiatan->nama}}
-                                                @elseif ($item->jenis_master == 'subkegiatan')
-                                                {{$item->subkegiatan->nama}}
+                                                {{ $item->program->nama }}
+                                            @elseif ($item->jenis_master == 'kegiatan')
+                                                {{ $item->kegiatan->nama }}
+                                            @elseif ($item->jenis_master == 'subkegiatan')
+                                                {{ $item->subkegiatan->nama }}
                                             @endif
                                         </td>
                                         <td>{{ $item->indikator }}</td>
                                         <td class="text-center">@rp($item->anggaran)</td>
-                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
-                                        <td>{{ $item->tw1 }}</td>
-                                        <td>{{ $item->tw2 }}</td>
-                                        <td>{{ $item->tw3 }}</td>
+                                        <td class="text-center">
+                                            {{ $item->target_kinerja_tahunan }}@if (is_numeric($item->target_kinerja_tahunan))
+                                                {{ $item->satuan }}
+                                            @endif
+                                        </td>
+                                        {{-- Realisasi --}}
+                                        <td class="text-center">
+                                            @if (is_numeric($item->target_kinerja_tahunan))
+                                                @php
+                                                    echo $realisasi->converTw(
+                                                        $realisasi->getRealisasi($item->id)->tw1 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw2 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw3 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw4 ?? '',
+                                                        );
+                                                @endphp
+                                            @else
+                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                            @endif
+                                        </td>
+                                        {{-- End::Realisasi --}}
+                                        {{-- Capaian --}}
+                                        <td class="text-center">
+                                            @if (is_numeric($item->target_kinerja_tahunan))
+                                                {{ round(( $realisasi->converTw($realisasi->getRealisasi($item->id)->tw1 ?? '') +
+                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw2 ?? '') +
+                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw3 ?? '') +
+                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw4 ?? '')) /
+                                                    $item->target_kinerja_tahunan * 100, 2) . '%'
+                                                }}
+                                            @else
+                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                            @endif
+                                        </td>
+                                        {{-- End::Capaian --}}
+                                        <td></td>
                                         <td>Opsional</td>
                                     </tr>
                                 @endforeach
@@ -138,8 +177,7 @@
     {{-- begin::additional css --}}
     @push('css')
         <!--begin::Vendor Stylesheets(used for this page only)-->
-        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-            type="text/css" />
+        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
         <!--end::Vendor Stylesheets-->
         <style>
             .middle-align {

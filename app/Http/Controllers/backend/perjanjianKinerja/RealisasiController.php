@@ -169,7 +169,7 @@ class RealisasiController extends Controller
         $year = isset($_GET['periode']) ? $_GET['periode'] : date('Y');
 
         $target = Target::whereIn('pegawai_id', $pegawai_ids)->whereTahun($year)->get();
-
-        return view('backend.capaian.index', compact('target'));
+        $realisasi = new Realisasi;
+        return view('backend.capaian.index', compact('target', 'realisasi'));
     }
 }
