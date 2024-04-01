@@ -32,7 +32,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/login');
 });
-Auth::routes();
+Auth::routes([
+    'register' => false, // Register Routes...
+
+    'reset' => false, // Reset Password Routes...
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
