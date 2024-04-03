@@ -62,6 +62,10 @@
             <!--begin::Body-->
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
                 <!--begin::Form-->
+                <div class="row mx-auto d-flex mt-6">
+                    <img src="{{asset('assets/favicon/logo-bengkalis.png')}}" alt="" style="width: 80px; height: auto;">
+                    <img src="{{asset('assets/favicon/logo-bengkalis-bernasa.png')}}" alt="" style="width: auto; height: 80px;">
+                </div>
                 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10">

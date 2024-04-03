@@ -7,10 +7,10 @@
         <!--begin::Heading-->
         <div class="text-center mb-11">
             <!--begin::Title-->
-            <h1 class="text-gray-900 fw-bolder mb-3">Sign In</h1>
+            <h1 class="text-gray-900 fw-bolder mb-3">Masuk Akun</h1>
             <!--end::Title-->
             <!--begin::Subtitle-->
-            <div class="text-gray-500 fw-semibold fs-6">with email</div>
+            <div class="text-gray-500 fw-semibold fs-6">dengan menggunakan e-mail</div>
             <!--end::Subtitle=-->
         </div>
         <!--begin::Heading-->
@@ -50,11 +50,7 @@
             </button>
         </div>
         <!--end::Submit button-->
-        <!--begin::Sign up-->
-        {{-- <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-            <a href="" class="link-primary">Sign up</a>
-        </div> --}}
-        <!--end::Sign up-->
     </form>
     <!--end::Form-->
+
 @endsection
