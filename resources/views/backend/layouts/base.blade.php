@@ -7,16 +7,16 @@
     <title>{{ config('app.name') }} - {{ config('app.subname') }}</title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
+        content="Sistem Capaian Kinerja Elektronik Kabupaten Bengkalis (SICAKEB)" />
     <meta name="keywords"
-        content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+        content="Sicakeb, Bengkalis, Capaian Kinerja" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title"
-        content="Metronic - The World's #1 Selling Bootstrap Admin Template - Metronic by KeenThemes" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="Metronic by Keenthemes" />
+        content="SICAKEB - Sistem Capaian Kinerja Elektronik Kabupaten Bengkalis" />
+    {{-- <meta property="og:url" content="https://keenthemes.com/metronic" /> --}}
+    <meta property="og:site_name" content="SICAKEB" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
@@ -108,13 +108,18 @@
                     <!--begin::Logo-->
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
-                        <a href="index.html">
-                            <img alt="Logo" src="{{asset('')}}/assets/media/logos/default.svg"
-                                class="h-25px app-sidebar-logo-default theme-light-show" />
-                            <img alt="Logo" src="{{asset('')}}/assets/media/logos/default-dark.svg"
-                                class="h-25px app-sidebar-logo-default theme-dark-show" />
-                            <img alt="Logo" src="{{asset('')}}/assets/media/logos/default-small.svg"
-                                class="h-20px app-sidebar-logo-minimize" />
+                        <a href="{{url('admin/dashboard')}}">
+                            <img alt="Logo" src="{{asset('')}}/assets/favicon/logo-bengkalis.png"
+                                class="h-60px app-sidebar-logo-default theme-light-show mx-auto" />
+                            <img src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" alt="" class="app-sidebar-logo-default theme-light-show h-40px">
+
+                            <img alt="Logo" src="{{asset('')}}/assets/favicon/logo-bengkalis.png"
+                            class="h-60px app-sidebar-logo-default theme-dark-show" />
+                            <img src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" alt="" class="app-sidebar-logo-default theme-dark-show h-40px">
+
+                            <img alt="Logo" src="{{asset('')}}/assets/favicon/logo-bengkalis.png"
+                            class="h-30px app-sidebar-logo-minimize ml-4" />
+                            <img src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" alt="" class=" d-none app-sidebar-logo-minimize">
                         </a>
                         <!--end::Logo image-->
                         <!--begin::Sidebar toggle-->
@@ -148,13 +153,7 @@
                     <!--end::sidebar menu-->
                     <!--begin::Footer-->
                     <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-                        <a href="https://preview.keenthemes.com/html/metronic/docs"
-                            class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
-                            data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
-                            title="200+ in-house components and 3rd-party plugins">
-                            <span class="btn-label">Docs & Components</span>
-                            <i class="ki-outline ki-document btn-icon fs-2 m-0"></i>
-                        </a>
+                        <img src="{{asset('assets/favicon/logo-bengkalis-bernasa.png')}}" alt="Bengkalis Bermasa" class="h-80px mx-auto d-block">
                     </div>
                     <!--end::Footer-->
                 </div>
@@ -181,7 +180,7 @@
     <!--end::App-->
     <!--begin::Drawers-->
     <!--begin::Activities drawer-->
-    <div id="kt_activities" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="activities"
+    {{-- <div id="kt_activities" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="activities"
         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
         data-kt-drawer-width="{default:'300px', 'lg': '900px'}" data-kt-drawer-direction="end"
         data-kt-drawer-toggle="#kt_activities_toggle" data-kt-drawer-close="#kt_activities_close">
@@ -757,10 +756,10 @@
             </div>
             <!--end::Footer-->
         </div>
-    </div>
+    </div> --}}
     <!--end::Activities drawer-->
     <!--begin::Chat drawer-->
-    <div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat"
+    {{-- <div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat"
         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
         data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end"
         data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
@@ -1166,10 +1165,10 @@
             <!--end::Card footer-->
         </div>
         <!--end::Messenger-->
-    </div>
+    </div> --}}
     <!--end::Chat drawer-->
     <!--begin::Chat drawer-->
-    <div id="kt_shopping_cart" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="cart"
+    {{-- <div id="kt_shopping_cart" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="cart"
         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
         data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end"
         data-kt-drawer-toggle="#kt_drawer_shopping_cart_toggle" data-kt-drawer-close="#kt_drawer_shopping_cart_close">
@@ -1474,7 +1473,7 @@
             <!--end::Card footer-->
         </div>
         <!--end::Messenger-->
-    </div>
+    </div> --}}
     <!--end::Chat drawer-->
     <!--end::Drawers-->
     <!--begin::Scrolltop-->
@@ -1484,7 +1483,7 @@
     <!--end::Scrolltop-->
     <!--begin::Modals-->
     <!--begin::Modal - Upgrade plan-->
-    <div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-xl">
             <!--begin::Modal content-->
@@ -1947,10 +1946,10 @@
             <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
+    </div> --}}
     <!--end::Modal - Upgrade plan-->
     <!--begin::Modal - Create App-->
-    <div class="modal fade" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-900px">
             <!--begin::Modal content-->
@@ -2679,10 +2678,10 @@
             <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
+    </div> --}}
     <!--end::Modal - Create App-->
     <!--begin::Modal - View Users-->
-    <div class="modal fade" id="kt_modal_view_users" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="kt_modal_view_users" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog mw-650px">
             <!--begin::Modal content-->
@@ -3221,10 +3220,10 @@
             <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
+    </div> --}}
     <!--end::Modal - View Users-->
     <!--begin::Modal - Users Search-->
-    <div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -4118,10 +4117,10 @@
             <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
+    </div> --}}
     <!--end::Modal - Users Search-->
     <!--begin::Modal - Invite Friends-->
-    <div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog mw-650px">
             <!--begin::Modal content-->
@@ -4726,7 +4725,7 @@
             <!--end::Modal content-->
         </div>
         <!--end::Modal dialog-->
-    </div>
+    </div> --}}
     <!--end::Modal - Invite Friend-->
     <!--end::Modals-->
     <!--begin::Javascript-->

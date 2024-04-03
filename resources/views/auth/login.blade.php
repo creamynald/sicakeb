@@ -41,10 +41,10 @@
         <div class="d-grid mb-10">
             <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
                 <!--begin::Indicator label-->
-                <span class="indicator-label">Sign In</span>
+                <span class="indicator-label">Masuk</span>
                 <!--end::Indicator label-->
                 <!--begin::Indicator progress-->
-                <span class="indicator-progress">Please wait...
+                <span class="indicator-progress">Mohon Menunggu...
                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                 <!--end::Indicator progress-->
             </button>
