@@ -4,7 +4,7 @@
 
 <head>
     <base href="../" />
-    <title>{{ config('app.name') }} - {{ config('app.subname') }}</title>
+    <title>{{ config('app.name') }} - Halaman {{ ucwords(Request::segment(2) ? Request::segment(2) : Request::segment(1)) }}</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="Sistem Capaian Kinerja Elektronik Kabupaten Bengkalis (SICAKEB)" />
