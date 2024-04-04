@@ -1,6 +1,9 @@
 <!--begin::Navbar-->
 <div class="app-navbar flex-shrink-0">
     <!--begin::Search-->
+    <div class="app-navbar-item ms-1 ms-md-4">
+        <span id="date" class="text-primary"></span><span id="clock" class="text-primary"></span>
+    </div>
 
     <!--end::Search-->
     <!--begin::Activities-->
@@ -118,3 +121,37 @@
     </div>
 </div>
 <!--end::Navbar-->
+@push('js')
+<script>
+    // Function to update clock every second
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+
+      // Add leading zero if hours, minutes or seconds are less than 10
+      hours = (hours < 10) ? "0" + hours : hours;
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+      // Mengambil nama hari dalam bahasa Indonesia
+      var hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"][now.getDay()];
+      // Mengambil nama bulan dalam bahasa Indonesia
+      var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][now.getMonth()];
+      // Mendapatkan tahun dan tanggal
+      var tahun = now.getFullYear();
+      var tanggal = now.getDate();
+
+      // Display the time in the 'clock' element
+      document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;
+      document.getElementById('date').textContent = hari + ", " + tanggal + " " + bulan + " " + tahun +"-";
+    }
+
+    // Call the updateClock function every second
+    setInterval(updateClock, 1000);
+
+    // Initial call to display clock immediately
+    updateClock();
+  </script>
+@endpush
