@@ -17,7 +17,7 @@
                     {
                         data: 'email',
                         name: 'email'
-                    }, 
+                    },
                     {
                         data: 'opd.nama',
                         name: 'opd.nama',
@@ -49,6 +49,12 @@
                     },
                 ]
             });
+
+            // begin::search
+            $('#search').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+            // end::search
         });
     </script>
     {{-- end::fetching data using yajra --}}

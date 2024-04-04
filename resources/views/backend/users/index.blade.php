@@ -11,7 +11,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        Customer List</h1>
+                        User List</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -160,9 +160,7 @@
                                 </i>
                                 <div class="dataTables_filter ">
                                     {{-- begin::pencarian manual untuk data opd --}}
-                                    {{-- <input type="text" aria-controls="myTable"
-                                        class="form-control form-control-solid w-250px ps-12"
-                                        placeholder="Cari data OPD..." /> --}}
+                                    <input type="text" id="search" data-kt-docs-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search.."/>
                                     {{-- end::pencarian manual untuk data opd --}}
                                 </div>
                             </div>
@@ -311,7 +309,7 @@
     {{-- end::aditional css --}}
     {{-- begin::additional js --}}
     @push('js')
-        {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+        {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> --}}
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
