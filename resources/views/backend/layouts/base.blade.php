@@ -82,7 +82,7 @@
                     <!--end::Sidebar mobile toggle-->
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                        <a href="{{url('amin/dashboard')}}" class="d-lg-none">
+                        <a href="{{url('admin/dashboard')}}" class="d-lg-none">
                             <img alt="Logo" src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" class="h-25px" />
                         </a>
                     </div>
@@ -155,6 +155,7 @@
                     <a href="#" class="app-sidebar-logo flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_logo">
                         <img src="{{asset('')}}/assets/favicon/logo-bengkalis-bernasa.png" alt="" class="app-sidebar-logo-default mx-auto theme-light-show h-80px">
                         <img src="{{asset('assets/favicon/logo-bengkalis-bernasa.png')}}" alt="Bengkalis Bermasa" class="h-80px mx-auto d-none app-sidebar-logo-minimize">
+                    </a>
                     <!--end::Footer-->
                 </div>
                 <!--end::Sidebar-->
