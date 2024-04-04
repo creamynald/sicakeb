@@ -119,7 +119,7 @@
 
                             <img alt="Logo" src="{{asset('')}}/assets/favicon/logo-bengkalis.png"
                             class="h-30px app-sidebar-logo-minimize ml-4" />
-                            <img src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" alt="" class=" d-none app-sidebar-logo-minimize">
+                            <img src="{{asset('')}}/assets/favicon/Logo_SiCakeb.png" alt="" class="d-none app-sidebar-logo-minimize">
                         </a>
                         <!--end::Logo image-->
                         <!--begin::Sidebar toggle-->
@@ -152,9 +152,9 @@
                     </div>
                     <!--end::sidebar menu-->
                     <!--begin::Footer-->
-                    <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-                        <img src="{{asset('assets/favicon/logo-bengkalis-bernasa.png')}}" alt="Bengkalis Bermasa" class="h-80px mx-auto d-block">
-                    </div>
+                    <a href="#" class="app-sidebar-logo flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_logo">
+                        <img src="{{asset('')}}/assets/favicon/logo-bengkalis-bernasa.png" alt="" class="app-sidebar-logo-default mx-auto theme-light-show h-80px">
+                        <img src="{{asset('assets/favicon/logo-bengkalis-bernasa.png')}}" alt="Bengkalis Bermasa" class="h-80px mx-auto d-none app-sidebar-logo-minimize">
                     <!--end::Footer-->
                 </div>
                 <!--end::Sidebar-->
