@@ -36,24 +36,8 @@
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Filter menu-->
                     <div class="m-0">
-                        <!--begin::Menu toggle-->
-                        {{-- <a href="#" class="btn btn-sm btn-flex btn-secondary fw-bold" data-kt-menu-trigger="click"
-                            data-kt-menu-placement="bottom-end">
-                            <i class="ki-duotone ki-filter fs-6 text-muted me-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>Filter</a> --}}
-                        <!--end::Menu toggle-->
-                        <!--begin::Menu 1-->
-                        <!--end::Menu 1-->
                     </div>
                     <!--end::Filter menu-->
-                    <!--begin::Secondary button-->
-                    <!--end::Secondary button-->
-                    <!--begin::Primary button-->
-                    {{-- <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_app">Create</a> --}}
-                    <!--end::Primary button-->
                 </div>
                 <!--end::Actions-->
             </div>
@@ -73,8 +57,7 @@
                             <!--begin::Search-->
                             <div class="d-flex align-items-center position-relative my-1">
                                 <div class="dataTables_filter ">
-                                    <h1
-                                        class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+                                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
                                         @urlSegment(2) Tahun @php echo isset ($_GET['periode']) ? $_GET['periode'] : date('Y') @endphp </h1>
                                 </div>
                             </div>
@@ -201,10 +184,5 @@
         <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
         <!--end::Custom Javascript-->
     @endpush
-    {{-- begin::custom js --}}
-    {{-- @push('scripts')
-        @include('backend.' . Request::segment(2) . '.script')
-    @endpush --}}
-    {{-- end::custom js --}}
     {{-- end::aditional js --}}
 @endsection
