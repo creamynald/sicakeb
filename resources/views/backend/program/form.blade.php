@@ -17,7 +17,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nama" class="required fs-6 fw-semibold mb-2">Tujuan1</label>
+                        <label for="nama" class="required fs-6 fw-semibold mb-2">Program</label>
                         <input type="text" class="form-control" id="nama" name="nama">
                     </div>
                 </div>
