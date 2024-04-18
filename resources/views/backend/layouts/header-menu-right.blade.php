@@ -2,7 +2,16 @@
 <div class="app-navbar flex-shrink-0">
     <!--begin::Search-->
     <div class="app-navbar-item ms-1 ms-md-4">
-        <span id="date" class="text-primary"></span><span id="clock" class="text-primary"></span>
+        <i class="ki-duotone ki-calendar">
+            <span class="path1"></span>
+            <span class="path2"></span>
+        </i>&nbsp;
+        <span id="date" class="text-primary"></span>
+        &nbsp;<i class="ki-duotone ki-time">
+            <span class="path1"></span>
+            <span class="path2"></span>
+        </i>&nbsp;
+        <span id="clock" class="text-primary"></span>
     </div>
 
     <!--end::Search-->
@@ -71,7 +80,7 @@
         <!--begin::Menu wrapper-->
         <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
             data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <img src="{{asset('')}}/assets/media/avatars/300-3.jpg" class="rounded-3" alt="user" />
+            <img src="{{ asset('') }}/assets/media/avatars/300-3.jpg" class="rounded-3" alt="user" />
         </div>
         <!--begin::User account menu-->
         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -81,22 +90,24 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{asset('')}}/assets/media/avatars/300-3.jpg" />
+                        <img alt="Logo" src="{{ asset('') }}/assets/media/avatars/300-3.jpg" />
                     </div>
                     <!--end::Avatar-->
                     <!--begin::Username-->
                     <div class="d-flex flex-column">
                         <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-                            <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ucfirst(Auth::user()->getRoleNames()->first())}}</span>
+                            <span
+                                class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ ucfirst(Auth::user()->getRoleNames()->first()) }}</span>
                         </div>
-                        <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+                        <a href="#"
+                            class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                     </div>
                     <!--end::Username-->
                 </div>
-                @role ('operator')
-                <div class="px-3">
-                    <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd->nama }}</a>
-                </div>
+                @role('operator')
+                    <div class="px-3">
+                        <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd->nama }}</a>
+                    </div>
                 @endrole
             </div>
             <!--end::Menu item-->
@@ -110,8 +121,10 @@
                 {{-- logout --}}
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a href="{{ route('logout') }}" class="menu-link px-5" onclick="event.preventDefault();
-                    this.closest('form').submit();">Sign Out</a>
+                    <a href="{{ route('logout') }}" class="menu-link px-5"
+                        onclick="event.preventDefault();
+                    this.closest('form').submit();">Sign
+                        Out</a>
                 </form>
             </div>
             <!--end::Menu item-->
@@ -122,36 +135,38 @@
 </div>
 <!--end::Navbar-->
 @push('js')
-<script>
-    // Function to update clock every second
-    function updateClock() {
-      var now = new Date();
-      var hours = now.getHours();
-      var minutes = now.getMinutes();
-      var seconds = now.getSeconds();
+    <script>
+        // Function to update clock every second
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
 
-      // Add leading zero if hours, minutes or seconds are less than 10
-      hours = (hours < 10) ? "0" + hours : hours;
-      minutes = (minutes < 10) ? "0" + minutes : minutes;
-      seconds = (seconds < 10) ? "0" + seconds : seconds;
+            // Add leading zero if hours, minutes or seconds are less than 10
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-      // Mengambil nama hari dalam bahasa Indonesia
-      var hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"][now.getDay()];
-      // Mengambil nama bulan dalam bahasa Indonesia
-      var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][now.getMonth()];
-      // Mendapatkan tahun dan tanggal
-      var tahun = now.getFullYear();
-      var tanggal = now.getDate();
+            // Mengambil nama hari dalam bahasa Indonesia
+            var hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"][now.getDay()];
+            // Mengambil nama bulan dalam bahasa Indonesia
+            var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
+                "November", "Desember"
+            ][now.getMonth()];
+            // Mendapatkan tahun dan tanggal
+            var tahun = now.getFullYear();
+            var tanggal = now.getDate();
 
-      // Display the time in the 'clock' element
-      document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;
-      document.getElementById('date').textContent = hari + ", " + tanggal + " " + bulan + " " + tahun +"-";
-    }
+            // Display the time in the 'clock' element
+            document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;
+            document.getElementById('date').textContent = hari + ", " + tanggal + " " + bulan + " " + tahun;
+        }
 
-    // Call the updateClock function every second
-    setInterval(updateClock, 1000);
+        // Call the updateClock function every second
+        setInterval(updateClock, 1000);
 
-    // Initial call to display clock immediately
-    updateClock();
-  </script>
+        // Initial call to display clock immediately
+        updateClock();
+    </script>
 @endpush
