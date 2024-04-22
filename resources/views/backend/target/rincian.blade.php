@@ -220,7 +220,11 @@
                                         <td>{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
-                                        <td>{{$item->anggaran}}</td>
+                                        <td>@if ($item->anggaran == '' || $item->anggaran == null)
+                                            -
+                                            @else
+                                            @rp($item->anggaran)
+                                        @endif</td>
                                         <td class="text-center">{{ $item->tahun }}</td>
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td>{{ $item->tw1 }}</td>
