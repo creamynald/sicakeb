@@ -97,7 +97,11 @@
                                             @endif
                                         </td>
                                         <td>{{ $item->indikator }}</td>
-                                        <td class="text-center">@rp($item->anggaran)</td>
+                                        <td class="text-center">@if ($item->anggaran == '' || $item->anggaran == null)
+                                            -
+                                            @else
+                                            @rp($item->anggaran)
+                                        @endif</td>
                                         <td class="text-center">
                                             {{ $item->target_kinerja_tahunan }}@if (is_numeric($item->target_kinerja_tahunan))
                                                 {{ $item->satuan }}
