@@ -65,6 +65,7 @@
                 $('#tw2').val(data.tw2);
                 $('#tw3').val(data.tw3);
                 $('#tw4').val(data.tw4);
+                $('#realisasi_anggaran').val(data.realisasi_anggaran);
                 $('#pendukung').val(data.pendukung);
                 $('#penghambat').val(data.penghambat);
                 $('#solusi').val(data.solusi);

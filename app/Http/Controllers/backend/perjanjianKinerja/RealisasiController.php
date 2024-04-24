@@ -125,6 +125,7 @@ class RealisasiController extends Controller
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
                 'tw4' => $request->tw4,
+                'realisasi_anggaran' => $request->realisasi_anggaran,
                 'pendukung' => $request->pendukung,
                 'penghambat' => $request->penghambat,
                 'solusi' => $request->solusi,

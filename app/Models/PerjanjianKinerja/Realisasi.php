@@ -18,6 +18,7 @@ class Realisasi extends Model
         'tw2',
         'tw3',
         'tw4',
+        'realisasi_anggaran',
         'penghambat',
         'pendukung',
         'solusi',

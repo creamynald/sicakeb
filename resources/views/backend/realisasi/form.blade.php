@@ -39,6 +39,10 @@
                         </div>
                     </div>
                     <div class="form-group mb-4">
+                        <label for="realisasi_anggaran" class="fs-6 fw-semibold mb-2">Realisasi Anggaran</label>
+                        <input type="text" class="form-control" id="realisasi_anggaran" name="realisasi_anggaran">
+                    </div>
+                    <div class="form-group mb-4">
                         <label for="pendukung" class="fs-6 fw-semibold mb-2">Faktor Pendukung</label>
                         <input type="text" class="form-control" id="pendukung" name="pendukung">
                     </div>

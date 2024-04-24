@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tw2')->nullable();
             $table->string('tw3')->nullable();
             $table->string('tw4')->nullable();
+            $table->string('realisasi_anggaran')->nullable();
             $table->string('pendukung')->nullable();
             $table->string('penghambat')->nullable();
             $table->string('solusi')->nullable();

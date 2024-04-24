@@ -79,6 +79,7 @@
                                     <th class="text-center" colspan="2">TW II</th>
                                     <th class="text-center" colspan="2">TW III</th>
                                     <th class="text-center" colspan="2">TW IV</th>
+                                    <th class="text-center middle-align" rowspan="2">Realisasi Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Penghambat</th>
                                     <th class="text-center middle-align" rowspan="2">Pendukung</th>
                                     <th class="text-center middle-align" rowspan="2">Solusi</th>
@@ -113,6 +114,7 @@
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw3??'' }}</td>
                                         <td class="text-center">{{ $item->tw4 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
+                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->realisasi_anggaran??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->solusi??'' }}</td>
