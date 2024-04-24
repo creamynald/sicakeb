@@ -45,7 +45,12 @@ class LheController extends Controller
                     </div>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('bukti_dukung', function ($row) {
+                    $buktiDukung = '<a href="' . $row->bukti_dukung . '" class="text-center" target="_blank">
+                    Buka Bukti Dukung</a>';
+                    return $buktiDukung;
+                })
+                ->rawColumns(['action','bukti_dukung'])
                 ->make(true);
         }
         return view('backend.' . request()->segment(2) . '.index');
