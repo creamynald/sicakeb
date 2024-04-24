@@ -11,7 +11,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        @urlSegment(2)</h1>
+                        @urlSegment(2) List</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -36,8 +36,106 @@
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Filter menu-->
                     <div class="m-0">
+                        <!--begin::Menu toggle-->
+                        {{-- <a href="#" class="btn btn-sm btn-flex btn-secondary fw-bold" data-kt-menu-trigger="click"
+                            data-kt-menu-placement="bottom-end">
+                            <i class="ki-duotone ki-filter fs-6 text-muted me-1">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>Filter</a> --}}
+                        <!--end::Menu toggle-->
+                        <!--begin::Menu 1-->
+                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
+                            id="kt_menu_654c7021994de">
+                            <!--begin::Header-->
+                            <div class="px-7 py-5">
+                                <div class="fs-5 text-gray-900 fw-bold">Filter Options</div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Menu separator-->
+                            <div class="separator border-gray-200"></div>
+                            <!--end::Menu separator-->
+                            <!--begin::Form-->
+                            <div class="px-7 py-5">
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Status:</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div>
+                                        <select class="form-select form-select-solid" multiple="multiple"
+                                            data-kt-select2="true" data-close-on-select="false"
+                                            data-placeholder="Select option" data-dropdown-parent="#kt_menu_654c7021994de"
+                                            data-allow-clear="true">
+                                            <option></option>
+                                            <option value="1">Approved</option>
+                                            <option value="2">Pending</option>
+                                            <option value="2">In Process</option>
+                                            <option value="2">Rejected</option>
+                                        </select>
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Member Type:</label>
+                                    <!--end::Label-->
+                                    <!--begin::Options-->
+                                    <div class="d-flex">
+                                        <!--begin::Options-->
+                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                            <input class="form-check-input" type="checkbox" value="1" />
+                                            <span class="form-check-label">Author</span>
+                                        </label>
+                                        <!--end::Options-->
+                                        <!--begin::Options-->
+                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="2"
+                                                checked="checked" />
+                                            <span class="form-check-label">Customer</span>
+                                        </label>
+                                        <!--end::Options-->
+                                    </div>
+                                    <!--end::Options-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Notifications:</label>
+                                    <!--end::Label-->
+                                    <!--begin::Switch-->
+                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="" name="notifications"
+                                            checked="checked" />
+                                        <label class="form-check-label">Enabled</label>
+                                    </div>
+                                    <!--end::Switch-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
+                                <div class="d-flex justify-content-end">
+                                    <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
+                                        data-kt-menu-dismiss="true">Reset</button>
+                                    <button type="submit" class="btn btn-sm btn-primary"
+                                        data-kt-menu-dismiss="true">Apply</button>
+                                </div>
+                                <!--end::Actions-->
+                            </div>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Menu 1-->
                     </div>
                     <!--end::Filter menu-->
+                    <!--begin::Secondary button-->
+                    <!--end::Secondary button-->
+                    <!--begin::Primary button-->
+                    {{-- <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#kt_modal_create_app">Create</a> --}}
+                    <!--end::Primary button-->
                 </div>
                 <!--end::Actions-->
             </div>
@@ -56,97 +154,57 @@
                         <div class="card-title">
                             <!--begin::Search-->
                             <div class="d-flex align-items-center position-relative my-1">
+                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
                                 <div class="dataTables_filter ">
-                                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                                        @urlSegment(2) Tahun @php echo isset ($_GET['periode']) ? $_GET['periode'] : date('Y') @endphp </h1>
+                                    {{-- begin::pencarian manual untuk data opd --}}
+                                    <input type="text" id="search" data-kt-docs-table-filter="search"
+                                        class="form-control form-control-solid w-250px ps-15" placeholder="Search.." />
+                                    {{-- end::pencarian manual untuk data opd --}}
                                 </div>
                             </div>
                             <!--end::Search-->
                         </div>
                         <!--begin::Card title-->
+                        <!--begin::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Toolbar-->
+                            <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+                                <!--begin::Add customer-->
+                                {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    id="btnTambah">Tambah Data</button> --}}
+                                <!--end::Add customer-->
+                            </div>
+                            <!--end::Toolbar-->
+                            <!--begin::Group actions-->
+                            <div class="d-flex justify-content-end align-items-center d-none"
+                                data-kt-customer-table-toolbar="selected">
+                                <div class="fw-bold me-5">
+                                    <span class="me-2" data-kt-customer-table-select="selected_count"></span>Selected
+                                </div>
+                                <button type="button" class="btn btn-danger"
+                                    data-kt-customer-table-select="delete_selected">Delete Selected</button>
+                            </div>
+                            <!--end::Group actions-->
+                        </div>
+                        <!--end::Card toolbar-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table id="" class="table align-middle table-bordered fs-6 gy-5">
+                        <table id="pegawai" class="table align-middle table-row-dashed fs-6 gy-5">
                             <thead>
-                                <tr class="text-start text-gray-500 fw-bold align-middle fs-7 text-uppercase gs-0">
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">Program/Kegiatan/Subkegiatan</th>
-                                    <th class="text-center">Indikator</th>
-                                    <th class="text-center">Anggaran</th>
-                                    <th class="text-center">Target Kinerja Tahunan</th>
-                                    <th class="text-center">Realisasi</th>
-                                    <th class="text-center">Capaian</th>
-                                    <th class="text-center">Tingkat Efisiensi</th>
-                                    <th class="text-center">Faktor</th>
+                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                    <th class="min-w-30px">No</th>
+                                    <th class="min-w-30px">Nama</th>
+                                    <th class="min-w-125px">Eselon</th>
+                                    <th class="text-end min-w-70px">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody class="fs-6 text-gray-600">
-                                @foreach ($target as $data => $item)
-                                    <tr>
-                                        <td class="text-center align-middle">{{ $data + 1 }}</td>
-                                        <td>
-                                            @if ($item->jenis_master == 'program')
-                                                {{ $item->program->nama }}
-                                            @elseif ($item->jenis_master == 'kegiatan')
-                                                {{ $item->kegiatan->nama }}
-                                            @elseif ($item->jenis_master == 'subkegiatan')
-                                                {{ $item->subkegiatan->nama }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $item->indikator }}</td>
-                                        <td class="text-center">@if ($item->anggaran == '' || $item->anggaran == null)
-                                            -
-                                            @else
-                                            @rp($item->anggaran)
-                                        @endif</td>
-                                        <td class="text-center">
-                                            {{ $item->target_kinerja_tahunan }}@if (is_numeric($item->target_kinerja_tahunan))
-                                                {{ $item->satuan }}
-                                            @endif
-                                        </td>
-                                        {{-- Realisasi --}}
-                                        <td class="text-center">
-                                            @if (is_numeric($item->target_kinerja_tahunan))
-                                                @php
-                                                    echo $realisasi->converTw(
-                                                        $realisasi->getRealisasi($item->id)->tw1 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw2 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw3 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw4 ?? '',
-                                                        );
-                                                @endphp
-                                            @else
-                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
-                                            @endif
-                                        </td>
-                                        {{-- End::Realisasi --}}
-                                        {{-- Capaian --}}
-                                        <td class="text-center">
-                                            @if (is_numeric($item->target_kinerja_tahunan))
-                                                {{ round(( $realisasi->converTw($realisasi->getRealisasi($item->id)->tw1 ?? '') +
-                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw2 ?? '') +
-                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw3 ?? '') +
-                                                    $realisasi->converTw($realisasi->getRealisasi($item->id)->tw4 ?? '')) /
-                                                    $item->target_kinerja_tahunan * 100, 2) . '%'
-                                                }}
-                                            @else
-                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
-                                            @endif
-                                        </td>
-                                        {{-- End::Capaian --}}
-                                        <td></td>
-                                        <td>Opsional</td>
-                                    </tr>
-                                @endforeach
+                            <tbody class="fw-bold fs-6 text-gray-600">
                             </tbody>
                         </table>
                         <!--end::Table-->
@@ -154,6 +212,9 @@
                     <!--end::Card body-->
                 </div>
                 <!--end::Card-->
+                <!--begin::Modals-->
+                {{-- ########## --}}
+                <!--end::Modals-->
             </div>
             <!--end::Content container-->
         </div>
@@ -164,13 +225,9 @@
     {{-- begin::additional css --}}
     @push('css')
         <!--begin::Vendor Stylesheets(used for this page only)-->
-        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
+            type="text/css" />
         <!--end::Vendor Stylesheets-->
-        <style>
-            .middle-align {
-                vertical-align: middle;
-            }
-        </style>
     @endpush
     {{-- end::aditional css --}}
     {{-- begin::additional js --}}
@@ -188,5 +245,10 @@
         <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
         <!--end::Custom Javascript-->
     @endpush
+    {{-- begin::custom js --}}
+    @push('scripts')
+        @include('backend.' . Request::segment(2) . '.script')
+    @endpush
+    {{-- end::custom js --}}
     {{-- end::aditional js --}}
 @endsection
