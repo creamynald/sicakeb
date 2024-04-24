@@ -142,12 +142,12 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($item->anggaran == '' || $item->anggaran == null)
+                                            @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
                                                 -
                                             @else
-                                                @if ($item->anggaran > $realisasi->getRealisasi($item->id)->realisai_anggaran)
+                                                @if ($item->anggaran > $realisasi->getRealisasi($item->id)->realisasi_anggaran)
                                                     Efisien
-                                                @elseif ($item->anggaran < $realisasi->getRealisasi($item->id)->realisai_anggaran)
+                                                @elseif ($item->anggaran < $realisasi->getRealisasi($item->id)->realisasi_anggaran)
                                                     Tidak Efisien
                                                 @endif
                                             @endif
