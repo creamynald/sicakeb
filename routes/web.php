@@ -15,6 +15,8 @@ use App\Http\Controllers\backend\rolesAndPermission\userToRoleController;
 use App\Http\Controllers\backend\users\userController;
 use App\Http\Controllers\backend\perjanjianKinerja\RealisasiController;
 use App\Http\Controllers\backend\perjanjianKinerja\TargetController;
+use App\Http\Controllers\backend\perjanjianKinerja\CapaianController;
+use App\Http\Controllers\backend\lhe\LheController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -154,5 +156,22 @@ Route::prefix('admin')
         });
         // end::realisasi controller
 
+        // begin::capaian controller
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::get('capaian', [CapaianController::class, 'index'])->name('capaian');
+            Route::get('capaian/rincian/{id}', [CapaianController::class, 'rincianCapaian'])->name('rincianCapaian');
+            // end:additional route
+        });
+        // end::capaian controller
+
         // for super admin & admin
+
+        // begin::lhe controller that can be access by super admin and admin only
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::resource('lhe', LheController::class);
+            // begin:additional route (!= resource)
+            Route::post('lhe/save', [LheController::class, 'saveData']);
+            // end:additional route
+        });
+        // end::lhe controller
     });

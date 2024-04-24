@@ -279,5 +279,29 @@
             <!--end:Menu sub-->
         </div>
     @endrole
+
+    <!--begin:Menu item-->
+    <div class="menu-item pt-5">
+        <!--begin:Menu content-->
+        <div class="menu-content">
+            <span class="menu-heading fw-bold text-uppercase fs-7">LHE</span>
+        </div>
+        <!--end:Menu content-->
+    </div>
+    <!--end:Menu item-->
+    <!--begin:Menu item-->
+    <div class="menu-item">
+        <!--begin:Menu link-->
+        <a class="menu-link" href="{{route('lhe.index')}}">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-rocket fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+            </span>
+            <span class="menu-title">Tindak Lanjut LHE</span>
+        </a>
+        <!--end:Menu link-->
+    </div>
     <!--end:Menu item-->
 </div>
