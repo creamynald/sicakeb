@@ -220,11 +220,17 @@
                                         <td>{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
-                                        <td>@if ($item->anggaran == '' || $item->anggaran == null)
+                                        <td>
+                                            @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
                                             -
                                             @else
-                                            @rp($item->anggaran)
-                                        @endif</td>
+                                                @if (is_numeric($item->anggaran))
+                                                    {{$item->anggaran}}
+                                                @else
+                                                    @rp($item->anggaran)
+                                                @endif
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $item->tahun }}</td>
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td>{{ $item->tw1 }}</td>
