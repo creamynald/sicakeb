@@ -51,11 +51,13 @@
                             Kinerja</label>
                         <input type="text" class="form-control" id="target_kinerja_tahunan"
                             name="target_kinerja_tahunan">
+                            <small style="color: green;">Masukkan target tanpa satuan contoh (100 Dokumen) cukup masukkan angka 100 tanpa menyertakan kata Dokumen</small>
                     </div>
                     <div class="form-group mb-4">
                         <label for="satuan" class="required fs-6 fw-semibold mb-2">Satuan
                             Kinerja</label>
-                        <input type="text" class="form-control" id="satuan" name="satuan">
+                            <input type="text" class="form-control" id="satuan" name="satuan">
+                            <small style="color: green;">Jika terdapat pengganti kata satuan menjadi simbol, gunakan simbol contoh (Persen) menjadi (%)</small>
                     </div>
                     <div class="row">
                         <div class="form-group mb-4 col-3">
@@ -75,7 +77,9 @@
                             <input type="text" class="form-control" id="tw4" name="tw4">
                         </div>
                         <div class="form-group mb-12 col-12">
-                            <small style="color: green;">Tri Wulan I - IV Masukkan Target tanpa Satuan</small>
+                            <small style="color: green;">Jika bilangan desimal atau berkoma gunakan titik (.) sebagai pengganti koma (,)</small>
+                            <br>
+                            <small style="color: green;">Triwulan I - IV Masukkan Target tanpa Satuan</small>
                         </div>
                     </div>
                 </div>
