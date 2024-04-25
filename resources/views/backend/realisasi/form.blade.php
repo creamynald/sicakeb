@@ -38,9 +38,15 @@
                             <input type="text" class="form-control" id="tw4" name="tw4">
                         </div>
                     </div>
+                    <div class="form-group mb-4 col-12">
+                        <small style="color: green;">Jika bilangan desimal atau berkoma gunakan titik (.) sebagai pengganti koma (,)</small>
+                        <br>
+                        <small style="color: green;">Triwulan I - IV Masukkan Realisasi tanpa Satuan</small>
+                    </div>
                     <div class="form-group mb-4">
                         <label for="realisasi_anggaran" class="fs-6 fw-semibold mb-2">Realisasi Anggaran</label>
-                        <input type="text" class="form-control" id="realisasi_anggaran" name="realisasi_anggaran">
+                        <input type="text" class="form-control" id="realisasi_anggaran" name="realisasi_anggaran" onkeyup="this.value=addcommas(this.value);">
+                        <small style="color: green;">Koma menunjukkan angka ribuan, jangan gunakan titik sebagai pemisah angka ribuan</small>
                     </div>
                     <div class="form-group mb-4">
                         <label for="pendukung" class="fs-6 fw-semibold mb-2">Faktor Pendukung</label>

@@ -117,6 +117,9 @@ class RealisasiController extends Controller
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
+        $realisasi_anggaran = explode(",",$request->realisasi_anggaran); //memecah angka jika terdapat koma pada bilangan ribuan
+        $a = implode($realisasi_anggaran); //menyatukan kembali menjadi angka utuh tanpa koma
+
         $data = Realisasi::updateOrCreate(
             ['id' => $request->dataId],
             [
@@ -125,7 +128,7 @@ class RealisasiController extends Controller
                 'tw2' => $request->tw2,
                 'tw3' => $request->tw3,
                 'tw4' => $request->tw4,
-                'realisasi_anggaran' => $request->realisasi_anggaran,
+                'realisasi_anggaran' => $a,
                 'pendukung' => $request->pendukung,
                 'penghambat' => $request->penghambat,
                 'solusi' => $request->solusi,

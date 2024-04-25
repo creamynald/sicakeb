@@ -166,3 +166,15 @@
     }
 </script>
 {{-- end::delete data using swall --}}
+
+{{-- Script for add coma in thousand sparator --}}
+<script type="text/javascript">
+    function addcommas(x) {
+        //remove commas
+        retVal = x ? parseFloat(x.replace(/,/g, '')) : 0;
+
+        //apply formatting
+        return retVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
+{{-- End --}}
