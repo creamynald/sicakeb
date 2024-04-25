@@ -135,7 +135,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($item->anggaran == '' || $item->anggaran == null)
+                                            @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
                                                 -
                                             @else
                                                 @rp($item->anggaran)
@@ -145,16 +145,20 @@
                                             @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
                                                 -
                                             @else
-                                                @if ($item->anggaran > $realisasi->getRealisasi($item->id)->realisasi_anggaran)
-                                                    Efisien
-                                                @elseif ($item->anggaran < $realisasi->getRealisasi($item->id)->realisasi_anggaran)
-                                                    Tidak Efisien
+                                                @if ($realisasi->getRealisasi($item->id) != null)
+                                                    @if ($item->anggaran > $realisasi->getRealisasi($item->id)->realisasi_anggaran)
+                                                        Efisien
+                                                    @elseif ($item->anggaran < $realisasi->getRealisasi($item->id)->realisasi_anggaran)
+                                                        Tidak Efisien
+                                                    @endif
+                                                @else
+                                                    <span style="color: red;">Realisasi Belum Diisi</span>
                                                 @endif
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung ?? '' }}
+                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung ?? '-' }}
                                         </td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat ?? '' }}
+                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat ?? '-' }}
                                         </td>
                                     </tr>
                                 @endforeach
