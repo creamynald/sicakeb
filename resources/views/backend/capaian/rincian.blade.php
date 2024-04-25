@@ -136,9 +136,13 @@
                                         </td>
                                         <td class="text-center">
                                             @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
-                                                -
+                                            -
                                             @else
-                                                @rp($item->anggaran)
+                                                @if (is_numeric($item->anggaran))
+                                                    @rp($item->anggaran)
+                                                @else
+                                                    {{$item->anggaran}}
+                                                @endif
                                             @endif
                                         </td>
                                         <td class="text-center">
