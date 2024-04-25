@@ -114,7 +114,24 @@
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw3??'' }}</td>
                                         <td class="text-center">{{ $item->tw4 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->realisasi_anggaran??'' }}</td>
+                                        <td class="text-center">
+                                            @if ($realisasi->getRealisasi($item->id) != null)
+                                                @if ($realisasi->getRealisasi($item->id)->realisasi_anggaran == ''
+                                                || $realisasi->getRealisasi($item->id)->realisasi_anggaran == 0
+                                                || $realisasi->getRealisasi($item->id)->realisasi_anggaran == '-'
+                                                || $realisasi->getRealisasi($item->id)->realisasi_anggaran == null)
+                                                    -
+                                                @else
+                                                    @if (is_numeric($realisasi->getRealisasi($item->id)->realisasi_anggaran))
+                                                        @rp($realisasi->getRealisasi($item->id)->realisasi_anggaran)
+                                                    @else
+                                                        {{$realisasi->getRealisasi($item->id)->realisasi_anggaran}}
+                                                    @endif
+                                                @endif
+                                            @else
+                                                 <span style="color: red;">Realisasi belum diisi</span>
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->solusi??'' }}</td>

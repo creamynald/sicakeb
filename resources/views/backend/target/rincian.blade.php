@@ -225,9 +225,9 @@
                                             -
                                             @else
                                                 @if (is_numeric($item->anggaran))
-                                                    {{$item->anggaran}}
-                                                @else
                                                     @rp($item->anggaran)
+                                                @else
+                                                    {{$item->anggaran}}
                                                 @endif
                                             @endif
                                         </td>
