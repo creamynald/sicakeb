@@ -10,27 +10,27 @@
                     <input type="hidden" id="dataId" name="dataId">
                     <input type="hidden" class="form-control" id="opd_id" name="opd_id">
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="tahun" class="required fs-6 fw-semibold mb-2">Tahun</label>
                         <input type="text" class="form-control" id="tahun" name="tahun">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="rekomendasi_lhe" class="required fs-6 fw-semibold mb-2">Rekomendasi LHE</label>
                         <input type="text" class="form-control" id="rekomendasi_lhe" name="rekomendasi_lhe">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="tindak_lanjut" class="required fs-6 fw-semibold mb-2">Tindak Lanjut</label>
                         <input type="text" class="form-control" id="tindak_lanjut" name="tindak_lanjut">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="target_penyelesaian" class="required fs-6 fw-semibold mb-2">Target Penyelesaian</label>
                         <input type="text" class="form-control" id="target_penyelesaian" name="target_penyelesaian">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="progres" class="required fs-6 fw-semibold mb-2">Progres</label>
                         <input type="text" class="form-control" id="progres" name="progres">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="bukti_dukung" class="required fs-6 fw-semibold mb-2">Link Bukti Dukung</label>
                         <input type="text" class="form-control" id="bukti_dukung" name="bukti_dukung">
                     </div>
