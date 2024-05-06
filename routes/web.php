@@ -128,8 +128,11 @@ Route::prefix('admin')
             Route::resource('users', userController::class);
             Route::post('users/save', [userController::class, 'saveData']);
         });
-        Route::get('users/{user}/edit', [userController::class, 'edit'])->name('user.edit');
-        
+
+        Route::prefix('setting')->group(function () {
+            // edit profile
+            Route::get('users/{user}/edit', [userController::class, 'edit'])->name('user.edit');
+        });
 
         // for super admin only
         Route::group(['middleware' => ['role:Super-Admin']], function () {
@@ -186,6 +189,7 @@ Route::prefix('admin')
             // begin:additional route (!= resource)
             Route::post('lhe/save', [LheController::class, 'saveData']);
             // end:additional route
+
         });
         // end::lhe controller
     });

@@ -97,16 +97,38 @@ class userController extends Controller
 
     public function update(Request $request, User $user)
     {
-        // Validate the incoming request data
-        $request->validate([
+        // Define validation rules for the main fields
+        $validationRules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 2MB Max
-            'current_password' => 'nullable|string|min:8',
-            'new_password' => 'nullable|string|min:8|different:current_password',
-            'new_password_confirmation' => 'nullable|same:new_password',
-        ]);
+        ];
 
+        // Check if the name, email, or avatar fields are being changed
+        if ($request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
+            $validationRules['current_password'] = 'required|string|min:8';
+        }
+
+        // Add rules for password update if needed
+        if ($request->filled('new_password')) {
+            $validationRules['new_password'] = 'required|string|min:8|different:current_password';
+            $validationRules['new_password_confirmation'] = 'required|same:new_password';
+        }
+
+        // Perform validation
+        $validatedData = $request->validate($validationRules);
+
+        // Ensure current password is provided before allowing sensitive updates
+        if (isset($validatedData['current_password'])) {
+            if (!Hash::check($request->input('current_password'), $user->password)) {
+                return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+            }
+        } else {
+            // If the password is required but not provided or correct
+            return back()->with('error', 'Password is required to update name, email, or avatar.');
+        }
+
+        // Process avatar if provided
         if ($request->hasFile('avatar')) {
             // Delete old avatar if exists
             if ($user->avatar) {
@@ -118,23 +140,19 @@ class userController extends Controller
             $user->avatar = basename($avatarPath);
         }
 
+        // Update user details
         $user->name = $request->name;
         $user->email = $request->email;
         $user->last_login_at = now();
         $user->last_login_ip = $request->ip();
 
-        if ($request->filled('current_password')) {
-            if (Hash::check($request->current_password, $user->password)) {
-                if ($request->filled('new_password')) {
-                    $user->password = Hash::make($request->new_password);
-                }
-            } else {
-                return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
-            }
+        // Update password if a new one is provided
+        if ($request->filled('new_password')) {
+            $user->password = Hash::make($request->new_password);
         }
 
         $user->save();
-        
+
         return back()->with('success', 'Profile updated successfully.');
     }
 }

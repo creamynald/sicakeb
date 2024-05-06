@@ -42,7 +42,7 @@ class userSeeder extends Seeder
         // create demo users
         $user = \App\Models\User::factory()->create([
             'name' => 'operator User',
-            'email' => 'operator@sicakeb.test',
+            'email' => 'op@sicakeb.test',
         ]);
         $user->assignRole($role1);
 

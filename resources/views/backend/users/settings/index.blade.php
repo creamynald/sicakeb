@@ -112,9 +112,9 @@
                                                         <a href="#"
                                                             class="text-gray-800 text-hover-primary fw-bolder fs-6">
                                                             @if (auth()->user() && auth()->user()->opd)
-                                                                {{ auth()->user()->opd->nama }}
+                                                                {{ auth()->user()->opd->nama }} 
                                                             @else
-                                                                No OPD data available
+                                                                <span class="badge badge-light-danger fw-bold">Akun ini tidak tertaut dengan OPD manapun</span>
                                                             @endif
 
                                                         </a>
@@ -199,7 +199,7 @@
                     <div id="kt_account_settings_profile_details" class="collapse show">
                         <!--begin::Form-->
                         <form id="kt_account_profile_details_form" class="form"
-                            action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data">
+                            action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             @method('PUT')
                             <!--begin::Card body-->
@@ -273,7 +273,7 @@
                                     <div class="col-lg-8">
                                         <input type="password" name="current_password"
                                             class="form-control form-control-lg form-control-solid"
-                                            placeholder="Current password" />
+                                            placeholder="Current password" autof/>
                                     </div>
                                 </div>
 
