@@ -41,7 +41,7 @@
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <!--begin::Card-->
-                <div class="card">
+                <div class="card table-responsive">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-6">
                         <!--begin::Card title-->

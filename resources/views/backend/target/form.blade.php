@@ -86,8 +86,7 @@
                 <!--begin::Modal footer-->
                 <div class="modal-footer flex-center">
                     <!--begin::Button-->
-                    <button type="button" id="" class="btn btn-warning me-3"
-                        data-bs-dismiss="modal">Batal</button>
+                    <button type="button" id="" class="btn btn-warning me-3" data-bs-dismiss="modal">Batal</button>
                     <!--end::Button-->
                     <!--begin::Button-->
                     <button type="submit" class="btn btn-primary">
