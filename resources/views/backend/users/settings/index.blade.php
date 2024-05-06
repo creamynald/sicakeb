@@ -74,7 +74,7 @@
                                         <!--end::Name-->
                                         <!--begin::Info-->
                                         <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                            <span>Anda login sebagai&nbsp;</span> 
+                                            <span>Anda login sebagai&nbsp;</span>
                                             <a href="#"
                                                 class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                                 <i class="ki-duotone ki-profile-circle fs-4 me-1">
@@ -246,27 +246,58 @@
                                 </div>
                                 <!--end::Input group-->
 
-                                <!--begin::Input group for Full Name-->
+                                <!-- Full Name Input -->
                                 <div class="row mb-6">
                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">Full Name</label>
                                     <div class="col-lg-8">
                                         <input type="text" name="name"
                                             class="form-control form-control-lg form-control-solid"
-                                            placeholder="Full name" value="{{ $user->name }}" />
+                                            placeholder="Full name" value="{{ old('name', $user->name) }}" />
                                     </div>
                                 </div>
-                                <!--end::Input group-->
 
-                                <!--begin::Input group for Email-->
+                                <!-- Email Input -->
                                 <div class="row mb-6">
                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
                                     <div class="col-lg-8">
                                         <input type="email" name="email"
                                             class="form-control form-control-lg form-control-solid" placeholder="Email"
-                                            value="{{ $user->email }}" />
+                                            value="{{ old('email', $user->email) }}" />
                                     </div>
                                 </div>
-                                <!--end::Input group-->
+
+                                <!-- Current Password Input -->
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Current
+                                        Password</label>
+                                    <div class="col-lg-8">
+                                        <input type="password" name="current_password"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Current password" />
+                                    </div>
+                                </div>
+
+                                <!-- New Password Input -->
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">New Password</label>
+                                    <div class="col-lg-8">
+                                        <input type="password" name="new_password"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="New password" />
+                                    </div>
+                                </div>
+
+                                <!-- Verify Password Input -->
+                                <div class="row mb-6">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Verify
+                                        Password</label>
+                                    <div class="col-lg-8">
+                                        <input type="password" name="new_password_confirmation"
+                                            class="form-control form-control-lg form-control-solid"
+                                            placeholder="Verify password" />
+                                    </div>
+                                </div>
+
                             </div>
                             <!--end::Card body-->
 
@@ -291,3 +322,24 @@
         <!--end::Content-->
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
+@endpush

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class userController extends Controller
@@ -101,29 +102,39 @@ class userController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 2MB Max
+            'current_password' => 'nullable|string|min:8',
+            'new_password' => 'nullable|string|min:8|different:current_password',
+            'new_password_confirmation' => 'nullable|same:new_password',
         ]);
 
         if ($request->hasFile('avatar')) {
             // Delete old avatar if exists
             if ($user->avatar) {
-                Storage::delete('/avatars/' . $user->avatar);
+                Storage::delete('avatars/' . $user->avatar);
             }
 
-            // Store the new avatar in storage/app/avatars
-            $avatarPath = $request->file('avatar')->store('avatars', 'local'); // Change from 'public' to 'local'
-
-            // Store just the filename, not the path
+            // Store the new avatar
+            $avatarPath = $request->file('avatar')->store('avatars', 'local'); // Ensure 'local' is correctly configured
             $user->avatar = basename($avatarPath);
         }
 
-        // Update user details
         $user->name = $request->name;
         $user->email = $request->email;
         $user->last_login_at = now();
         $user->last_login_ip = $request->ip();
-        $user->save();
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'User updated successfully.');
+        if ($request->filled('current_password')) {
+            if (Hash::check($request->current_password, $user->password)) {
+                if ($request->filled('new_password')) {
+                    $user->password = Hash::make($request->new_password);
+                }
+            } else {
+                return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+            }
+        }
+
+        $user->save();
+        
+        return back()->with('success', 'Profile updated successfully.');
     }
 }
