@@ -19,6 +19,8 @@ use App\Http\Controllers\backend\perjanjianKinerja\CapaianController;
 use App\Http\Controllers\backend\lhe\LheController;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,16 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/avatars/{filename}', function ($filename) {
+    $user = auth()->user();
+    if ($user && $user->avatar === $filename) {
+        $path = storage_path('app/avatars/' . $filename);
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+    }
+    abort(404);
+});
 
 // backend
 Route::prefix('admin')
@@ -116,6 +128,8 @@ Route::prefix('admin')
             Route::resource('users', userController::class);
             Route::post('users/save', [userController::class, 'saveData']);
         });
+        Route::get('users/{user}/edit', [userController::class, 'edit'])->name('user.edit');
+        
 
         // for super admin only
         Route::group(['middleware' => ['role:Super-Admin']], function () {

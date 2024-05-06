@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class userController extends Controller
 {
@@ -85,5 +87,43 @@ class userController extends Controller
         $data = User::findOrFail($id);
         $data->delete();
         return response()->json($data);
+    }
+
+    public function edit(User $user)
+    {
+        return view('backend.users.settings.index', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 2MB Max
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            // Delete old avatar if exists
+            if ($user->avatar) {
+                Storage::delete('/avatars/' . $user->avatar);
+            }
+
+            // Store the new avatar in storage/app/avatars
+            $avatarPath = $request->file('avatar')->store('avatars', 'local'); // Change from 'public' to 'local'
+
+            // Store just the filename, not the path
+            $user->avatar = basename($avatarPath);
+        }
+
+        // Update user details
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->last_login_at = now();
+        $user->last_login_ip = $request->ip();
+        $user->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'User updated successfully.');
     }
 }

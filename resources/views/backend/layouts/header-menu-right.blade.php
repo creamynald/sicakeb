@@ -79,9 +79,13 @@
     <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
         <!--begin::Menu wrapper-->
         <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-            data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <img src="{{ asset('') }}/assets/media/avatars/300-3.jpg" class="rounded-3" alt="user" />
-        </div>
+     data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+    <img src="{{ auth()->user()->avatar ? url('/avatars/' . auth()->user()->avatar) : asset('assets/media/avatars/blank.png') }}"
+         class="rounded-3" alt="user" />
+</div>
+
+
+
         <!--begin::User account menu-->
         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
             data-kt-menu="true">
@@ -90,7 +94,8 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{ asset('') }}/assets/media/avatars/300-3.jpg" />
+                        <img alt="Logo"
+                            src="{{ auth()->user()->avatar ? url('/avatars/' . auth()->user()->avatar) : asset('assets/media/avatars/blank.png') }}" />
                     </div>
                     <!--end::Avatar-->
                     <!--begin::Username-->
@@ -105,10 +110,13 @@
                     <!--end::Username-->
                 </div>
                 @role('operator')
-                    <div class="px-3">
-                        <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd->nama }}</a>
-                    </div>
+                    @if (!empty(optional(Auth::user()->opd)->nama))
+                        <div class="px-3">
+                            <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd->nama }}</a>
+                        </div>
+                    @endif
                 @endrole
+
             </div>
             <!--end::Menu item-->
 
@@ -116,17 +124,24 @@
             <div class="separator my-2"></div>
             <!--end::Menu separator-->
 
+
             <!--begin::Menu item-->
-            <div class="menu-item px-5">
-                {{-- logout --}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}" class="menu-link px-5"
-                        onclick="event.preventDefault();
-                    this.closest('form').submit();">Sign
-                        Out</a>
-                </form>
+            <div class="menu-item px-5 d-flex justify-content-between">
+                <div>
+                    <a href="{{ route('user.edit', ['user' => auth()->user()->id]) }}"
+                        class="menu-link px-5 btn btn-outline-warning">Edit Profile</a>
+                </div>
+                <div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="menu-link px-5 bg-danger text-white"
+                            onclick="event.preventDefault();
+                        this.closest('form').submit();">Sign
+                            Out</a>
+                    </form>
+                </div>
             </div>
+
             <!--end::Menu item-->
         </div>
         <!--end::User account menu-->
