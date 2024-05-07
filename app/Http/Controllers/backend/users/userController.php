@@ -111,8 +111,7 @@ class userController extends Controller
         ];
 
         // Check if the name, email, or avatar fields are being changed
-        if (
-            $request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
+        if ($request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
             $validationRules['current_password'] = 'required|string|min:8';
         }
 
@@ -128,11 +127,11 @@ class userController extends Controller
         // Ensure current password is provided before allowing sensitive updates
         if (isset($validatedData['current_password'])) {
             if (!Hash::check($request->input('current_password'), $user->password)) {
-                return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+                return back()->withErrors(['current_password' => 'Kata sandi yang Anda berikan tidak cocok dengan kata sandi saat ini.']);
             }
         } else {
             // If the password is required but not provided or correct
-            return back()->with('error', 'Password is required to update name, email, or avatar.');
+            return back()->with('error', 'Kata sandi salah, masukkan kata sandi yang benar untuk memperbarui profil Anda.');
         }
 
         // Process avatar if provided
@@ -160,6 +159,6 @@ class userController extends Controller
 
         $user->save();
 
-        return back()->with('success', 'Profile updated successfully.');
+        return back()->with('success', 'Profil berhasil diperbarui.');
     }
 }
