@@ -131,7 +131,7 @@ Route::prefix('admin')
 
         Route::prefix('setting')->group(function () {
             // edit profile
-            Route::get('users/{user}/edit', [userController::class, 'editProfile'])->name('profile.edit');l
+            Route::get('users/{user}/edit', [userController::class, 'editProfile'])->name('profile.edit');
             Route::put('users/{user}/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
