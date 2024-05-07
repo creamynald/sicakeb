@@ -104,6 +104,12 @@ class userController extends Controller
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 2MB Max
         ];
 
+        $customMessages = [
+            'avatar.required' => 'Mohon pilih file',
+            'avatar.mimes' => 'Gambar harus dengan format .jpg | .png | .jpeg',
+            'avatar.max' => 'Ukuran file maksimal 2MB',
+        ];
+
         // Check if the name, email, or avatar fields are being changed
         if (
             $request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
@@ -117,7 +123,7 @@ class userController extends Controller
         }
 
         // Perform validation
-        $validatedData = $request->validate($validationRules);
+        $validatedData = $request->validate($validationRules, $customMessages);
 
         // Ensure current password is provided before allowing sensitive updates
         if (isset($validatedData['current_password'])) {

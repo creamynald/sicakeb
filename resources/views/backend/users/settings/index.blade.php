@@ -193,6 +193,35 @@
                             <h3 class="fw-bold m-0">Profile Details</h3>
                         </div>
                         <!--end::Card title-->
+                        @if ($errors->any())
+                            <!--begin::Alert-->
+                            <div class="alert alert-dismissible bg-primary d-flex flex-column flex-sm-row p-5 mb-10">
+                                <!--begin::Icon-->
+                                <i class="ki-duotone ki-search-list fs-2hx text-light me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                <!--end::Icon-->
+
+                                <!--begin::Wrapper-->
+                                @foreach ($errors->all() as $error)
+                                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                                        <!--begin::Title-->
+                                        <h4 class="mb-2 light">Terjadi Kesalahan</h4>
+                                        <!--end::Title-->
+
+                                        <!--begin::Content-->
+                                        <span>{{ $error }}</span>
+                                        <!--end::Content-->
+                                    </div>
+                                @endforeach
+                                <!--end::Wrapper-->
+
+                                <!--begin::Close-->
+                                <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+                                    <i class="ki-duotone ki-cross fs-1 text-light"><span class="path1"></span><span class="path2"></span></i>
+                                </button>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Alert-->
+                        @endif
                     </div>
                     <!--begin::Card header-->
                     <!--begin::Content-->
@@ -240,7 +269,8 @@
                                             </span>
                                             <!--end::Remove-->
                                         </div>
-                                        <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                        <div class="form-text">Jenis file yang diizinkan: png, jpg, jpeg.</div>
+                                        <div class="form-text">Ukuran maksimal 2MB.</div>
 
                                     </div>
                                 </div>
@@ -273,7 +303,7 @@
                                         <input type="password" name="current_password"
                                             class="form-control form-control-lg form-control-solid"
                                             placeholder="Current password" autocomplete="false" required/>
-                                            <small style="color: green">Masukkan Sandi Untuk Menyimpan Perubahan</small>
+                                            <div class="form-text required">Masukkan sandi saat ini untuk menyimpan perubahan</div>
                                     </div>
                                 </div>
 
@@ -339,6 +369,9 @@
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
+        @endif
+        @if ($errors->has('file'))
+            document.getElementById('file').focus();
         @endif
     </script>
     <script>
