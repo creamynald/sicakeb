@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lhes', function (Blueprint $table) {
             $table->id();
-            $table->year('opd_id');
+            $table->integer('opd_id');
             $table->string('rekomendasi_lhe');
             $table->year('tahun');
             $table->string('tindak_lanjut')->nullable();
