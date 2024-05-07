@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('pegawai_id');
             $table->string('jenis_master');
             $table->string('master_id');
-            $table->string('indikator');
-            $table->string('sasaran');
+            $table->text('indikator');
+            $table->text('sasaran');
             $table->year('tahun');
             $table->string('tw1');
             $table->string('tw2')->nullable();

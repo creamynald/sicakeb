@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tujuans', function (Blueprint $table) {
             $table->id();
             $table->string('opd_id');
-            $table->string('nama');
+            $table->text('nama');
             $table->timestamps();
         });
     }
