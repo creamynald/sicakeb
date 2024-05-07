@@ -128,7 +128,7 @@
             <!--begin::Menu item-->
             <div class="menu-item px-5 d-flex justify-content-between">
                 <div>
-                    <a href="{{ route('user.edit', ['user' => auth()->user()->id]) }}"
+                    <a href="{{ route('profile.edit', ['user' => auth()->user()->id]) }}"
                         class="menu-link px-5 btn btn-outline-warning">Edit Profile</a>
                 </div>
                 <div>

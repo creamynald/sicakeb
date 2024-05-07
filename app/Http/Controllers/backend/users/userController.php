@@ -90,12 +90,12 @@ class userController extends Controller
         return response()->json($data);
     }
 
-    public function edit(User $user)
+    public function editProfile(User $user)
     {
         return view('backend.users.settings.index', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function updateProfile(Request $request, User $user)
     {
         // Define validation rules for the main fields
         $validationRules = [
@@ -105,7 +105,8 @@ class userController extends Controller
         ];
 
         // Check if the name, email, or avatar fields are being changed
-        if ($request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
+        if (
+            $request->name != $user->name || $request->email != $user->email || $request->hasFile('avatar')) {
             $validationRules['current_password'] = 'required|string|min:8';
         }
 

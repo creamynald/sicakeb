@@ -199,7 +199,7 @@
                     <div id="kt_account_settings_profile_details" class="collapse show">
                         <!--begin::Form-->
                         <form id="kt_account_profile_details_form" class="form"
-                            action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                            action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             @method('PUT')
                             <!--begin::Card body-->
