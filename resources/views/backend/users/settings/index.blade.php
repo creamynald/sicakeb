@@ -9,13 +9,13 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        Account Settings</h1>
+                        Pengaturan Akun</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="index.html" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{url('admin/dashboard')}}" class="text-muted text-hover-primary">Dashboard</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -24,7 +24,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Account</li>
+                        <li class="breadcrumb-item text-muted">Akun</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -112,7 +112,7 @@
                                                         <a href="#"
                                                             class="text-gray-800 text-hover-primary fw-bolder fs-6">
                                                             @if (auth()->user() && auth()->user()->opd)
-                                                                {{ auth()->user()->opd->nama }} 
+                                                                {{ auth()->user()->opd->nama }}
                                                             @else
                                                                 <span class="badge badge-light-danger fw-bold">Akun ini tidak tertaut dengan OPD manapun</span>
                                                             @endif
@@ -151,7 +151,7 @@
 
                                         @endphp
                                         <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                            <span class="fw-semibold fs-6 text-gray-500">Profile Completion</span>
+                                            <span class="fw-semibold fs-6 text-gray-500">Kelengkapan Profil</span>
                                             <span class="fw-bold fs-6">{{ $completionPercentage }}%</span>
                                         </div>
                                         <div class="h-5px mx-3 w-100 bg-light mb-3">
@@ -174,7 +174,7 @@
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                             <!--begin::Nav item-->
                             <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="#">Settings</a>
+                                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="#">Pengaturan</a>
                             </li>
                             <!--end::Nav item-->
                         </ul>
@@ -248,7 +248,7 @@
 
                                 <!-- Full Name Input -->
                                 <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Full Name</label>
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama Lengkap</label>
                                     <div class="col-lg-8">
                                         <input type="text" name="name"
                                             class="form-control form-control-lg form-control-solid"
@@ -268,18 +268,18 @@
 
                                 <!-- Current Password Input -->
                                 <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Current
-                                        Password</label>
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Sandi Saat Ini</label>
                                     <div class="col-lg-8">
                                         <input type="password" name="current_password"
                                             class="form-control form-control-lg form-control-solid"
-                                            placeholder="Current password" autof/>
+                                            placeholder="Current password" autocomplete="false" required/>
+                                            <small style="color: green">Masukkan Sandi Untuk Menyimpan Perubahan</small>
                                     </div>
                                 </div>
 
                                 <!-- New Password Input -->
                                 <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">New Password</label>
+                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Sandi Baru</label>
                                     <div class="col-lg-8">
                                         <input type="password" name="new_password"
                                             class="form-control form-control-lg form-control-solid"
@@ -289,8 +289,7 @@
 
                                 <!-- Verify Password Input -->
                                 <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Verify
-                                        Password</label>
+                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Masukkan Ulang Sandi</label>
                                     <div class="col-lg-8">
                                         <input type="password" name="new_password_confirmation"
                                             class="form-control form-control-lg form-control-solid"

@@ -124,7 +124,7 @@ Route::prefix('admin')
         // end::subkegiatan controller
 
         // for super admin only
-        Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('users', userController::class);
             Route::post('users/save', [userController::class, 'saveData']);
         });
