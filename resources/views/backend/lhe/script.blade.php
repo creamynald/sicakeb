@@ -110,9 +110,9 @@
             });
         });
         // end::save data
+        $('#formModal').modal({backdrop: 'static', keyboard: false})
     });
 
-    $('#formModal').modal({backdrop: 'static', keyboard: false})
 
 </script>
 {{-- begin::create and edit js --}}

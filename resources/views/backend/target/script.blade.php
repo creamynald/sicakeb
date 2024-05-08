@@ -148,12 +148,13 @@
             });
         });
         // end::save data
+
+        $('#formModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
     });
 
-    $('#formModal').modal({
-        backdrop: 'static',
-        keyboard: false
-    })
 </script>
 {{-- begin::create and edit js --}}
 
@@ -224,46 +225,5 @@
 {{-- End --}}
 
 
-{{-- Script untuk mengambil data berdasarkan pilihan jenis_master --}}
-<script>
-    document.getElementById('jenis_master').addEventListener('change', function () {
-        updateMasterDropdown();
-    });
 
-    function updateMasterDropdown(master_id=null) {
-        var jenisMaster = document.getElementById('jenis_master').value;
-        var masterLabel = document.getElementById('master_label');
-        var masterDropdown = document.getElementById('master_id');
-        masterDropdown.innerHTML = '<option value="">Loading...</option>';
-
-        switch (jenisMaster) {
-            case 'program':
-                masterLabel.textContent = 'Pilih Program';
-                break;
-            case 'kegiatan':
-                masterLabel.textContent = 'Pilih Kegiatan';
-                break;
-            case 'subkegiatan':
-                masterLabel.textContent = 'Pilih Subkegiatan';
-                break;
-            default:
-                masterLabel.textContent = '';
-                break;
-        }
-
-        fetch('{{ route('get-data') }}?jenis_master=' + jenisMaster)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                masterDropdown.innerHTML = '<option value="">Pilih ' + jenisMaster.charAt(0).toUpperCase() + jenisMaster.slice(1) + '</option>';
-                data.forEach(function (item) {
-                    masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama + '</option>';
-                });
-                // Set nilai awal dropdown master_id berdasarkan data yang diedit
-                masterDropdown.value = master_id ;
-            });
-    }
-</script>
-{{-- End --}}
 

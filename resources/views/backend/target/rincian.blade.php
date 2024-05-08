@@ -222,12 +222,12 @@
                                         <td>{{ $item->indikator }}</td>
                                         <td>
                                             @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
-                                            -
+                                                -
                                             @else
                                                 @if (is_numeric($item->anggaran))
                                                     @rp($item->anggaran)
                                                 @else
-                                                    {{$item->anggaran}}
+                                                    {{ $item->anggaran }}
                                                 @endif
                                             @endif
                                         </td>
@@ -239,14 +239,14 @@
                                         <td>{{ $item->tw4 }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center flex-shrink-0">
-                                                <button data-id="{{$item->id}}"
+                                                <button data-id="{{ $item->id }}"
                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
                                                     <i class="ki-duotone ki-pencil fs-2">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
                                                     </i>
                                                 </button>
-                                                <button onclick="deleteItem({{$item->id}})"
+                                                <button onclick="deleteItem({{ $item->id }})"
                                                     class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
                                                     <i class="ki-duotone ki-trash fs-2">
                                                         <span class="path1"></span>
@@ -294,9 +294,6 @@
     @push('js')
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
         <!--begin::Custom Javascript(used for this page only)-->
-        <script src="{{ asset('assets/js/custom/apps/customers/list/export.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/apps/customers/list/list.js') }}"></script>
-        <script src="{{ asset('assets/js/custom/apps/customers/add.js') }}"></script>
         <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
         <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
@@ -307,6 +304,50 @@
     @endpush
     {{-- begin::custom js --}}
     @push('scripts')
+        {{-- Script untuk mengambil data berdasarkan pilihan jenis_master --}}
+        <script>
+            document.getElementById('jenis_master').addEventListener('change', function() {
+                updateMasterDropdown();
+            });
+
+            function updateMasterDropdown(master_id = null) {
+                var jenisMaster = document.getElementById('jenis_master').value;
+                var masterLabel = document.getElementById('master_label');
+                var masterDropdown = document.getElementById('master_id');
+                masterDropdown.innerHTML = '<option value="">Loading...</option>';
+
+                switch (jenisMaster) {
+                    case 'program':
+                        masterLabel.textContent = 'Pilih Program';
+                        break;
+                    case 'kegiatan':
+                        masterLabel.textContent = 'Pilih Kegiatan';
+                        break;
+                    case 'subkegiatan':
+                        masterLabel.textContent = 'Pilih Subkegiatan';
+                        break;
+                    default:
+                        masterLabel.textContent = '';
+                        break;
+                }
+
+                fetch('{{ route('get-data') }}?jenis_master=' + jenisMaster)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        masterDropdown.innerHTML = '<option value="">Pilih ' + jenisMaster.charAt(0).toUpperCase() +
+                            jenisMaster.slice(1) + '</option>';
+                        data.forEach(function(item) {
+                            masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama +
+                            '</option>';
+                        });
+                        // Set nilai awal dropdown master_id berdasarkan data yang diedit
+                        masterDropdown.value = master_id;
+                    });
+            }
+        </script>
+        {{-- End --}}
         @include('backend.' . Request::segment(2) . '.script')
     @endpush
     {{-- end::custom js --}}
