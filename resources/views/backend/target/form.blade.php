@@ -16,20 +16,22 @@
                         <input type="text" class="form-control" id="tahun" name="tahun">
                     </div>
                     <div class="form-group mb-4">
-                        <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis
-                            Master</label>
-                        <input type="text" class="form-control" id="jenis_master" name="jenis_master"
-                            value="{{ $jenis_master }}" readonly>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="master_id"
-                            class="required fs-6 fw-semibold mb-2">{{ ucfirst($jenis_master) }}</label>
-                        <select name="master_id" id="master_id" class="form-select form-select-solid">
-                            @foreach ($data_pk as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                            @endforeach
+                        <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis Master</label>
+                        <select name="jenis_master" id="jenis_master" class="form-select form-select-solid">
+                            <option value="">Pilih Jenis</option>
+                            <option value="program">Program</option>
+                            <option value="kegiatan">Kegiatan</option>
+                            <option value="subkegiatan">Subkegiatan</option>
                         </select>
                     </div>
+
+                    <div class="form-group mb-4">
+                        <label for="master_id" class="required fs-6 fw-semibold mb-2" id="master_label">Pilih Janis Master</label>
+                        <select name="master_id" id="master_id" class="form-select form-select-solid">
+                            <!-- Opsi akan ditambahkan melalui JavaScript -->
+                        </select>
+                    </div>
+
                     <div class="form-group mb-4">
                         <label for="anggaran" class="required fs-6 fw-semibold mb-2">Anggaran</label>
                         <input type="text" class="form-control" id="anggaran" name="anggaran" onkeyup="this.value=addcommas(this.value);">
