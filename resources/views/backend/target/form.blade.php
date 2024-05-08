@@ -13,11 +13,11 @@
                     <input type="hidden" id="pegawai_id" name="pegawai_id" value="{{ $pegawai->id }}">
                     <div class="form-group mb-4">
                         <label for="tahun" class="required fs-6 fw-semibold mb-2">Tahun</label>
-                        <input type="text" class="form-control" id="tahun" name="tahun">
+                        <input type="text" class="form-control" id="tahun" name="tahun" required>
                     </div>
                     <div class="form-group mb-4">
                         <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis Master</label>
-                        <select name="jenis_master" id="jenis_master" class="form-select form-select-solid">
+                        <select name="jenis_master" id="jenis_master" class="form-select" >
                             <option value="">Pilih Jenis</option>
                             <option value="program">Program</option>
                             <option value="kegiatan">Kegiatan</option>
@@ -27,7 +27,7 @@
 
                     <div class="form-group mb-4">
                         <label for="master_id" class="required fs-6 fw-semibold mb-2" id="master_label">Pilih Janis Master</label>
-                        <select name="master_id" id="master_id" class="form-select form-select-solid">
+                        <select name="master_id" id="master_id" class="form-select" data-control="select2" data-dropdown-parent="#formModal">
                             <!-- Opsi akan ditambahkan melalui JavaScript -->
                         </select>
                     </div>
