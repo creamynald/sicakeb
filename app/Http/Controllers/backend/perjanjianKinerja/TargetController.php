@@ -177,4 +177,29 @@ class TargetController extends Controller
         $item->delete();
         return response()->json(['success' => true]);
     }
+
+
+    public function getData(Request $request)
+    {
+        $jenis_master = $request->jenis_master;
+
+        switch ($jenis_master) {
+            case 'program':
+                $data = Program::withWhereHas('sasaran.tujuan', function($q) {
+                    $q->where('opd_id', auth()->user()->opd_id);
+                })->get();
+                break;
+            case 'kegiatan':
+                $data = Kegiatan::tujuan()->get();
+                break;
+            case 'subkegiatan':
+                $data = Subkegiatan::tujuan()->get();
+                break;
+            default:
+                $data = [];
+                break;
+        }
+
+        return response()->json($data);
+    }
 }
