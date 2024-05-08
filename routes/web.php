@@ -155,6 +155,7 @@ Route::prefix('admin')
 
         // begin::target controller that can be access by super admin and admin only
         Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::get('target/get-data', [TargetController::class, 'getData'])->name('get-data');
             Route::resource('target', TargetController::class);
             // begin:additional route (!= resource)
             Route::post('target/save', [TargetController::class, 'saveData']);
