@@ -221,3 +221,42 @@
     }
 </script>
 {{-- End --}}
+
+
+{{-- Script untuk mengambil data berdasarkan pilihan jenis_master --}}
+<script>
+    document.getElementById('jenis_master').addEventListener('change', function () {
+    var jenisMaster = this.value;
+    var masterLabel = document.getElementById('master_label');
+    var masterDropdown = document.getElementById('master_id');
+    masterDropdown.innerHTML = '<option value="">Loading...</option>';
+
+    switch (jenisMaster) {
+        case 'program':
+            masterLabel.textContent = 'Program';
+            break;
+        case 'kegiatan':
+            masterLabel.textContent = 'Kegiatan';
+            break;
+        case 'subkegiatan':
+            masterLabel.textContent = 'Subkegiatan';
+            break;
+        default:
+            masterLabel.textContent = '';
+            break;
+    }
+
+    // Berdasarkan jenis_master, lakukan pemanggilan AJAX ke rute yang sesuai
+    fetch('{{ route('get-data') }}?jenis_master=' + jenisMaster)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            masterDropdown.innerHTML = '<option value="">Pilih ' + jenisMaster.charAt(0).toUpperCase() + jenisMaster.slice(1) + '</option>';
+            data.forEach(function (item) {
+                masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama + '</option>';
+            });
+        });
+});
+</script>
+{{-- End --}}
