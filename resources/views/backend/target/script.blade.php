@@ -96,7 +96,7 @@
         $(document).on('click', '.btn-edit', function() {
             var id = $(this).data('id');
             // url get data based on id
-            $.get('{{url("admin/target")}}/' + id, function(data) {
+            $.get('{{ url('admin/target') }}/' + id, function(data) {
                 // begin::fill value based on id from url to form
                 $('#dataId').val(data.id);
                 $('#pegawai_id').val(data.pegawai_id);
@@ -112,6 +112,7 @@
                 $('#tw4').val(data.tw4);
                 $('#anggaran').val(data.anggaran);
                 $('#target_kinerja_tahunan').val(data.target_kinerja_tahunan);
+                updateMasterDropdown(data.master_id);
                 // end::fill value based on id from url to form
                 // open modal
                 $('#formModal').modal('show');
@@ -125,7 +126,7 @@
             var formData = $(this).serialize();
             $.ajax({
                 // url to save the data
-                url: '{{url("admin/target/save")}}',
+                url: '{{ url('admin/target/save') }}',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -171,7 +172,7 @@
             if (result.isConfirmed) {
                 // Send AJAX request to delete
                 $.ajax({
-                    url: '{{url("/admin/target")}}/' + id,
+                    url: '{{ url('/admin/target') }}/' + id,
                     type: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -226,37 +227,43 @@
 {{-- Script untuk mengambil data berdasarkan pilihan jenis_master --}}
 <script>
     document.getElementById('jenis_master').addEventListener('change', function () {
-    var jenisMaster = this.value;
-    var masterLabel = document.getElementById('master_label');
-    var masterDropdown = document.getElementById('master_id');
-    masterDropdown.innerHTML = '<option value="">Loading...</option>';
+        updateMasterDropdown();
+    });
 
-    switch (jenisMaster) {
-        case 'program':
-            masterLabel.textContent = 'Program';
-            break;
-        case 'kegiatan':
-            masterLabel.textContent = 'Kegiatan';
-            break;
-        case 'subkegiatan':
-            masterLabel.textContent = 'Subkegiatan';
-            break;
-        default:
-            masterLabel.textContent = '';
-            break;
-    }
+    function updateMasterDropdown(master_id=null) {
+        var jenisMaster = document.getElementById('jenis_master').value;
+        var masterLabel = document.getElementById('master_label');
+        var masterDropdown = document.getElementById('master_id');
+        masterDropdown.innerHTML = '<option value="">Loading...</option>';
 
-    // Berdasarkan jenis_master, lakukan pemanggilan AJAX ke rute yang sesuai
-    fetch('{{ route('get-data') }}?jenis_master=' + jenisMaster)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            masterDropdown.innerHTML = '<option value="">Pilih ' + jenisMaster.charAt(0).toUpperCase() + jenisMaster.slice(1) + '</option>';
-            data.forEach(function (item) {
-                masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama + '</option>';
+        switch (jenisMaster) {
+            case 'program':
+                masterLabel.textContent = 'Pilih Program';
+                break;
+            case 'kegiatan':
+                masterLabel.textContent = 'Pilih Kegiatan';
+                break;
+            case 'subkegiatan':
+                masterLabel.textContent = 'Pilih Subkegiatan';
+                break;
+            default:
+                masterLabel.textContent = '';
+                break;
+        }
+
+        fetch('{{ route('get-data') }}?jenis_master=' + jenisMaster)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                masterDropdown.innerHTML = '<option value="">Pilih ' + jenisMaster.charAt(0).toUpperCase() + jenisMaster.slice(1) + '</option>';
+                data.forEach(function (item) {
+                    masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama + '</option>';
+                });
+                // Set nilai awal dropdown master_id berdasarkan data yang diedit
+                masterDropdown.value = master_id ;
             });
-        });
-});
+    }
 </script>
 {{-- End --}}
+

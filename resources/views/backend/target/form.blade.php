@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis Master</label>
-                        <select name="jenis_master" id="jenis_master" class="form-select" >
+                        <select name="jenis_master" id="jenis_master" class="form-select">
                             <option value="">Pilih Jenis</option>
                             <option value="program">Program</option>
                             <option value="kegiatan">Kegiatan</option>
