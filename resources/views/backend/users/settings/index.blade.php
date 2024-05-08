@@ -15,7 +15,7 @@
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{url('admin/dashboard')}}" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{ url('admin/dashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -114,7 +114,8 @@
                                                             @if (auth()->user() && auth()->user()->opd)
                                                                 {{ auth()->user()->opd->nama }}
                                                             @else
-                                                                <span class="badge badge-light-danger fw-bold">Akun ini tidak tertaut dengan OPD manapun</span>
+                                                                <span class="badge badge-light-danger fw-bold">Akun ini
+                                                                    tidak tertaut dengan OPD manapun</span>
                                                             @endif
 
                                                         </a>
@@ -193,42 +194,14 @@
                             <h3 class="fw-bold m-0">Profile Details</h3>
                         </div>
                         <!--end::Card title-->
-                        @if ($errors->any())
-                            <!--begin::Alert-->
-                            <div class="alert alert-dismissible bg-primary d-flex flex-column flex-sm-row p-5 mb-10">
-                                <!--begin::Icon-->
-                                <i class="ki-duotone ki-search-list fs-2hx text-light me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                                <!--end::Icon-->
-
-                                <!--begin::Wrapper-->
-                                @foreach ($errors->all() as $error)
-                                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
-                                        <!--begin::Title-->
-                                        <h4 class="mb-2 light">Terjadi Kesalahan</h4>
-                                        <!--end::Title-->
-
-                                        <!--begin::Content-->
-                                        <span>{{ $error }}</span>
-                                        <!--end::Content-->
-                                    </div>
-                                @endforeach
-                                <!--end::Wrapper-->
-
-                                <!--begin::Close-->
-                                <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                                    <i class="ki-duotone ki-cross fs-1 text-light"><span class="path1"></span><span class="path2"></span></i>
-                                </button>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Alert-->
-                        @endif
                     </div>
                     <!--begin::Card header-->
                     <!--begin::Content-->
                     <div id="kt_account_settings_profile_details" class="collapse show">
                         <!--begin::Form-->
                         <form id="kt_account_profile_details_form" class="form"
-                            action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                            action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data"
+                            autocomplete="off">
                             @csrf
                             @method('PUT')
                             <!--begin::Card body-->
@@ -302,8 +275,9 @@
                                     <div class="col-lg-8">
                                         <input type="password" name="current_password"
                                             class="form-control form-control-lg form-control-solid"
-                                            placeholder="Current password" autocomplete="false" required/>
-                                            <div class="form-text required">Masukkan sandi saat ini untuk menyimpan perubahan</div>
+                                            placeholder="Current password" autocomplete="false" required />
+                                        <div class="form-text required">Masukkan sandi saat ini untuk menyimpan perubahan
+                                        </div>
                                     </div>
                                 </div>
 
@@ -354,28 +328,35 @@
 
 @push('scripts')
     <script>
-        @if (session('success'))
-            Swal.fire({
-                title: 'Success!',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        @endif
-        @if (session('error'))
-            Swal.fire({
-                title: 'Error!',
-                text: '{{ session('error') }}',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        @endif
-        @if ($errors->has('file'))
-            document.getElementById('file').focus();
-        @endif
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->has('avatar'))
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ $errors->first('avatar') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+            @if (session('error'))
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
     </script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('input[name="current_password"]').val('');
         });
     </script>
