@@ -57,7 +57,7 @@
             var targetPk = $(this).attr('data-target-pk');
             var id = $(this).data('id');
             // url get data based on id
-            $.get('{{url("admin/realisasi")}}/' + id, function(data) {
+            $.get('{{ url('admin/realisasi') }}/' + id, function(data) {
                 // begin::fill value based on id from url to form
                 $('#dataId').val(data.id);
                 $('#target_id').val(targetPk);
@@ -82,9 +82,10 @@
             var formData = $(this).serialize();
             $.ajax({
                 // url to save the data
-                url: '{{url("admin/realisasi/save")}}',
+                url: '{{ url('admin/realisasi/save') }}',
                 type: 'POST',
                 data: formData,
+                // Jika Sukses
                 success: function(response) {
                     $('#formModal').modal('hide');
                     // begin::swall alert
@@ -100,18 +101,47 @@
                         location.reload();
                     });
                     // end::swall alert
+                },
+                // Jika Error
+                error: function(response) {
+                    if (response.status === 422) {
+                        let errors = response.responseJSON.errors;
+                        let errorMessages =
+                        '<div style="text-align: left;"><ol>'; // Initialize errorMessages with the opening <ol> tag
+
+                        for (let key in errors) {
+                            if (errors.hasOwnProperty(key)) {
+                                errors[key].forEach(function(message) {
+                                    errorMessages += '<li>' + message +
+                                    '</li>'; // Add each error as a list item
+                                });
+                            }
+                        }
+
+                        errorMessages += '</ol></div>'; // Close the ordered list after the loop
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Kesalahan Validasi',
+                            html: errorMessages,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat menyimpan data.',
+                        });
+                    }
                 }
             });
         });
         // end::save data
-
 
         $('#formModal').modal({
             backdrop: 'static',
             keyboard: false
         })
     });
-
 </script>
 {{-- begin::create and edit js --}}
 
