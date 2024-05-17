@@ -4,7 +4,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Form Data @urlSegment(2)</h5>
+                <h2 class="modal-title" id="formModalLabel">Form Data @urlSegment(2)</h2>
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
             </div>
             <form id="formData" method="POST">
                 <div class="modal-body">
@@ -47,19 +53,18 @@
                             Kinerja</label>
                         <input type="text" class="form-control" id="indikator" name="indikator">
                     </div>
-                    <div class="form-group mb-4">
-                        <label for="target_kinerja_tahunan" class="required fs-6 fw-semibold mb-2">Target Kinerja
-                            Tahunan
-                            Kinerja</label>
-                        <input type="text" class="form-control" id="target_kinerja_tahunan"
-                            name="target_kinerja_tahunan">
-                            <small style="color: green;">Masukkan target tanpa satuan contoh (100 Dokumen) cukup masukkan angka 100 tanpa menyertakan kata Dokumen</small>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="satuan" class="required fs-6 fw-semibold mb-2">Satuan
-                            Kinerja</label>
-                            <input type="text" class="form-control" id="satuan" name="satuan">
-                            <small style="color: green;">Jika terdapat pengganti kata satuan menjadi simbol, gunakan simbol contoh (Persen) menjadi (%)</small>
+                    <div class="row">
+                        <div class="form-group mb-4 col-6">
+                            <label for="target_kinerja_tahunan" class="required fs-6 fw-semibold mb-2">Target Kinerja Tahunan</label>
+                            <input type="text" class="form-control" id="target_kinerja_tahunan"
+                                name="target_kinerja_tahunan">
+                                <small style="color: green;">Masukkan target tanpa satuan contoh (100 Dokumen) cukup masukkan angka 100 tanpa menyertakan kata Dokumen</small>
+                        </div>
+                        <div class="form-group mb-4 col-6">
+                            <label for="satuan" class="required fs-6 fw-semibold mb-2">Satuan Kinerja</label>
+                                <input type="text" class="form-control" id="satuan" name="satuan">
+                                <small style="color: green;">Jika terdapat pengganti kata satuan menjadi simbol, gunakan simbol contoh (Persen) menjadi (%)</small>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-4 col-3">

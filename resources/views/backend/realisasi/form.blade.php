@@ -4,7 +4,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="formModalLabel">Form Data @urlSegment(2)</h5>
-
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
             </div>
             <form id="formData" method="POST">
                 <div class="modal-body">
