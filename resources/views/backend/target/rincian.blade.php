@@ -204,6 +204,7 @@
                                     <th class="text-center middle-align" rowspan="2">Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Tahun</th>
                                     <th class="text-center middle-align" rowspan="2">Target Kinerja Tahunan</th>
+                                    <th class="text-center middle-align" rowspan="2">Satuan</th>
                                     <th class="text-center" colspan="4">Target</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
                                 </tr>
@@ -232,9 +233,14 @@
                                             @endif
                                         </td>
                                         <td class="text-center">{{ $item->tahun }}</td>
-                                        <td class="text-center">{{ $item->target_kinerja_tahunan }} @if ($item->satuan == '' || $item->satuan == null || $item->satuan == '-')
-                                            {{''}} @else {{' '.$item->satuan}}
-                                        @endif</td>
+                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                        <td>
+                                            @if ($item->satuan == '' || $item->satuan == null || $item->satuan == '-')
+                                                {{ '' }}
+                                            @else
+                                                {{ $item->satuan }}
+                                            @endif
+                                        </td>
                                         <td>{{ $item->tw1 }}</td>
                                         <td>{{ $item->tw2 }}</td>
                                         <td>{{ $item->tw3 }}</td>
@@ -342,7 +348,7 @@
                             jenisMaster.slice(1) + '</option>';
                         data.forEach(function(item) {
                             masterDropdown.innerHTML += '<option value="' + item.id + '">' + item.nama +
-                            '</option>';
+                                '</option>';
                         });
                         // Set nilai awal dropdown master_id berdasarkan data yang diedit
                         masterDropdown.value = master_id;
