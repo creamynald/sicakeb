@@ -234,7 +234,7 @@
                                         </td>
                                         <td class="text-center">{{ $item->tahun }}</td>
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @if ($item->satuan == '' || $item->satuan == null || $item->satuan == '-')
                                                 {{ '' }}
                                             @else

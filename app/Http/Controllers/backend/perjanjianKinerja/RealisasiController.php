@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend\perjanjianKinerja;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\PerjanjianKinerja\Realisasi;
 use App\Models\PerjanjianKinerja\Target;
 use App\Models\Opd\Pegawai;
@@ -117,6 +118,41 @@ class RealisasiController extends Controller
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
+        // dd($request->all());
+
+        $validationRules = [
+            'target_id' => 'required|numeric',
+            'tw1' => 'required|alpha_dash',
+            'tw2' => 'nullable|alpha_dash',
+            'tw3' => 'nullable|alpha_dash',
+            'tw4' => 'nullable|alpha_dash',
+            'pendukung' => 'nullable|string',
+            'penghambat' => 'nullable|string',
+            'solusi' => 'nullable|string',
+        ];
+
+        $customMessages = [
+            'target_id.required' => 'Target id tidak boleh kosong',
+            'target_id.numeric' => 'Target id harus berupa angka',
+            'tw1.required' => 'Triwulan I tidak boleh kosong',
+            'tw1.alpha_dash' => 'Triwulan I harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw2.alpha_dash' => 'Triwulan II harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw3.alpha_dash' => 'Triwulan III harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw4.alpha_dash' => 'Triwulan IV harus berupa huruf, angka dan tanda penghubung(-)',
+            'pendukung' => 'Pendukung harus berupa string',
+            'penghambat' => 'Penghambat harus berupa string',
+            'solusi' => 'Solusi harus berupa string',
+
+        ];
+
+        $validator = Validator::make($request->all(), $validationRules, $customMessages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
         $realisasi_anggaran = explode(",",$request->realisasi_anggaran); //memecah angka jika terdapat koma pada bilangan ribuan
         $a = implode($realisasi_anggaran); //menyatukan kembali menjadi angka utuh tanpa koma
 

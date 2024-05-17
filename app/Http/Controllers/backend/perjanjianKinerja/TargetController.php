@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend\perjanjianKinerja;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Opd\Kegiatan;
 use App\Models\Opd\Program;
 use App\Models\Opd\Subkegiatan;
@@ -22,7 +23,6 @@ class TargetController extends Controller
     {
         // begin::get data using yajra
         if($request->ajax()){
-            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
             $data = Pegawai::with('opd')->whereOpdId(auth()->user()->opd_id)->get();
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -126,6 +126,50 @@ class TargetController extends Controller
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
+
+        $validationRules = [
+            'tahun' => 'required|numeric',
+            'jenis_master' => 'required|alpha',
+            'master_id' => 'required|numeric',
+            'sasaran' => 'required|string',
+            'indikator' => 'required|string',
+            'tw1' => 'nullable|alpha_dash',
+            'tw2' => 'nullable|alpha_dash',
+            'tw3' => 'nullable|alpha_dash',
+            'tw4' => 'nullable|alpha_dash',
+            'satuan' => 'required|string',
+            'target_kinerja_tahunan' => 'required|string',
+        ];
+
+        $customMessages = [
+            'tahun.required' => 'Tahun tidak boleh kosong',
+            'tahun.numeric' => 'Tahun harus berupa angka',
+            'jenis_master.required' => 'Jenis Master tidak boleh kosong',
+            'jenis_master.alpha' => 'Jenis Master harus berupa teks huruf',
+            'master_id.required' => 'Program/Kegiatan/Sub Kegiatan tidak boleh kosong',
+            'sasaran.required' => 'Sasaran tidak boleh kosong',
+            'sasaran.string' => 'Sasaran harus berupa string',
+            'indikator.required' => 'Indikator tidak boleh kosong',
+            'indikator.string' => 'Indikator harus berupa string',
+            'tw1.alpha_dash' => 'Triwulan I harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw2.alpha_dash' => 'Triwulan II harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw3.alpha_dash' => 'Triwulan III harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw4.alpha_dash' => 'Triwulan IV harus berupa huruf, angka dan tanda penghubung(-)',
+            'satuan.required' => 'Satuan Kinerja tidak boleh kosong',
+            'satuan.string' => 'Satuan Kinerja harus berupa string',
+            'target_kinerja_tahunan.required' => 'Target Kinerja Tahunan tidak boleh kosong',
+            'target_kinerja_tahunan.string' => 'Target Kinerja Tahunan harus berupa string',
+
+        ];
+
+        $validator = Validator::make($request->all(), $validationRules, $customMessages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
         $anggaran = explode(",",$request->anggaran); //memecah angka jika terdapat koma pada bilangan ribuan
         $a = implode($anggaran); //menyatukan kembali menjadi angka utuh tanpa koma
 
