@@ -232,7 +232,9 @@
                                             @endif
                                         </td>
                                         <td class="text-center">{{ $item->tahun }}</td>
-                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                        <td class="text-center">{{ $item->target_kinerja_tahunan }} @if ($item->satuan == '' || $item->satuan == null || $item->satuan == '-')
+                                            {{''}} @else {{' '.$item->satuan}}
+                                        @endif</td>
                                         <td>{{ $item->tw1 }}</td>
                                         <td>{{ $item->tw2 }}</td>
                                         <td>{{ $item->tw3 }}</td>
