@@ -43,51 +43,51 @@ class RealisasiController extends Controller
 
     public function rincianRealisasi(Request $request, $id)
     {
-        if($request->ajax()){
-            $data = Target::with('pegawai')->latest()->get();
-            return DataTables::of($data)
-            ->addColumn('action', function($row){
-                $actionBtn = '
-                <div class="d-flex justify-content-end flex-shrink-0">
-                    <button data-id="'.$row->id.'" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
-                        <i class="ki-duotone ki-pencil fs-2">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                    </button>
-                </div>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+        // if($request->ajax()){
+        //     $data = Target::with('pegawai')->latest()->get();
+        //     return DataTables::of($data)
+        //     ->addColumn('action', function($row){
+        //         $actionBtn = '
+        //         <div class="d-flex justify-content-end flex-shrink-0">
+        //             <button data-id="'.$row->id.'" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
+        //                 <i class="ki-duotone ki-pencil fs-2">
+        //                     <span class="path1"></span>
+        //                     <span class="path2"></span>
+        //                 </i>
+        //             </button>
+        //         </div>';
+        //         return $actionBtn;
+        //     })
+        //     ->rawColumns(['action'])
+        //     ->make(true);
 
-        }
+        // }
 
         // Check eselon yang muncul
-        $data_eselon = Pegawai::select('eselon')->findOrFail($id);
+        // $data_eselon = Pegawai::select('eselon')->findOrFail($id);
 
         // Jika 2 maka akan menampilkan data Program
-        if ($data_eselon->eselon == 'II') {
-            $data_pk = Program::withWhereHas('sasaran.tujuan', function($q){
-                $q->where('opd_id', auth()->user()->opd_id);
-            })->get();
-            $jenis_master = 'program';
-            // Jika 3 maka akan menampilkan data Kegiatan
-        } elseif ($data_eselon->eselon == 'III') {
-            $data_pk = Kegiatan::tujuan()->get();
-            $jenis_master = 'kegiatan';
-            // Jika 4 maka akan menampilkan data Subkegiatan
-        } else {
-            $data_pk = Subkegiatan::withWhereHas('kegiatan.program.sasaran.tujuan', function($q){
-                $q->where('opd_id', auth()->user()->opd_id);
-            })->get();
-            $jenis_master = 'subkegiatan';
-        }
-
-        $target = Target::wherePegawaiId($id)->where('tahun', date("Y"))->get();
+        // if ($data_eselon->eselon == 'II') {
+        //     $data_pk = Program::withWhereHas('sasaran.tujuan', function($q){
+        //         $q->where('opd_id', auth()->user()->opd_id);
+        //     })->get();
+        //     $jenis_master = 'program';
+        //     // Jika 3 maka akan menampilkan data Kegiatan
+        // } elseif ($data_eselon->eselon == 'III') {
+        //     $data_pk = Kegiatan::tujuan()->get();
+        //     $jenis_master = 'kegiatan';
+        //     // Jika 4 maka akan menampilkan data Subkegiatan
+        // } else {
+        //     $data_pk = Subkegiatan::withWhereHas('kegiatan.program.sasaran.tujuan', function($q){
+        //         $q->where('opd_id', auth()->user()->opd_id);
+        //     })->get();
+        //     $jenis_master = 'subkegiatan';
+        // }
+        $tahun = $_GET['tahun'] ?? date("Y");
+        $target = Target::wherePegawaiId($id)->where('tahun', $tahun)->get();
         $realisasi = new Realisasi;
         $pegawai = Pegawai::findOrFail( $id );
-        return view('backend.realisasi.rincian', compact('target','pegawai','data_pk','jenis_master','realisasi'));
+        return view('backend.realisasi.rincian', compact('target','pegawai','realisasi'));
     }
     /**
      * Show the form for creating a new resource.
@@ -122,10 +122,10 @@ class RealisasiController extends Controller
 
         $validationRules = [
             'target_id' => 'required|numeric',
-            'tw1' => 'required|alpha_dash',
-            'tw2' => 'nullable|alpha_dash',
-            'tw3' => 'nullable|alpha_dash',
-            'tw4' => 'nullable|alpha_dash',
+            'tw1' => 'required|string',
+            'tw2' => 'nullable|string',
+            'tw3' => 'nullable|string',
+            'tw4' => 'nullable|string',
             'pendukung' => 'nullable|string',
             'penghambat' => 'nullable|string',
             'solusi' => 'nullable|string',
@@ -135,10 +135,10 @@ class RealisasiController extends Controller
             'target_id.required' => 'Target id tidak boleh kosong',
             'target_id.numeric' => 'Target id harus berupa angka',
             'tw1.required' => 'Triwulan I tidak boleh kosong',
-            'tw1.alpha_dash' => 'Triwulan I harus berupa huruf, angka dan tanda penghubung(-)',
-            'tw2.alpha_dash' => 'Triwulan II harus berupa huruf, angka dan tanda penghubung(-)',
-            'tw3.alpha_dash' => 'Triwulan III harus berupa huruf, angka dan tanda penghubung(-)',
-            'tw4.alpha_dash' => 'Triwulan IV harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw1.string' => 'Triwulan I harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw2.string' => 'Triwulan II harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw3.string' => 'Triwulan III harus berupa huruf, angka dan tanda penghubung(-)',
+            'tw4.string' => 'Triwulan IV harus berupa huruf, angka dan tanda penghubung(-)',
             'pendukung' => 'Pendukung harus berupa string',
             'penghambat' => 'Penghambat harus berupa string',
             'solusi' => 'Solusi harus berupa string',
