@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use App\Models\Opd\Pegawai;
 use App\Models\Opd\Tujuan;
 
 class opd extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
     // define name of table in database
     protected $table = 'opds';
 
@@ -19,6 +21,14 @@ class opd extends Model
         'singkatan'
     ];
     // end::define fillable column
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                ->logOnly(['nama', 'singkatan'])
+                ->setDescriptionForEvent(fn(string $eventName) => "Melakukan {$eventName} data")
+                ->useLogName('opd');
+    }
 
     // begin::relation to pegawai model
     public function pegawai()
