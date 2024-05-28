@@ -62,4 +62,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(opd::class);
     }
+
+    public function activity(){
+        return $this->hasMany(Activity::class);
+    }
 }
