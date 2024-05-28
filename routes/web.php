@@ -59,6 +59,7 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
         Route::get('dashboard', [dashboardController::class, 'index']);
+        Route::get('/dashboard/activities', [dashboardController::class, 'getActivities'])->name('activities');
 
         // for admin only
         Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
