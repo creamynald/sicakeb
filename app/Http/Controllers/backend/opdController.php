@@ -46,7 +46,7 @@ class opdController extends Controller
         return view('backend.opd.index');
     }
 
-    // begin::additional method    
+    // begin::additional method
     public function getData($id)
     {
         $data = opd::findOrFail($id);

@@ -38,18 +38,37 @@ class dashboardController extends Controller
             $counter++;
             return $counter;
         })
+            ->addColumn('description', function ($activity) {
+                if ($activity->description == 'created') {
+                    $description = '<span class="badge badge-light-success fs-base">
+                    <i
+                        class="ki-outline ki-plus fs-5 text-success ms-n1"></i>Created</span>';
+                }elseif ($activity->description == 'updated') {
+                    $description = '<span class="badge badge-light-warning fs-base">
+                    <i
+                        class="ki-outline ki-check fs-5 text-success ms-n1"></i>Updated</span>';
+                }else{
+                    $description = '<span class="badge badge-light-danger fs-base">
+                    <i
+                        class="ki-outline ki-minus fs-5 text-success ms-n1"></i>Deleted</span>';
+                }
+                return $description;
+            })
             ->addColumn('user_name', function ($activity) {
-                return $activity->user ? $activity->user->name : 'guest';
+                $user_name = '<div class="d-flex justify-content-start flex-column">
+                <a href="#"
+                    class="text-gray-800 fw-bold mb-1 fs-6">'.$activity->user->name.'</a>
+                <span class="text-gray-500 fw-semibold d-block fs-7">'.$activity->user->opd->singkatan.'</span>
+            </div>';
+                return $user_name;
             })
             ->addColumn('properties', function ($activity) {
                 return json_encode($activity->properties->toArray());
             })
             ->addColumn('time', function ($activity) {
-                return json_encode($activity->properties->toArray());
+                return Carbon::parse($activity->created_at)->format('d M Y, H:i:s');
             })
-            ->addColumn('time', function ($activity) {
-                return Carbon::parse($activity->created_at)->isoFormat('dddd, D MMM Y');
-            })
+            ->rawColumns(['description', 'user_name'])
             ->make(true);
     }
 }
