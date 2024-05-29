@@ -9,10 +9,12 @@ use App\Models\Opd\Program;
 use App\Models\Opd\Subkegiatan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Target extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $table = 'targets';
 
@@ -31,6 +33,26 @@ class Target extends Model
         'anggaran',
         'target_kinerja_tahunan',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                ->logOnly(['pegawai_id',
+                'jenis_master',
+                'master_id',
+                'indikator',
+                'sasaran',
+                'tahun',
+                'tw1',
+                'tw2',
+                'tw3',
+                'tw4',
+                'satuan',
+                'anggaran',
+                'target_kinerja_tahunan'])
+                ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
+                ->useLogName('target');
+    }
 
     // begin::relation to opd model
     public function pegawai()

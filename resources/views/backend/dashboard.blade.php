@@ -683,7 +683,7 @@
                         columns: [
                             { data: 'row_number', name: 'row_number' },
                             { data: 'description', name: 'description' },
-                            { data: 'subject_type', name: 'subject_type' },
+                            { data: 'log_name', name: 'log_name' },
                             { data: 'user_name', name: 'user_name' },
                             { data: 'properties', name: 'properties' },
                             { data: 'time', name: 'time' }

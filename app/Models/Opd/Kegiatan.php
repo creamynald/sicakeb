@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Opd\Program;
 use App\Models\Opd\Subkegiatan;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Kegiatan extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     // define table name in database
     protected $table = 'kegiatans';
@@ -21,6 +23,15 @@ class Kegiatan extends Model
         'nama'
     ];
     // end::define fillable column
+
+    // log
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                ->logOnly(['program_id', 'nama'])
+                ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
+                ->useLogName('kegiatan');
+    } // end log
 
     // begin::relation to Program model
     public function program()

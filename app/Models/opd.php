@@ -26,7 +26,7 @@ class opd extends Model
     {
         return LogOptions::defaults()
                 ->logOnly(['nama', 'singkatan'])
-                ->setDescriptionForEvent(fn(string $eventName) => "Melakukan {$eventName} data")
+                ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('opd');
     }
 

@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Opd\Sasaran;
 use App\Models\Opd\Kegiatan;
 use App\Models\PerjanjianKinerja\Target;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Program extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     // define table name in database
     protected $table = 'programs';
@@ -21,6 +23,15 @@ class Program extends Model
         'nama'
     ];
     // end::define fillable column
+
+    // log
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                ->logOnly(['sasaran_id', 'nama'])
+                ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
+                ->useLogName('program');
+    } //end log
 
     // begin::relation to Sasaran model
     public function sasaran()
