@@ -525,6 +525,13 @@
             <!--end::Row-->
 
             <!--begin::Row-->
+            @role('Super-Admin')
+            <h1>Users Currently Online</h1>
+            <ul>
+                @foreach ($onlineUsers as $user)
+                    <li>{{ $user->name }} - Last seen: {{ Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}</li>
+                @endforeach
+            </ul>
             <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                 <!--begin::Col-->
                 <div class="col-xl-12">
@@ -619,6 +626,7 @@
                 </div>
                 <!--end::Col-->
             </div>
+            @endrole
             <!--end::Row-->
         </div>
         <!--end::Content container-->

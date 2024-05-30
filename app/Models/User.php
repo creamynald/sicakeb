@@ -15,6 +15,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, LogsActivity;
 
+    // Specify which attributes should be logged
+    protected static $logAttributes = ['last_login_at'];
+
+    // Log only changed attributes
+    protected static $logOnlyDirty = true;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +31,7 @@ class User extends Authenticatable
         'opd_id',
         'email',
         'password',
+        'last_login_at'
     ];
 
     /**
@@ -65,7 +72,7 @@ class User extends Authenticatable
         return LogOptions::defaults()
                 ->logOnly(['name',
                 'opd_id',
-                'email'])
+                'email', 'last_login_at', 'last_login_ip'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('user');
     }
