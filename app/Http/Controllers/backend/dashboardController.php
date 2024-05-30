@@ -56,7 +56,7 @@ class dashboardController extends Controller
             ->addColumn('user_name', function ($activity) {
                 $user_name = '<div class="d-flex justify-content-start flex-column">
                     <a href="#" class="text-gray-800 fw-bold mb-1 fs-6">'.$activity->user->name.'</a>
-                    <span class="text-gray-500 fw-semibold d-block fs-7">'.$activity->user->opd->singkatan ?? ''.'</span>
+                    <span class="text-gray-500 fw-semibold d-block fs-7">'.$activity->opd_id ? $activity->user->opd->singkatan : ''.'</span>
                 </div>';
                 return $user_name;
             })
