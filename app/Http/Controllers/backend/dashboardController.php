@@ -20,7 +20,7 @@ class dashboardController extends Controller
 
     public function getActivities(Request $request)
     {
-        $query = Activity::with('user');
+        $query = Activity::with('user')->whereNot('log_name','user');
 
         // Apply filters
         if ($request->filled('day')) {
@@ -31,6 +31,13 @@ class dashboardController extends Controller
         }
         if ($request->filled('year')) {
             $query->whereYear('created_at', $request->year);
+        }
+
+        if ($request->filled('order_by') && $request->filled('order_direction')) {
+            $query->orderBy($request->order_by, $request->order_direction);
+        } else {
+            // Default ordering
+            $query->orderBy('id', 'desc');
         }
 
         return DataTables::of($query)
