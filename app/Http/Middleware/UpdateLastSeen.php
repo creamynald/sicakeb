@@ -18,7 +18,14 @@ class UpdateLastSeen
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            Auth::user()->update(['last_login_at' => Carbon::now()]);
+            $user = Auth::user();
+            $lastLogin = $user->last_login_at;
+            $now = Carbon::now();
+
+            // Cek jika `last_login_at` belum pernah dicatat atau lebih dari 5 menit yang lalu
+            if (is_null($lastLogin) || $now->diffInMinutes($lastLogin) >= 5) {
+                $user->update(['last_login_at' => $now]);
+            }
         }
         return $next($request);
     }
