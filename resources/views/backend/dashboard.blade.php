@@ -231,10 +231,10 @@
                             <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Amount-->
-                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">6.3k</span>
+                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{count($data_pegawai)}}</span>
                                 <!--end::Amount-->
                                 <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">New Customers This Month</span>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">Pegawai</span>
                                 <!--end::Subtitle-->
                             </div>
                             <!--end::Title-->
@@ -243,37 +243,18 @@
                         <!--begin::Card body-->
                         <div class="card-body d-flex flex-column justify-content-end pe-0">
                             <!--begin::Title-->
-                            <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">Today’s Heroes</span>
+                            <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">@role('operator'){{auth()->user()->opd->nama}}@endrole</span>
                             <!--end::Title-->
                             <!--begin::Users group-->
                             <div class="symbol-group symbol-hover flex-nowrap">
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Alan Warden">
-                                    <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Michael Eberon">
-                                    <img alt="Pic" src="assets/media/avatars/300-11.jpg" />
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Susan Redwood">
-                                    <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Melody Macy">
-                                    <img alt="Pic" src="assets/media/avatars/300-2.jpg" />
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Perry Matthew">
-                                    <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    title="Barry Walter">
-                                    <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
-                                </div>
-                                <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_view_users">
-                                    <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">+42</span>
+                                @foreach ($data_pegawai->take(6) as $item)
+                                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
+                                        title="Alan Warden">
+                                        <span class="symbol-label {{ 'bg-' . ['primary', 'success', 'danger', 'warning', 'info'][array_rand(['primary', 'success', 'danger', 'warning', 'info'])] }} text-inverse-warning fw-bold">{{substr($item->nama, 0, 1)}}</span>
+                                    </div>
+                                @endforeach
+                                <a href="{{route('pegawai.index')}}" class="symbol symbol-35px symbol-circle">
+                                    <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">All</span>
                                 </a>
                             </div>
                             <!--end::Users group-->
@@ -412,6 +393,7 @@
             {{-- recent order and discounted sales section from demo1/dashboard --}}
             <!--end::Row-->
             <!--begin::Row-->
+            @role('Super-Admin')
             <div class="row gy-5 g-xl-10">
                 <!--begin::Col-->
                 <div class="col-xl-4 mb-xl-10">
@@ -620,6 +602,7 @@
                 </div>
                 <!--end::Col-->
             </div>
+            @endrole
             <!--end::Row-->
         </div>
         <!--end::Content container-->

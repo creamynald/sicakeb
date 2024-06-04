@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Opd\Pegawai;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\User;
@@ -15,7 +16,16 @@ class dashboardController extends Controller
     {
         $onlineUsers = User::where('last_login_at', '>=', Carbon::now()->subMinutes(5))->get();
 
-        return view('backend.dashboard', compact('onlineUsers'));
+        // if user login has role Super Admin and Admin
+        if (auth()->user()->hasAnyRole(['admin', 'Super-Admin'])) {
+            $data_pegawai = Pegawai::get();
+        }elseif(auth()->user()->hasAnyRole(['operator'])){ //if user login has role opd
+            $data_pegawai = Pegawai::where('opd_id', auth()->user()->opd_id)->get();
+        }else{ // if has no role
+            abort(403);
+        }
+
+        return view('backend.dashboard', compact('onlineUsers', 'data_pegawai'));
     }
 
     public function getActivities(Request $request)
