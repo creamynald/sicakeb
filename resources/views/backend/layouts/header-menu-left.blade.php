@@ -14,7 +14,7 @@ data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}"
         class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
         <!--begin:Menu link-->
         <span class="menu-link">
-            {{-- <span class="menu-title">Dashboards</span> --}}
+            <span class="menu-title">Selamat Datang {{ucwords(auth()->user()->name)}} {{auth()->user()->opd? '/' : ''}} {{auth()->user()->opd?->nama}}</span>
             <span class="menu-arrow d-lg-none"></span>
         </span>
         <!--end:Menu link-->

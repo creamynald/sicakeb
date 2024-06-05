@@ -7,7 +7,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">eCommerce
+                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
                     Dashboard</h1>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
@@ -32,10 +32,10 @@
             <!--begin::Actions-->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
                 <!--begin::Secondary button-->
-                <a href="apps/ecommerce/sales/listing.html" class="btn btn-sm fw-bold btn-secondary">Manage Sales</a>
+                {{-- <a href="apps/ecommerce/sales/listing.html" class="btn btn-sm fw-bold btn-secondary">Manage Sales</a> --}}
                 <!--end::Secondary button-->
                 <!--begin::Primary button-->
-                <a href="apps/ecommerce/catalog/add-product.html" class="btn btn-sm fw-bold btn-primary">Add Product</a>
+                {{-- <a href="apps/ecommerce/catalog/add-product.html" class="btn btn-sm fw-bold btn-primary">Add Product</a> --}}
                 <!--end::Primary button-->
             </div>
             <!--end::Actions-->
@@ -231,7 +231,7 @@
                             <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Amount-->
-                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{count($data_pegawai)}}</span>
+                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ count($data_pegawai) }}</span>
                                 <!--end::Amount-->
                                 <!--begin::Subtitle-->
                                 <span class="text-gray-500 pt-1 fw-semibold fs-6">Pegawai</span>
@@ -243,17 +243,23 @@
                         <!--begin::Card body-->
                         <div class="card-body d-flex flex-column justify-content-end pe-0">
                             <!--begin::Title-->
-                            <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">@role('operator'){{auth()->user()->opd->nama}}@endrole</span>
+                            <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">
+                                @role('operator')
+                                    {{ auth()->user()->opd->nama }}
+                                @endrole
+                            </span>
                             <!--end::Title-->
                             <!--begin::Users group-->
                             <div class="symbol-group symbol-hover flex-nowrap">
                                 @foreach ($data_pegawai->take(6) as $item)
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                        title="Alan Warden">
-                                        <span class="symbol-label {{ 'bg-' . ['primary', 'success', 'danger', 'warning', 'info'][array_rand(['primary', 'success', 'danger', 'warning', 'info'])] }} text-inverse-warning fw-bold">{{substr($item->nama, 0, 1)}}</span>
+                                        title="{{ $item->nama }}">
+                                        <span
+                                            class="symbol-label {{ 'bg-' . ['primary', 'success', 'danger', 'warning', 'info'][array_rand(['primary', 'success', 'danger', 'warning', 'info'])] }} text-inverse-warning fw-bold">{{ substr($item->nama, 0, 1) }}</span>
                                     </div>
                                 @endforeach
-                                <a href="{{route('pegawai.index')}}" class="symbol symbol-35px symbol-circle">
+                                <a href="{{ route('pegawai.index') }}" class="symbol symbol-35px symbol-circle"
+                                    data-bs-toggle="tooltip" title="Semua Pegawai">
                                     <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">All</span>
                                 </a>
                             </div>
@@ -266,125 +272,216 @@
                 <!--end::Col-->
                 <!--begin::Col-->
                 <div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
-                    <!--begin::Chart widget 3-->
-                    <div class="card card-flush overflow-hidden h-md-100">
+                    <!--begin::List widget 20-->
+                    <div class="card h-xl-100">
                         <!--begin::Header-->
-                        <div class="card-header py-5">
-                            <!--begin::Title-->
+                        <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold text-gray-900">Sales This Months</span>
-                                <span class="text-gray-500 mt-1 fw-semibold fs-6">Users from all channels</span>
+                                <span class="card-label fw-bold text-gray-900">Data Master</span>
+                                <span class="text-muted mt-1 fw-semibold fs-7"></span>
                             </h3>
-                            <!--end::Title-->
                             <!--begin::Toolbar-->
                             <div class="card-toolbar">
-                                <!--begin::Menu-->
-                                <button
-                                    class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
-                                    data-kt-menu-overflow="true">
-                                    <i class="ki-duotone ki-dots-square fs-1">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                        <span class="path4"></span>
-                                    </i>
-                                </button>
-                                <!--begin::Menu 2-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                    data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">Quick Actions</div>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mb-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Ticket</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Customer</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                        data-kt-menu-placement="right-start">
-                                        <!--begin::Menu item-->
-                                        <a href="#" class="menu-link px-3">
-                                            <span class="menu-title">New Group</span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu sub-->
-                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Admin Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Staff Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Member Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu sub-->
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Contact</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mt-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content px-3 py-3">
-                                            <a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu 2-->
-                                <!--end::Menu-->
+                                {{-- <a href="#" class="btn btn-sm btn-light">All Courses</a> --}}
                             </div>
                             <!--end::Toolbar-->
                         </div>
                         <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex justify-content-between flex-column pb-1 px-0">
-                            <!--begin::Statistics-->
-                            <div class="px-9 mb-5">
-                                <!--begin::Statistics-->
-                                <div class="d-flex mb-2">
-                                    <span class="fs-4 fw-semibold text-gray-500 me-1">$</span>
-                                    <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">14,094</span>
+                        <!--begin::Body-->
+                        <div class="card-body pt-6">
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-danger text-inverse-danger">O</div>
                                 </div>
-                                <!--end::Statistics-->
-                                <!--begin::Description-->
-                                <span class="fs-6 fw-semibold text-gray-500">Another $48,346 to Goal</span>
-                                <!--end::Description-->
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('opd.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">OPD</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_opd}} OPD Pemerintahan</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('opd.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
                             </div>
-                            <!--end::Statistics-->
-                            <!--begin::Chart-->
-                            <div id="kt_charts_widget_3" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
-                            <!--end::Chart-->
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-4"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-success text-inverse-success">T</div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('tujuan.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">Tujuan</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_tujuan}} Tujuan</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('tujuan.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-4"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-info text-inverse-info">S</div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('sasaran.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">Sasaran</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_sasaran}}</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('sasaran.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-4"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-primary text-inverse-primary">P</div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('program.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">Program</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_program}} Program.</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('program.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-4"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-warning text-inverse-warning">K</div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('kegiatan.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">Kegiatan</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_kegiatan}} Kegiatan</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('kegiatan.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
+                            </div>
+                            <!--end::Item-->
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed my-4"></div>
+                            <!--end::Separator-->
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-40px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold bg-dark text-inverse-dark">S</div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Section-->
+                                <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                    <!--begin:Author-->
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="{{route('subkegiatan.index')}}"
+                                            class="text-gray-800 text-hover-primary fs-6 fw-bold">Sub Kegiatan</a>
+                                        <span class="text-muted fw-semibold d-block fs-7">{{$data_subkegiatan}} Sub Kegiatan</span>
+                                    </div>
+                                    <!--end:Author-->
+                                    <!--begin::Actions-->
+                                    <a href="{{route('subkegiatan.index')}}"
+                                        class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--begin::Actions-->
+                                </div>
+                                <!--end::Section-->
+                            </div>
+                            <!--end::Item-->
                         </div>
-                        <!--end::Card body-->
+                        <!--end::Body-->
                     </div>
-                    <!--end::Chart widget 3-->
+                    <!--end::List widget 20-->
                 </div>
                 <!--end::Col-->
             </div>
@@ -394,90 +491,91 @@
             <!--end::Row-->
             <!--begin::Row-->
             @role('Super-Admin')
-            <div class="row gy-5 g-xl-10">
-                <!--begin::Col-->
-                <div class="col-xl-4 mb-xl-10">
-                    <!--begin::List widget 5-->
-                    <div class="card card-flush">
-                        <!--begin::Header-->
-                        <div class="card-header pt-7">
-                            <!--begin::Title-->
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold text-gray-900">Online User</span>
-                                <span class="text-gray-500 mt-1 fw-semibold fs-6">{{$onlineUsers->count()}} sedang online</span>
-                            </h3>
-                            <!--end::Title-->
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar">
-                                <a href="#" class="btn btn-sm btn-light">Reload Data</a>
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Scroll-->
-                            <div class="hover-scroll-overlay-y pe-6 me-n6" style="height: 415px">
-                                <!--begin::Item-->
-                                @foreach ($onlineUsers as $item)
-                                <div class="border border-dashed border-gray-300 rounded px-7 py-3 mb-6">
-                                    <!--begin::Info-->
-                                    <div class="d-flex flex-stack mb-3">
-                                        <!--begin::Wrapper-->
-                                        <div class="me-3">
-                                            <!--begin::Icon-->
-                                            <img src="{{ $item->avatar ? url('/avatars/' . $item->avatar) : asset('assets/media/avatars/blank.png') }}" class="w-50px ms-n1 me-1"
-                                                alt="Logo" />
-                                            <!--end::Icon-->
-                                            <!--begin::Title-->
-                                            <a href="#"
-                                                class="text-gray-800 text-hover-primary fw-bold">{{$item->name}}</a>
-                                            <!--end::Title-->
-                                        </div>
-                                        <!--end::Wrapper-->
-                                    </div>
-                                    <!--end::Info-->
-                                    <!--begin::Customer-->
-                                    <div class="d-flex flex-stack">
-                                        <!--begin::Name-->
-                                        <span class="text-gray-500 fw-bold">OPD:
-                                            <a href="#"
-                                                class="text-gray-800 text-hover-primary fw-bold">{{$item->opd?->nama}}</a></span>
-                                        <!--end::Name-->
-                                        <!--begin::Label-->
-                                        <span class="badge badge-light-success">Online</span>
-                                        <!--end::Label-->
-                                    </div>
-                                    <!--end::Customer-->
+                <div class="row gy-5 g-xl-10">
+                    <!--begin::Col-->
+                    <div class="col-xl-4 mb-xl-10">
+                        <!--begin::List widget 5-->
+                        <div class="card card-flush">
+                            <!--begin::Header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold text-gray-900">Online User</span>
+                                    <span class="text-gray-500 mt-1 fw-semibold fs-6">{{ $onlineUsers->count() }} sedang
+                                        online</span>
+                                </h3>
+                                <!--end::Title-->
+                                <!--begin::Toolbar-->
+                                <div class="card-toolbar">
+                                    <a href="#" class="btn btn-sm btn-light">Reload Data</a>
                                 </div>
-                                @endforeach
-                                <!--end::Item-->
+                                <!--end::Toolbar-->
                             </div>
-                            <!--end::Scroll-->
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body">
+                                <!--begin::Scroll-->
+                                <div class="hover-scroll-overlay-y pe-6 me-n6" style="height: 415px">
+                                    <!--begin::Item-->
+                                    @foreach ($onlineUsers as $item)
+                                        <div class="border border-dashed border-gray-300 rounded px-7 py-3 mb-6">
+                                            <!--begin::Info-->
+                                            <div class="d-flex flex-stack mb-3">
+                                                <!--begin::Wrapper-->
+                                                <div class="me-3">
+                                                    <!--begin::Icon-->
+                                                    <img src="{{ $item->avatar ? url('/avatars/' . $item->avatar) : asset('assets/media/avatars/blank.png') }}"
+                                                        class="w-50px ms-n1 me-1" alt="Logo" />
+                                                    <!--end::Icon-->
+                                                    <!--begin::Title-->
+                                                    <a href="#"
+                                                        class="text-gray-800 text-hover-primary fw-bold">{{ $item->name }}</a>
+                                                    <!--end::Title-->
+                                                </div>
+                                                <!--end::Wrapper-->
+                                            </div>
+                                            <!--end::Info-->
+                                            <!--begin::Customer-->
+                                            <div class="d-flex flex-stack">
+                                                <!--begin::Name-->
+                                                <span class="text-gray-500 fw-bold">OPD:
+                                                    <a href="#"
+                                                        class="text-gray-800 text-hover-primary fw-bold">{{ $item->opd?->nama }}</a></span>
+                                                <!--end::Name-->
+                                                <!--begin::Label-->
+                                                <span class="badge badge-light-success">Online</span>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Customer-->
+                                        </div>
+                                    @endforeach
+                                    <!--end::Item-->
+                                </div>
+                                <!--end::Scroll-->
+                            </div>
+                            <!--end::Body-->
                         </div>
-                        <!--end::Body-->
+                        <!--end::List widget 5-->
                     </div>
-                    <!--end::List widget 5-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-8 mb-5 mb-xl-10">
-                    <!--begin::Table Widget 4-->
-                    <div class="card card-flush">
-                        <!--begin::Card header-->
-                        <div class="card-header pt-7">
-                            <!--begin::Title-->
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold text-gray-800">Log Activity</span>
-                                <span class="text-gray-500 mt-1 fw-semibold fs-6">Catatan aktifitas pengguna</span>
-                            </h3>
-                            <!--end::Title-->
-                            <!--begin::Actions-->
-                            <div class="card-toolbar">
-                                <!--begin::Filters-->
-                                <div class="d-flex flex-stack flex-wrap gap-4">
-                                    <!--begin::Destination-->
-                                    <div class="d-flex align-items-center fw-bold">
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-xl-8 mb-5 mb-xl-10">
+                        <!--begin::Table Widget 4-->
+                        <div class="card card-flush">
+                            <!--begin::Card header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold text-gray-800">Log Activity</span>
+                                    <span class="text-gray-500 mt-1 fw-semibold fs-6">Catatan aktifitas pengguna</span>
+                                </h3>
+                                <!--end::Title-->
+                                <!--begin::Actions-->
+                                <div class="card-toolbar">
+                                    <!--begin::Filters-->
+                                    <div class="d-flex flex-stack flex-wrap gap-4">
+                                        <!--begin::Destination-->
+                                        {{-- <div class="d-flex align-items-center fw-bold">
                                         <!--begin::Label-->
                                         <div class="text-gray-500 fs-7 me-2">Cateogry</div>
                                         <!--end::Label-->
@@ -492,10 +590,10 @@
                                             <option value="b">Category A</option>
                                         </select>
                                         <!--end::Select-->
-                                    </div>
-                                    <!--end::Destination-->
-                                    <!--begin::Status-->
-                                    <div class="d-flex align-items-center fw-bold">
+                                    </div> --}}
+                                        <!--end::Destination-->
+                                        <!--begin::Status-->
+                                        {{-- <div class="d-flex align-items-center fw-bold">
                                         <!--begin::Label-->
                                         <div class="text-gray-500 fs-7 me-2">Status</div>
                                         <!--end::Label-->
@@ -513,10 +611,10 @@
                                             <option value="Pending">Pending</option>
                                         </select>
                                         <!--end::Select-->
-                                    </div>
-                                    <!--end::Status-->
-                                    <!--begin::Search-->
-                                    <div class="position-relative my-1">
+                                    </div> --}}
+                                        <!--end::Status-->
+                                        <!--begin::Search-->
+                                        {{-- <div class="position-relative my-1">
                                         <i
                                             class="ki-duotone ki-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4">
                                             <span class="path1"></span>
@@ -524,84 +622,46 @@
                                         </i>
                                         <input type="text" data-kt-table-widget-4="search"
                                             class="form-control w-150px fs-7 ps-12" placeholder="Search" />
+                                    </div> --}}
+                                        <!--end::Search-->
                                     </div>
-                                    <!--end::Search-->
+                                    <!--begin::Filters-->
                                 </div>
-                                <!--begin::Filters-->
+                                <!--end::Actions-->
                             </div>
-                            <!--end::Actions-->
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-2">
+                                <!--begin::Table-->
+                                <table class="table align-middle table-row-dashed fs-6 gy-3" id="activities-table">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <!--begin::Table row-->
+                                        <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="min-w-60px">No</th>
+                                            <th class="text-start min-w-60px">Aksi</th>
+                                            <th class="text-start min-w-125px">Model</th>
+                                            <th class="text-start min-w-100px">User</th>
+                                            <th class="text-start min-w-50px">Waktu</th>
+                                            <th>Atribut</th>
+                                            <th>Lawas</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="fw-bold text-gray-600">
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Card body-->
                         </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-2">
-                            <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed fs-6 gy-3" id="activities-table">
-                                <!--begin::Table head-->
-                                <thead>
-                                    <!--begin::Table row-->
-                                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="min-w-60px">No</th>
-                                        <th class="text-start min-w-60px">Aksi</th>
-                                        <th class="text-start min-w-125px">Model</th>
-                                        <th class="text-start min-w-100px">User</th>
-                                        <th class="text-start min-w-100px">Atribut</th>
-                                        <th class="text-start min-w-50px">Waktu</th>
-                                        <th class="text-start"></th>
-                                    </tr>
-                                    <!--end::Table row-->
-                                </thead>
-                                <!--end::Table head-->
-                                <!--begin::Table body-->
-                                <tbody class="fw-bold text-gray-600">
-                                    <tr data-kt-table-widget-4="subtable_template" class="d-none">
-                                        <td colspan="2">
-                                            <div class="d-flex align-items-center gap-3">
-                                                <a href="#"
-                                                    class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                                    <img src="" data-kt-src-path="assets/media/stock/ecommerce/"
-                                                        alt="" data-kt-table-widget-4="template_image" />
-                                                </a>
-                                                <div class="d-flex flex-column text-muted">
-                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold"
-                                                        data-kt-table-widget-4="template_name">Product name</a>
-                                                    <div class="fs-7" data-kt-table-widget-4="template_description">
-                                                        Product description</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="text-gray-800 fs-7">Cost</div>
-                                            <div class="text-muted fs-7 fw-bold" data-kt-table-widget-4="template_cost">1
-                                            </div>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="text-gray-800 fs-7">Qty</div>
-                                            <div class="text-muted fs-7 fw-bold" data-kt-table-widget-4="template_qty">1
-                                            </div>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="text-gray-800 fs-7">Total</div>
-                                            <div class="text-muted fs-7 fw-bold" data-kt-table-widget-4="template_total">
-                                                name</div>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="text-gray-800 fs-7 me-3">On hand</div>
-                                            <div class="text-muted fs-7 fw-bold" data-kt-table-widget-4="template_stock">
-                                                32</div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                                <!--end::Table body-->
-                            </table>
-                            <!--end::Table-->
-                        </div>
-                        <!--end::Card body-->
+                        <!--end::Table Widget 4-->
                     </div>
-                    <!--end::Table Widget 4-->
+                    <!--end::Col-->
                 </div>
-                <!--end::Col-->
-            </div>
             @endrole
             <!--end::Row-->
         </div>
@@ -660,11 +720,17 @@
                     $('#activities-table').DataTable({
                         processing: true,
                         serverSide: true,
+                        responsive: true,
                         ajax: {
                             url: '{{ route('activities') }}',
                             data: filters
                         },
-                        columns: [{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                        columns: [{
+                                data: 'DT_RowIndex',
+                                name: 'DT_RowIndex',
+                                orderable: false,
+                                searchable: false
+                            },
                             {
                                 data: 'description',
                                 name: 'description'
@@ -678,12 +744,20 @@
                                 name: 'user_name'
                             },
                             {
-                                data: 'properties',
-                                name: 'properties'
-                            },
-                            {
                                 data: 'time',
                                 name: 'time'
+                            },
+                            {
+                                data: 'properties',
+                                name: 'properties',
+                                orderable: false,
+                                searchable: false
+                            },
+                            {
+                                data: 'old_data',
+                                name: 'old_data',
+                                orderable: false,
+                                searchable: false
                             }
                         ]
                     });
