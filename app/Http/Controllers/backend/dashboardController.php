@@ -103,10 +103,15 @@ class dashboardController extends Controller
             ->addColumn('properties', function ($activity) {
                 $data = json_decode($activity->properties, true);
                 $attributes = isset($data['attributes']) ? $data['attributes'] : [];
+                $old = isset($data['old']) ? $data['old'] : [];
 
                 $html = '<ul>';
                 foreach ($attributes as $key => $value) {
-                    $html .= '<li><strong>' . htmlspecialchars($key) . ':</strong> ' . '&nbsp;' . htmlspecialchars($value) . '</li>';
+                    $style = '';
+                if (isset($old[$key]) && $old[$key] != $value) {
+                    $style = ' class="text-primary"'; // Ganti dengan warna yang diinginkan
+                }
+                $html .= '<li' . $style . '><strong>' . htmlspecialchars($key) . ':</strong> ' . '&nbsp;' . htmlspecialchars($value) . '</li>';
                 }
                 $html .= '</ul>';
 
@@ -119,7 +124,11 @@ class dashboardController extends Controller
 
                     $html = '<ul>';
                     foreach ($old as $key => $value) {
-                        $html .= '<li><strong>' . htmlspecialchars($key) . ':</strong> ' . '&nbsp;' . htmlspecialchars($value) . '</li>';
+                        $style = '';
+                        if (isset($data['attributes'][$key]) && $data['attributes'][$key] != $value) {
+                            $style = ' class="text-danger"'; // Ganti dengan warna yang diinginkan
+                        }
+                        $html .= '<li' . $style . '><strong>' . htmlspecialchars($key) . ':</strong> ' . '&nbsp;'  . htmlspecialchars($value) . '</li>';
                     }
                     $html .= '</ul>';
 
@@ -129,7 +138,7 @@ class dashboardController extends Controller
 
                     $html = '<ul>';
                     foreach ($old as $key => $value) {
-                        $html .= '<li><strong>' . htmlspecialchars($key) . ':</strong> ' . htmlspecialchars($value) . '</li>';
+                        $html .= '<li><strong>' . htmlspecialchars($key) . ':</strong> ' . '&nbsp;' . htmlspecialchars($value) . '</li>';
                     }
                     $html .= '</ul>';
 
