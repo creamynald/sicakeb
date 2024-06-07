@@ -91,7 +91,7 @@
                     <!--end::Logo-->
                     <!--begin::Image-->
                     <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
-                        src="assets/media/misc/auth-screens.png" alt="" />
+                        src="{{asset('gambar/logo/Data Login.png')}}" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">Sistem Capaian Kinerja Elektronik Kabupaten Bengkalis (SICAKEB)</h1>

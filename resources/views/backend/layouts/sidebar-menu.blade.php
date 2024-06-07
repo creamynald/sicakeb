@@ -173,6 +173,60 @@
     </div>
     <!--end:Menu item-->
 
+    <!--begin:Menu item-->
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (Request::get('jenis_file') == 'RPJMD'
+    || Request::get('jenis_file') == 'RENSTRA'
+    || Request::get('jenis_file') == 'LAKIP') show @endif">
+        <!--begin:Menu link-->
+        <span class="menu-link">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-document fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                </i>
+            </span>
+            <span class="menu-title">Upload File</span>
+            <span class="menu-arrow"></span>
+        </span>
+        <!--end:Menu link-->
+        <!--begin:Menu sub-->
+        <div class="menu-sub menu-sub-accordion">
+            <!--begin:Menu item-->
+            <div class="menu-item">
+                <!--begin:Menu link-->
+                <a class="menu-link @if (Request::get('jenis_file') == 'RPJMD') active @endif"
+                    href="{{ route('file.index', ['jenis_file' => 'RPJMD']) }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">RPJMD</span>
+                </a>
+                <a class="menu-link @if (Request::get('jenis_file') == 'RENSTRA') active @endif"
+                    href="{{ route('file.index', ['jenis_file' => 'RENSTRA']) }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Renstra</span>
+                </a>
+                <a class="menu-link @if (Request::get('jenis_file') == 'LAKIP') active @endif"
+                    href="{{ route('file.index', ['jenis_file' => 'LAKIP']) }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Lakip</span>
+                </a>
+                <!--end:Menu link-->
+            </div>
+            <!--end:Menu item-->
+        </div>
+        <!--end:Menu sub-->
+    </div>
+    <!--end:Menu item-->
+
     @role ('admin|Super-Admin')
         <!--begin:Menu item-->
         <div class="menu-item pt-5">
