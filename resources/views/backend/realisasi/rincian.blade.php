@@ -55,7 +55,7 @@
                                 <div class="dataTables_filter ">
                                     {{-- begin::pencarian manual untuk data opd --}}
                                     <input type="text" id="search" data-kt-docs-table-filter="search"
-                                        class="form-control form-control-solid w-250px ps-15" placeholder="Search.." />
+                                    class="form-control form-control-solid w-250px ps-15" placeholder="Search.." />
                                     {{-- end::pencarian manual untuk data opd --}}
                                 </div>
                             </div>
@@ -132,8 +132,8 @@
                                                  <span style="color: red;">Realisasi belum diisi</span>
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
+                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->solusi??'' }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center flex-shrink-0">
