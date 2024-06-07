@@ -80,7 +80,7 @@ class FileController extends Controller
             $query->where('jenis_file', $request->jenis_file);
         }
 
-        $data = $query->paginate(1);
+        $data = $query->paginate(10);
 
         // Mengirim data ke tampilan jika bukan permintaan AJAX
         return view('backend.uploadfile.index', compact('data'));
