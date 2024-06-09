@@ -110,9 +110,9 @@
                     <!--end::Username-->
                 </div>
                 @role('operator')
-                    @if (!empty(optional(Auth::user()->opd?)->nama))
+                    @if (!empty(optional(Auth::user()->opd)->nama))
                         <div class="px-3">
-                            {{-- <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd?->nama }}</a> --}}
+                            <a href="#" class="fw-bold text-primary fs-7">{{ Auth::user()->opd?->nama }}</a>
                         </div>
                     @endif
                 @endrole
