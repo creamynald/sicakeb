@@ -355,9 +355,9 @@
             @endif
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('input[name="current_password"]').val('');
         });
-    </script>
+    </script> --}}
 @endpush
