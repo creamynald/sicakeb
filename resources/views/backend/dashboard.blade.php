@@ -245,7 +245,7 @@
                             <!--begin::Title-->
                             <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">
                                 @role('operator')
-                                    {{ auth()->user()->opd->nama }}
+                                    {{ auth()->user()->opd?->nama }}
                                 @endrole
                             </span>
                             <!--end::Title-->
