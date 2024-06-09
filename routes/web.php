@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\frontend\frontendController;
 use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\backend\opdController;
 use App\Http\Controllers\backend\opd\pegawaiController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\backend\users\userController;
 use App\Http\Controllers\backend\perjanjianKinerja\RealisasiController;
 use App\Http\Controllers\backend\perjanjianKinerja\TargetController;
 use App\Http\Controllers\backend\perjanjianKinerja\CapaianController;
+use App\Http\Controllers\backend\dokumen\FileController;
 use App\Http\Controllers\backend\lhe\LheController;
 
 use Illuminate\Support\Facades\Route;
@@ -33,9 +35,13 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/login');
-});
+// frontend
+Route::get('/', [frontendController::class, 'index']);
+
+// Route::get('/', function () {
+//     return redirect('/login');
+// });
+
 Auth::routes([
     'register' => false, // Register Routes...
 
@@ -187,6 +193,17 @@ Route::prefix('admin')
         // end::capaian controller
 
         // for super admin & admin
+
+        // begin::File controller that can be access by super admin and admin only
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
+            Route::resource('file', FileController::class);
+            // begin:additional route (!= resource)
+            Route::post('file/save', [FileController::class, 'saveData'])->name('saveData');
+            Route::get('/download/{folder}/{filename}', [FileController::class, 'download'])->name('download');
+            Route::delete('/file/{id}/{folder}/{filename}', [FileController::class, 'destroy'])->name('destroy');
+            // end:additional route
+        });
+        // end::File controller
 
         // begin::lhe controller that can be access by super admin and admin only
         Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
