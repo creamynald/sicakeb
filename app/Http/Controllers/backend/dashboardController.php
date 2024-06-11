@@ -24,12 +24,12 @@ class dashboardController extends Controller
 
         // Get user online
         $onlineUsers = User::where('last_login_at', '>=', Carbon::now()->subMinutes(5))->get();
-        $allUsers = User::all();
-
-        $allUsersSorted = $allUsers->map(function ($user) use ($onlineUsers) {
+        $allUsersSorted = User::orderBy('last_login_at', 'desc')->get();
+        // Tambahkan properti is_online ke setiap pengguna
+        $allUsersSorted->map(function ($user) use ($onlineUsers) {
             $user->is_online = $onlineUsers->contains('id', $user->id);
             return $user;
-        })->sortByDesc('is_online');
+        });
         // end get online user
 
         $data_opd = opd::count();
