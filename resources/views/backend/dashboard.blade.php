@@ -517,7 +517,7 @@
                                 <!--begin::Scroll-->
                                 <div class="hover-scroll-overlay-y pe-6 me-n6" style="height: 415px">
                                     <!--begin::Item-->
-                                    @foreach ($onlineUsers as $item)
+                                    @foreach ($allUsersSorted as $item)
                                         <div class="border border-dashed border-gray-300 rounded px-7 py-3 mb-6">
                                             <!--begin::Info-->
                                             <div class="d-flex flex-stack mb-3">
@@ -543,7 +543,18 @@
                                                         class="text-gray-800 text-hover-primary fw-bold">{{ $item->opd?->nama }}</a></span>
                                                 <!--end::Name-->
                                                 <!--begin::Label-->
-                                                <span class="badge badge-light-success">Online</span>
+                                                @if ($item->is_online)
+                                                    <span class="badge badge-light-success">Online</span>
+                                                @endif
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="d-flex flex-stack">
+                                                <!--begin::Label-->
+                                                @if (!$item->is_online)
+                                                <span class="text-gray-500 fw-bold">Last Login :
+                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ \Carbon\Carbon::parse($item->last_login_at)->format('d M Y, H:i') }}</a>
+                                                </span>
+                                                @endif
                                                 <!--end::Label-->
                                             </div>
                                             <!--end::Customer-->

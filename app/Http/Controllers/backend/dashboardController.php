@@ -21,7 +21,17 @@ class dashboardController extends Controller
     public function index()
     {
         $opd_id = auth()->user()->opd_id;
+
+        // Get user online
         $onlineUsers = User::where('last_login_at', '>=', Carbon::now()->subMinutes(5))->get();
+        $allUsers = User::all();
+
+        $allUsersSorted = $allUsers->map(function ($user) use ($onlineUsers) {
+            $user->is_online = $onlineUsers->contains('id', $user->id);
+            return $user;
+        })->sortByDesc('is_online');
+        // end get online user
+
         $data_opd = opd::count();
         $data_tujuan = Tujuan::whereOpdId($opd_id)->count();
         $data_sasaran = Sasaran::whereHas('tujuan', function ($query) use ($opd_id) {
@@ -46,7 +56,7 @@ class dashboardController extends Controller
             abort(403);
         }
 
-        return view('backend.dashboard', compact('onlineUsers', 'data_pegawai', 'data_tujuan', 'data_sasaran', 'data_program', 'data_kegiatan', 'data_subkegiatan', 'data_opd'));
+        return view('backend.dashboard', compact('onlineUsers', 'data_pegawai', 'data_tujuan', 'data_sasaran', 'data_program', 'data_kegiatan', 'data_subkegiatan', 'data_opd', 'allUsersSorted'));
     }
 
     public function getActivities(Request $request)
