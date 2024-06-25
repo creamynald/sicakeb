@@ -59,11 +59,8 @@
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Info-->
                                 <div class="d-flex align-items-center">
-                                    <!--begin::Currency-->
-                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start">$</span>
-                                    <!--end::Currency-->
                                     <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">69,700</span>
+                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Perjanjian Kerja</span>
                                     <!--end::Amount-->
                                     <!--begin::Badge-->
                                     <span class="badge badge-light-success fs-base">
@@ -75,7 +72,7 @@
                                 </div>
                                 <!--end::Info-->
                                 <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">Expected Earnings</span>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ date('Y') }}</span>
                                 <!--end::Subtitle-->
                             </div>
                             <!--end::Title-->
@@ -97,10 +94,10 @@
                                     <div class="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
                                     <!--end::Bullet-->
                                     <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Shoes</div>
+                                    <a href="{{ route('target.index') }}" class="text-gray-500 flex-grow-1 me-4">Target</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">$7,660</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -110,10 +107,10 @@
                                     <div class="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
                                     <!--end::Bullet-->
                                     <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Gaming</div>
+                                    <a href="{{ route('realisasi.index') }}" class="text-gray-500 flex-grow-1 me-4">Realisasi</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">$2,820</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -123,10 +120,10 @@
                                     <div class="bullet w-8px h-6px rounded-2 me-3" style="background-color: #E4E6EF"></div>
                                     <!--end::Bullet-->
                                     <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Others</div>
+                                    <a href="{{ route('capaian') }}" class="text-gray-500 flex-grow-1 me-4">Capaian</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">$45,257</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -136,94 +133,10 @@
                         <!--end::Card body-->
                     </div>
                     <!--end::Card widget 4-->
-                    <!--begin::Card widget 5-->
-                    <div class="card card-flush h-md-50 mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <div class="card-title d-flex flex-column">
-                                <!--begin::Info-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">1,836</span>
-                                    <!--end::Amount-->
-                                    <!--begin::Badge-->
-                                    <span class="badge badge-light-danger fs-base">
-                                        <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>2.2%</span>
-                                    <!--end::Badge-->
-                                </div>
-                                <!--end::Info-->
-                                <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">Orders This Month</span>
-                                <!--end::Subtitle-->
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex align-items-end pt-0">
-                            <!--begin::Progress-->
-                            <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                    <span class="fw-bolder fs-6 text-gray-900">1,048 to Goal</span>
-                                    <span class="fw-bold fs-6 text-gray-500">62%</span>
-                                </div>
-                                <div class="h-8px mx-3 w-100 bg-light-success rounded">
-                                    <div class="bg-success rounded h-8px" role="progressbar" style="width: 62%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <!--end::Progress-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card widget 5-->
                 </div>
                 <!--end::Col-->
                 <!--begin::Col-->
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                    <!--begin::Card widget 6-->
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <div class="card-title d-flex flex-column">
-                                <!--begin::Info-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Currency-->
-                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start">$</span>
-                                    <!--end::Currency-->
-                                    <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">2,420</span>
-                                    <!--end::Amount-->
-                                    <!--begin::Badge-->
-                                    <span class="badge badge-light-success fs-base">
-                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>2.6%</span>
-                                    <!--end::Badge-->
-                                </div>
-                                <!--end::Info-->
-                                <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">Average Daily Sales</span>
-                                <!--end::Subtitle-->
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex align-items-end px-0 pb-0">
-                            <!--begin::Chart-->
-                            <div id="kt_card_widget_6_chart" class="w-100" style="height: 80px"></div>
-                            <!--end::Chart-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card widget 6-->
                     <!--begin::Card widget 7-->
                     <div class="card card-flush h-md-50 mb-xl-10">
                         <!--begin::Header-->
@@ -231,10 +144,10 @@
                             <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Amount-->
-                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ count($data_pegawai) }}</span>
+                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Pegawai</span>
                                 <!--end::Amount-->
                                 <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">Pegawai</span>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ count($data_pegawai) }}</span>
                                 <!--end::Subtitle-->
                             </div>
                             <!--end::Title-->
