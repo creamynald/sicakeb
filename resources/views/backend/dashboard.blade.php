@@ -60,19 +60,19 @@
                                 <!--begin::Info-->
                                 <div class="d-flex align-items-center">
                                     <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Perjanjian Kerja</span>
+                                    <span class="card-label fw-bold text-gray-900">Perjanjian Kinerja</span>
                                     <!--end::Amount-->
                                     <!--begin::Badge-->
                                     <span class="badge badge-light-success fs-base">
-                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                        <i class="ki-duotone fs-5 text-success ms-n1">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
-                                        </i>2.2%</span>
+                                        </i>{{ date('Y') }}</span>
                                     <!--end::Badge-->
                                 </div>
                                 <!--end::Info-->
                                 <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ date('Y') }}</span>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{auth()->user()->opd?->nama}}</span>
                                 <!--end::Subtitle-->
                             </div>
                             <!--end::Title-->
@@ -133,18 +133,139 @@
                         <!--end::Card body-->
                     </div>
                     <!--end::Card widget 4-->
+                    <!--begin::Card widget 5-->
+                    <div class="card card-flush h-md-50 mb-xl-10">
+                        <!--begin::Header-->
+                        <div class="card-header pt-5">
+                            <!--begin::Title-->
+                            <div class="card-title d-flex flex-column">
+                                <!--begin::Info-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Amount-->
+                                    <span class="card-label fw-bold text-gray-900">Laporan Hasil Evaluasi</span>
+                                    <!--end::Amount-->
+                                    <!--begin::Badge-->
+                                    <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>{{ date('Y') }}</span>
+                                    <!--end::Badge-->
+                                </div>
+                                <!--end::Info-->
+                                <!--begin::Subtitle-->
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{auth()->user()->opd?->nama}}</span>
+                                <!--end::Subtitle-->
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Card body-->
+                        <div class="card-body d-flex align-items-end pt-0">
+                            <!--begin::Progress-->
+                            <div class="d-flex align-items-center flex-column mt-3 w-100">
+                                <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                    <a href="{{ route('lhe.index') }}" class="fw-bolder fs-6 text-gray-900">Tindak Lanjut LHE</a>
+                                    <span class="fw-bold fs-6 text-gray-500">%</span>
+                                </div>
+                                <div class="h-8px mx-3 w-100 bg-light-success rounded">
+                                    <div class="bg-success rounded h-8px" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <!--end::Progress-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Card widget 5-->
                 </div>
                 <!--end::Col-->
                 <!--begin::Col-->
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                    <!--begin::Card widget 7-->
+                    <!--begin::Card widget 6-->
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
+                        <!--begin::Header-->
+                        <div class="card-header pt-5">
+                            <!--begin::Title-->
+                            <div class="card-title d-flex flex-column">
+                                <!--begin::Info-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Amount-->
+                                    <span class="card-label fw-bold text-gray-900">Upload File</span>
+                                    <!--end::Amount-->
+                                    <!--begin::Badge-->
+                                    <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2024</span>
+                                    <!--end::Badge-->
+                                </div>
+                                <!--end::Info-->
+                                <!--begin::Subtitle-->
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{auth()->user()->opd?->nama}}</span>
+                                <!--end::Subtitle-->
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-2 pb-4 d-flex align-items-center">
+                            <!--begin::Labels-->
+                            <div class="d-flex flex-column content-justify-center w-100">
+                                <!--begin::Label-->
+                                <div class="d-flex fs-6 fw-semibold align-items-center">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-6px rounded-2 bg-info me-3"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <a href="{{ route('file.index', ['jenis_file' => 'RPJMD']) }}" class="text-gray-500 flex-grow-1 me-4">RPJMD</a>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                                <!--begin::Label-->
+                                <div class="d-flex fs-6 fw-semibold align-items-center my-3">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-6px rounded-2 bg-warning me-3"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <a href="{{ route('file.index', ['jenis_file' => 'RENSTRA']) }}" class="text-gray-500 flex-grow-1 me-4">Renstra</a>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                                <!--begin::Label-->
+                                <div class="d-flex fs-6 fw-semibold align-items-center">
+                                    <!--begin::Bullet-->
+                                    <div class="bullet w-8px h-6px rounded-2 bg-dark me-3"></div>
+                                    <!--end::Bullet-->
+                                    <!--begin::Label-->
+                                    <a href="{{ route('file.index', ['jenis_file' => 'LAKIP']) }}" class="text-gray-500 flex-grow-1 me-4">Lakip</a>
+                                    <!--end::Label-->
+                                    <!--begin::Stats-->
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Labels-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                <!--end::Card widget 6-->
+
+                <!--begin::Card widget 7-->
                     <div class="card card-flush h-md-50 mb-xl-10">
                         <!--begin::Header-->
                         <div class="card-header pt-5">
                             <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Amount-->
-                                <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Pegawai</span>
+                                <span class="card-label fw-bold text-gray-900">Pegawai</span>
                                 <!--end::Amount-->
                                 <!--begin::Subtitle-->
                                 <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ count($data_pegawai) }}</span>
@@ -191,7 +312,7 @@
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label fw-bold text-gray-900">Data Master</span>
-                                <span class="text-muted mt-1 fw-semibold fs-7"></span>
+                                <span class="text-muted mt-1 fw-semibold fs-7">{{auth()->user()->opd?->nama}}</span>
                             </h3>
                             <!--begin::Toolbar-->
                             <div class="card-toolbar">
@@ -396,8 +517,7 @@
                     </div>
                     <!--end::List widget 20-->
                 </div>
-                <!--end::Col-->
-            </div>
+            <!--end::Col-->
             <!--end::Row-->
             <!--begin::Row-->
             {{-- recent order and discounted sales section from demo1/dashboard --}}
