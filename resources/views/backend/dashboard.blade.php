@@ -265,10 +265,20 @@
                             <!--begin::Title-->
                             <div class="card-title d-flex flex-column">
                                 <!--begin::Amount-->
-                                <span class="card-label fw-bold text-gray-900">Pegawai</span>
+                                <div class="d-flex align-items-center">
                                 <!--end::Amount-->
+                                <span class="card-label fw-bold text-gray-900">Pegawai -></span>
+                                <!--end::Amount-->
+                                <!--begin::Badge-->
+                                <span class="badge badge-light-primary fs-base">
+                                    <i class="ki-duotone fs-5 text-primary ms-n1">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>{{ count($data_pegawai) }}</span>
+                                <!--end::Badge-->
+                                </div>
                                 <!--begin::Subtitle-->
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ count($data_pegawai) }}</span>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6">{{auth()->user()->opd?->nama}}</span>
                                 <!--end::Subtitle-->
                             </div>
                             <!--end::Title-->
