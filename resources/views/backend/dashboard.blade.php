@@ -97,7 +97,16 @@
                                     <a href="{{ route('target.index') }}" class="text-gray-500 flex-grow-1 me-4">Target</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                        <!--begin::Actions-->
+                                        <a href="{{ route('target.index') }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                        <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -110,7 +119,16 @@
                                     <a href="{{ route('realisasi.index') }}" class="text-gray-500 flex-grow-1 me-4">Realisasi</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                        <!--begin::Actions-->
+                                        <a href="{{ route('realisasi.index') }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                        <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -123,7 +141,16 @@
                                     <a href="{{ route('capaian') }}" class="text-gray-500 flex-grow-1 me-4">Capaian</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                        <!--begin::Actions-->
+                                        <a href="{{ route('capaian') }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                        <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -166,7 +193,14 @@
                             <div class="d-flex align-items-center flex-column mt-3 w-100">
                                 <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                     <a href="{{ route('lhe.index') }}" class="fw-bolder fs-6 text-gray-900">Tindak Lanjut LHE</a>
-                                    <span class="fw-bold fs-6 text-gray-500">%</span>
+                                    <!--begin::Actions-->
+                                    <a href="{{ route('lhe.index') }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                        <i class="ki-duotone ki-arrow-right fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    <!--end::Actions-->
                                 </div>
                                 <div class="h-8px mx-3 w-100 bg-light-success rounded">
                                     <div class="bg-success rounded h-8px" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -221,7 +255,16 @@
                                     <a href="{{ route('file.index', ['jenis_file' => 'RPJMD']) }}" class="text-gray-500 flex-grow-1 me-4">RPJMD</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                        <!--begin::Actions-->
+                                        <a href="{{ route('file.index', ['jenis_file' => 'RPJMD']) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                        <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -234,7 +277,16 @@
                                     <a href="{{ route('file.index', ['jenis_file' => 'RENSTRA']) }}" class="text-gray-500 flex-grow-1 me-4">Renstra</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                        <!--begin::Actions-->
+                                        <a href="{{ route('file.index', ['jenis_file' => 'RENSTRA']) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                        <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -247,7 +299,16 @@
                                     <a href="{{ route('file.index', ['jenis_file' => 'LAKIP']) }}" class="text-gray-500 flex-grow-1 me-4">Lakip</a>
                                     <!--end::Label-->
                                     <!--begin::Stats-->
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">...</div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">
+                                    <!--begin::Actions-->
+                                        <a href="{{ route('file.index', ['jenis_file' => 'LAKIP']) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <i class="ki-duotone ki-arrow-right fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                    <!--end::Actions-->
+                                    </div>
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Label-->
@@ -267,7 +328,7 @@
                                 <!--begin::Amount-->
                                 <div class="d-flex align-items-center">
                                 <!--end::Amount-->
-                                <span class="card-label fw-bold text-gray-900">Pegawai -></span>
+                                <span class="card-label fw-bold text-gray-900">Pegawai </span>
                                 <!--end::Amount-->
                                 <!--begin::Badge-->
                                 <span class="badge badge-light-primary fs-base">
@@ -288,9 +349,9 @@
                         <div class="card-body d-flex flex-column justify-content-end pe-0">
                             <!--begin::Title-->
                             <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">
-                                @role('operator')
+                                {{-- @role('operator')
                                     {{ auth()->user()->opd?->nama }}
-                                @endrole
+                                @endrole --}}
                             </span>
                             <!--end::Title-->
                             <!--begin::Users group-->
