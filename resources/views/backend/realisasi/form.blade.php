@@ -65,6 +65,18 @@
                         <label for="solusi" class="fs-6 fw-semibold mb-2">Solusi</label>
                         <input type="text" class="form-control" id="solusi" name="solusi">
                     </div>
+                    <div class="input-group">
+                        <label for="capaian" class="fs-6 fw-semibold mb-2">Capaian</label>
+                        {{-- <input type="text" class="form-control" id="capaian" name="capaian"> --}}
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" style="width: 50px;" placeholder="Hitung capaian manual" id="capaian" name="capaian" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <span class="input-group-text" id="basic-addon2">
+                            %
+                        </span>
+                        <br>
+                    </div>
+                    <small style="color: green;">Di isi apabila ingin menghitung capaian secara manual, jika bilangan berkoma atau desimal gunakan titik(.) sebagai pengganti koma (,)</small>
                 </div>
                 <!--begin::Modal footer-->
                 <div class="modal-footer flex-center">

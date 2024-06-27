@@ -129,6 +129,7 @@ class RealisasiController extends Controller
             'pendukung' => 'nullable|string',
             'penghambat' => 'nullable|string',
             'solusi' => 'nullable|string',
+            'capaian' => 'nullable|string',
         ];
 
         $customMessages = [
@@ -142,6 +143,7 @@ class RealisasiController extends Controller
             'pendukung' => 'Pendukung harus berupa string',
             'penghambat' => 'Penghambat harus berupa string',
             'solusi' => 'Solusi harus berupa string',
+            'capaian' => 'Capaian harus berupa string',
 
         ];
 
@@ -168,6 +170,7 @@ class RealisasiController extends Controller
                 'pendukung' => $request->pendukung,
                 'penghambat' => $request->penghambat,
                 'solusi' => $request->solusi,
+                'capaian' => $request->capaian
             ]
         );
         return response()->json($data);

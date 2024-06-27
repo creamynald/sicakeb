@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('pendukung')->nullable();
             $table->string('penghambat')->nullable();
             $table->string('solusi')->nullable();
+            $table->string('capaian')->nullable();
             $table->timestamps();
         });
     }

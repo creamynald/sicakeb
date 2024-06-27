@@ -25,6 +25,7 @@ class Realisasi extends Model
         'penghambat',
         'pendukung',
         'solusi',
+        'capaian'
     ] ;
 
     public function getActivitylogOptions(): LogOptions
@@ -38,7 +39,7 @@ class Realisasi extends Model
                 'realisasi_anggaran',
                 'penghambat',
                 'pendukung',
-                'solusi'])
+                'solusi', 'capaian'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('realisasi');
     }
