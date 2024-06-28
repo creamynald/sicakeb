@@ -111,7 +111,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($realisasi->getRealisasi($item->id)->capaian != null || $realisasi->getRealisasi($item->id)->capaian != '-')
+                                            @if ($realisasi->getRealisasi($item->id)->capaian != null && $realisasi->getRealisasi($item->id)->capaian != '-' && $realisasi->getRealisasi($item->id)->capaian != 0)
                                                 {{ $realisasi->getRealisasi($item->id)->capaian .'%' ?? '-'}}
                                             @else
                                                 @if (is_numeric($item->target_kinerja_tahunan))
