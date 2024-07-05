@@ -20,7 +20,7 @@
               </div>
               <div class="col-lg-4 text-center text-lg-end">
                   <div class="d-inline-flex align-items-center" style="height: 45px;">
-                      <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4"><i class="fa fa-book"></i> Manual Book</a>
+                      <a href="https://drive.google.com/file/d/1O6kne2cyvP-dxBR0QZzrX2-qaGVZ7XHv/view?usp=sharing" target="blank_" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4"><i class="fa fa-book"></i> Manual Book</a>
                 {{-- <div class="dropdown">
                           <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
                           <div class="dropdown-menu rounded">
