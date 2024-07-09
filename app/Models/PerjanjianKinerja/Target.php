@@ -32,6 +32,8 @@ class Target extends Model
         'satuan',
         'anggaran',
         'target_kinerja_tahunan',
+        'has_child',
+        'parent_id'
     ];
 
     public function getActivitylogOptions(): LogOptions
@@ -49,7 +51,9 @@ class Target extends Model
                 'tw4',
                 'satuan',
                 'anggaran',
-                'target_kinerja_tahunan'])
+                'target_kinerja_tahunan',
+                'has_child',
+                'parent_id'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('target');
     }

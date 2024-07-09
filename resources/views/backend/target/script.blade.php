@@ -77,6 +77,13 @@
     });
 </script>
 {{-- end::fetching data using yajra --}}
+<script>
+    $(document).ready(function() {
+        $('#master_id').select2({
+            dropdownParent: $('body')
+        });
+    });
+</script>
 
 {{-- begin::create and edit js --}}
 <script>
@@ -89,17 +96,44 @@
             $('#dataId').val('');
             // empty master id
             $('#master_id').val('');
+            // empty parent id
+            $('#parent_id').val('');
+            // empty has child
+            $('#has_child').val('');
             // open modal
             $('#formModal').modal('show');
         });
         // end::add data
 
+        // begin::add child
+        $('.btn-tambah').on('click', function() {
+            var id = $(this).data('id');
+            $('#formData')[0].reset();
+            $('#dataId').val('');
+            $('#master_id').val('');
+            $('#parent_id').val(id);
+
+            // Fetch data based on data-id
+            $.get('{{ url('admin/target') }}/' + id, function(data) {
+                $('#sasaran').val(data.sasaran);
+                $('#indikator').val(data.indikator);
+                $('#tahun').val(data.tahun);
+                $('#jenis_master').val(data.jenis_master);
+                updateMasterDropdown(data.master_id);
+            });
+
+            $('#formModal').modal('show');
+        });
+        // end::add child
+
         // begin::edit data
         $(document).on('click', '.btn-edit', function() {
+            $('#formData')[0].reset();
             var id = $(this).data('id');
             // url get data based on id
             $.get('{{ url('admin/target') }}/' + id, function(data) {
                 // begin::fill value based on id from url to form
+                $('#parent_id').val(data.parent_id);
                 $('#dataId').val(data.id);
                 $('#pegawai_id').val(data.pegawai_id);
                 $('#jenis_master').val(data.jenis_master);

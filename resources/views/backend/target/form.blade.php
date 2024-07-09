@@ -17,25 +17,11 @@
                     @csrf
                     <input type="hidden" id="dataId" name="dataId">
                     <input type="hidden" id="pegawai_id" name="pegawai_id" value="{{ $pegawai->id }}">
+                    <input type="hidden" id="has_child" name="has_child" value="1">
+                    <input type="hidden" id="parent_id" name="parent_id">
                     <div class="form-group mb-4">
                         <label for="tahun" class="required fs-6 fw-semibold mb-2">Tahun</label>
                         <input type="text" class="form-control" id="tahun" name="tahun" required>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis Master</label>
-                        <select name="jenis_master" id="jenis_master" class="form-select">
-                            <option value="">Pilih Jenis</option>
-                            <option value="program">Program</option>
-                            <option value="kegiatan">Kegiatan</option>
-                            <option value="subkegiatan">Subkegiatan</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group mb-4">
-                        <label for="master_id" class="required fs-6 fw-semibold mb-2" id="master_label">Pilih Janis Master</label>
-                        <select name="master_id" id="master_id" class="form-select" data-control="select2" data-dropdown-parent="#formModal">
-                            <!-- Opsi akan ditambahkan melalui JavaScript -->
-                        </select>
                     </div>
 
                     <div class="form-group mb-4">
@@ -85,9 +71,26 @@
                         </div>
                         <div class="form-group mb-12 col-12">
                             <small style="color: green;">Jika bilangan desimal atau berkoma gunakan titik (.) sebagai pengganti koma (,)</small>
-                            <br>
+                            </br>
                             <small style="color: green;">Triwulan I - IV Masukkan Target tanpa Satuan</small>
                         </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="jenis_master" class="required fs-6 fw-semibold mb-2">Jenis Master</label>
+                        <select name="jenis_master" id="jenis_master" class="form-select">
+                            <option value="">Pilih Jenis</option>
+                            <option value="program">Program</option>
+                            <option value="kegiatan">Kegiatan</option>
+                            <option value="subkegiatan">Subkegiatan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="master_id" class="required fs-6 fw-semibold mb-2" id="master_label">Pilih Janis Master</label>
+                        <select name="master_id" id="master_id" class="form-select" data-control="select2" data-dropdown-parent="body">
+                            <!-- Opsi akan ditambahkan melalui JavaScript -->
+                        </select>
                     </div>
                 </div>
                 <!--begin::Modal footer-->

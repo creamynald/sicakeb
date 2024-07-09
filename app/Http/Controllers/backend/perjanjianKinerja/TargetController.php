@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend\perjanjianKinerja;
 
 use App\Http\Controllers\Controller;
+use App\Models\PerjanjianKinerja\Realisasi;
+use App\Models\PerjanjianKinerja\Target;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Opd\Kegiatan;
 use App\Models\Opd\Program;
@@ -10,7 +12,6 @@ use App\Models\Opd\Subkegiatan;
 use Illuminate\Http\Request;
 use App\Models\Opd\Pegawai;
 use App\Models\opd;
-use App\Models\PerjanjianKinerja\Target;
 use DataTables;
 
 
@@ -126,7 +127,6 @@ class TargetController extends Controller
     // begin::additional method to add or edit data
     public function saveData(Request $request)
     {
-
         $validationRules = [
             'tahun' => 'required|numeric',
             'jenis_master' => 'required|alpha',
@@ -173,23 +173,17 @@ class TargetController extends Controller
         $anggaran = explode(",",$request->anggaran); //memecah angka jika terdapat koma pada bilangan ribuan
         $a = implode($anggaran); //menyatukan kembali menjadi angka utuh tanpa koma
 
+        $target = Target::find($request->dataId);
+        if($target){
+            $request->request->remove('parent_id');
+            $request->request->remove('has_child');
+        }
+
+        $request->request->add(['anggaran'=>$a]);
+
         $data = Target::updateOrCreate(
             ['id' => $request->dataId],
-            [
-                'tahun' => $request->tahun,
-                'jenis_master' => $request->jenis_master,
-                'master_id' => $request->master_id,
-                'pegawai_id' => $request->pegawai_id,
-                'sasaran' => $request->sasaran,
-                'indikator' => $request->indikator,
-                'satuan' => $request->satuan,
-                'tw1' => $request->tw1,
-                'tw2' => $request->tw2,
-                'tw3' => $request->tw3,
-                'tw4' => $request->tw4,
-                'anggaran' => $a,
-                'target_kinerja_tahunan' => $request->target_kinerja_tahunan,
-            ]
+            $request->all()
         );
         return response()->json($data);
     }
@@ -218,6 +212,7 @@ class TargetController extends Controller
     {
         //delete data by id
         $item = Target::findOrFail($id);
+        Realisasi::where('target_id', $id)->delete();
         $item->delete();
         return response()->json(['success' => true]);
     }

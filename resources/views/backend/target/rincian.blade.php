@@ -201,11 +201,12 @@
                                     <th class="text-center middle-align" rowspan="2">No</th>
                                     <th class="text-center middle-align" rowspan="2">Sasaran</th>
                                     <th class="text-center middle-align" rowspan="2">Indikator</th>
-                                    <th class="text-center middle-align" rowspan="2">Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Tahun</th>
                                     <th class="text-center middle-align" rowspan="2">Target Kinerja Tahunan</th>
                                     <th class="text-center middle-align" rowspan="2">Satuan</th>
                                     <th class="text-center" colspan="4">Target</th>
+                                    <th class="text-center middle-align" rowspan="2">Program/Kegiatan/Sub Kegiatan</th>
+                                    <th class="text-center middle-align" rowspan="2">Anggaran</th>
                                     <th class="text-center min-w-70px middle-align" rowspan="2">Aksi</th>
                                 </tr>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
@@ -217,22 +218,13 @@
                             </thead>
                             <tbody class="fs-6 text-gray-600">
                                 @foreach ($target as $data => $item)
+                                @if ($item->has_child == null)
                                     <tr>
                                         <td>{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
-                                        <td>
-                                            @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
-                                                -
-                                            @else
-                                                @if (is_numeric($item->anggaran))
-                                                    @rp($item->anggaran)
-                                                @else
-                                                    {{ $item->anggaran }}
-                                                @endif
-                                            @endif
-                                        </td>
                                         <td class="text-center">{{ $item->tahun }}</td>
+
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td class="text-center">
                                             @if ($item->satuan == '' || $item->satuan == null || $item->satuan == '-')
@@ -245,17 +237,35 @@
                                         <td>{{ $item->tw2 }}</td>
                                         <td>{{ $item->tw3 }}</td>
                                         <td>{{ $item->tw4 }}</td>
+                                        <td>
+                                            @if ($item->jenis_master == 'program')
+                                                {{$item->program->nama}}
+                                            @elseif ($item->jenis_master == 'kegiatan')
+                                                {{$item->kegiatan->nama}}
+                                            @elseif ($item->jenis_master == 'subkegiatan')
+                                                {{$item->subkegiatan->nama}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->anggaran == '' || $item->anggaran == null || $item->anggaran == 0 || $item->anggaran == '-')
+                                                -
+                                            @else
+                                                @if (is_numeric($item->anggaran))
+                                                    @rp($item->anggaran)
+                                                @else
+                                                    {{ $item->anggaran }}
+                                                @endif
+                                            @endif
+                                        </td>
                                         <td class="text-center">
-                                            <div class="d-flex justify-content-center flex-shrink-0">
-                                                <button data-id="{{ $item->id }}"
-                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
+                                            <div class="d-flex justify-content-center flex-shrink-1">
+                                                <button data-id="{{ $item->id }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
                                                     <i class="ki-duotone ki-pencil fs-2">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
                                                     </i>
                                                 </button>
-                                                <button onclick="deleteItem({{ $item->id }})"
-                                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                                                <button onclick="deleteItem({{ $item->id }})" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1">
                                                     <i class="ki-duotone ki-trash fs-2">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
@@ -264,9 +274,74 @@
                                                         <span class="path5"></span>
                                                     </i>
                                                 </button>
+                                                @if ($item->has_child != 1)
+                                                <button data-id="{{ $item->id }}" class="btn btn-icon btn-bg-light btn-active-color-success btn-sm btn-tambah">
+                                                    <i class="ki-duotone ki-plus-square fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                    </i>
+                                                </button>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
+                                    @endif
+                                    @foreach ($target as $subItem)
+                                        @if ($subItem->parent_id == $item->id)
+                                        <tr>
+                                            <td colspan="4"></td>
+
+                                            <td class="text-center">{{ $subItem->target_kinerja_tahunan }}</td>
+                                            <td class="text-center">{{ $subItem->satuan }}</td>
+                                            <td class="text-center">{{ $subItem->tw1 }}</td>
+                                            <td class="text-center">{{ $subItem->tw2 }}</td>
+                                            <td class="text-center">{{ $subItem->tw3 }}</td>
+                                            <td class="text-center">{{ $subItem->tw4 }}</td>
+
+                                            <td>
+                                                @if ($subItem->jenis_master == 'program')
+                                                    {{$subItem->program->nama}}
+                                                @elseif ($subItem->jenis_master == 'kegiatan')
+                                                    {{$subItem->kegiatan->nama}}
+                                                @elseif ($subItem->jenis_master == 'subkegiatan')
+                                                    {{$subItem->subkegiatan->nama}}
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($subItem->anggaran == '' || $subItem->anggaran == null || $subItem->anggaran == 0 || $subItem->anggaran == '-')
+                                                    -
+                                                @else
+                                                    @if (is_numeric($subItem->anggaran))
+                                                        @rp($subItem->anggaran)
+                                                    @else
+                                                        {{ $subItem->anggaran }}
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center flex-shrink-1">
+                                                    <button data-id="{{ $subItem->id }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
+                                                        <i class="ki-duotone ki-pencil fs-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
+                                                    </button>
+                                                    <button onclick="deleteItem({{ $subItem->id }})" class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1">
+                                                        <i class="ki-duotone ki-trash fs-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                            <span class="path4"></span>
+                                                            <span class="path5"></span>
+                                                        </i>
+                                                    </button>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>
