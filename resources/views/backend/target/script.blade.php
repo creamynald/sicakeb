@@ -77,13 +77,6 @@
     });
 </script>
 {{-- end::fetching data using yajra --}}
-<script>
-    $(document).ready(function() {
-        $('#master_id').select2({
-            dropdownParent: $('body')
-        });
-    });
-</script>
 
 {{-- begin::create and edit js --}}
 <script>

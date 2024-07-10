@@ -217,10 +217,13 @@
                                 </tr>
                             </thead>
                             <tbody class="fs-6 text-gray-600">
+                                @php
+                                    $no = 1;
+                                @endphp
                                 @foreach ($target as $data => $item)
                                 @if ($item->has_child == null)
                                     <tr>
-                                        <td>{{ $data + 1 }}</td>
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $item->sasaran }}</td>
                                         <td>{{ $item->indikator }}</td>
                                         <td class="text-center">{{ $item->tahun }}</td>

@@ -25,11 +25,6 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="anggaran" class="required fs-6 fw-semibold mb-2">Anggaran</label>
-                        <input type="text" class="form-control" id="anggaran" name="anggaran" onkeyup="this.value=addcommas(this.value);">
-                        <small style="color: green;">Koma menunjukkan angka ribuan, jangan gunakan titik sebagai pemisah angka ribuan</small>
-                    </div>
-                    <div class="form-group mb-4">
                         <label for="sasaran" class="required fs-6 fw-semibold mb-2">Sasaran
                             Strategis</label>
                         <input type="text" class="form-control" id="sasaran" name="sasaran">
@@ -86,12 +81,20 @@
                         </select>
                     </div>
 
-                    <div class="form-group mb-4">
+                    <div class="form-group mb-4" id="form-select-master">
                         <label for="master_id" class="required fs-6 fw-semibold mb-2" id="master_label">Pilih Janis Master</label>
-                        <select name="master_id" id="master_id" class="form-select" data-control="select2" data-dropdown-parent="body">
+                        <select name="master_id" id="master_id" class="form-select" data-control="select2" data-dropdown-parent="#form-select-master">
                             <!-- Opsi akan ditambahkan melalui JavaScript -->
                         </select>
                     </div>
+
+
+                    <div class="form-group mb-4">
+                        <label for="anggaran" class="required fs-6 fw-semibold mb-2">Anggaran</label>
+                        <input type="text" class="form-control" id="anggaran" name="anggaran" onkeyup="this.value=addcommas(this.value);">
+                        <small style="color: green;">Koma menunjukkan angka ribuan, jangan gunakan titik sebagai pemisah angka ribuan</small>
+                    </div>
+
                 </div>
                 <!--begin::Modal footer-->
                 <div class="modal-footer flex-center">
