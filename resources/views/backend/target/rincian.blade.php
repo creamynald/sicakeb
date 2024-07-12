@@ -166,7 +166,7 @@
                                         <tr>
                                             <td colspan="@if ($subItem->jenis_child == 'indikator') 2 @else 10 @endif"></td>
                                             @if ($subItem->jenis_child == 'indikator')
-                                            <td class="text-center">{{ $subItem->indikator }}</td>
+                                            <td>{{ $subItem->indikator }}</td>
                                             <td class="text-center">{{ $subItem->tahun }}</td>
                                             <td class="text-center">{{ $subItem->target_kinerja_tahunan }}</td>
                                             <td class="text-center">{{ $subItem->satuan }}</td>

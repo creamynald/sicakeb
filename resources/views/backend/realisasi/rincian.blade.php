@@ -79,6 +79,7 @@
                                     <th class="text-center" colspan="2">TW II</th>
                                     <th class="text-center" colspan="2">TW III</th>
                                     <th class="text-center" colspan="2">TW IV</th>
+                                    <th class="text-center">Program/Kegiatan/Subkegiatan</th>
                                     <th class="text-center middle-align" rowspan="2">Realisasi Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Penghambat</th>
                                     <th class="text-center middle-align" rowspan="2">Pendukung</th>
@@ -101,6 +102,7 @@
                             </thead>
                             <tbody class="fs-6 text-gray-600">
                                 @foreach ($target as $data => $item)
+                                @if ($item->has_child == null)
                                     <tr>
                                         <td class="text-center fw-bold">{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
@@ -114,6 +116,15 @@
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw3??'' }}</td>
                                         <td class="text-center">{{ $item->tw4 }}</td>
                                         <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
+                                        <td>
+                                            @if ($item->jenis_master == 'program')
+                                                {{$item->program->nama}}
+                                            @elseif ($item->jenis_master == 'kegiatan')
+                                                {{$item->kegiatan->nama}}
+                                            @elseif ($item->jenis_master == 'subkegiatan')
+                                                {{$item->subkegiatan->nama}}
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             @if ($realisasi->getRealisasi($item->id) != null)
                                                 @if ($realisasi->getRealisasi($item->id)->realisasi_anggaran == ''
@@ -147,6 +158,67 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @endif
+                                    @foreach ($target as $subItem)
+                                        @if ($subItem->parent_id == $item->id)
+                                        <tr>
+                                            <td colspan="@if($subItem->jenis_child == 'indikator') 2 @else 12 @endif"></td>
+                                            @if ($subItem->jenis_child == 'indikator')
+                                                <td>{{ $subItem->indikator }}</td>
+                                                <td class="text-center">{{ $subItem->tahun }}</td>
+                                                <td class="text-center">{{ $subItem->tw1 }}</td>
+                                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw1??'' }}</td>
+                                                <td class="text-center">{{ $subItem->tw2 }}</td>
+                                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw2??'' }}</td>
+                                                <td class="text-center">{{ $subItem->tw3 }}</td>
+                                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw3??'' }}</td>
+                                                <td class="text-center">{{ $subItem->tw4 }}</td>
+                                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw4??'' }}</td>
+                                            @endif
+                                            <td>
+                                                @if ($subItem->jenis_master == 'program')
+                                                    {{$subItem->program->nama}}
+                                                @elseif ($subItem->jenis_master == 'kegiatan')
+                                                    {{$subItem->kegiatan->nama}}
+                                                @elseif ($subItem->jenis_master == 'subkegiatan')
+                                                    {{$subItem->subkegiatan->nama}}
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($realisasi->getRealisasi($subItem->id) != null)
+                                                    @if ($realisasi->getRealisasi($subItem->id)->realisasi_anggaran == ''
+                                                    || $realisasi->getRealisasi($subItem->id)->realisasi_anggaran == 0
+                                                    || $realisasi->getRealisasi($subItem->id)->realisasi_anggaran == '-'
+                                                    || $realisasi->getRealisasi($subItem->id)->realisasi_anggaran == null)
+                                                        -
+                                                    @else
+                                                        @if (is_numeric($realisasi->getRealisasi($subItem->id)->realisasi_anggaran))
+                                                            @rp($realisasi->getRealisasi($subItem->id)->realisasi_anggaran)
+                                                        @else
+                                                            {{$realisasi->getRealisasi($subItem->id)->realisasi_anggaran}}
+                                                        @endif
+                                                    @endif
+                                                @else
+                                                     <span style="color: red;">Realisasi belum diisi</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->penghambat??'' }}</td>
+                                            <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->pendukung??'' }}</td>
+                                            <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->solusi??'' }}</td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center flex-shrink-0">
+                                                    <button data-id="{{$realisasi->getRealisasi($subItem->id)->id??''}}" data-target-pk="{{$subItem->id}}"
+                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-edit">
+                                                        <i class="ki-duotone ki-pencil fs-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>
