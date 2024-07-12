@@ -162,7 +162,7 @@
                     </span>
                     <span class="menu-title">Capaian</span>
                 </a>
-                @hasrole('Super-Admin')
+                @hasrole('Super-Admin|admin')
                     <a class="menu-link @if (Request::segment(2) == 'dok-renaksi') active @endif" href="{{ route('capaian') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
