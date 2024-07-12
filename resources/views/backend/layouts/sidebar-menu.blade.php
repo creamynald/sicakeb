@@ -1,7 +1,7 @@
 <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu"
     data-kt-menu="true" data-kt-menu-expand="false">
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion  @if(Request::segment(2) == 'dashboard')show @endif">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion  @if (Request::segment(2) == 'dashboard') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -16,7 +16,8 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                <a class="menu-link @if (Request::segment(2) == 'dashboard') active @endif" href="{{url('/admin/dashboard')}}">
+                <a class="menu-link @if (Request::segment(2) == 'dashboard') active @endif"
+                    href="{{ url('/admin/dashboard') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
@@ -40,13 +41,13 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::segment(2) == 'pegawai'
-    || Request::segment(2) == 'opd'
-    || Request::segment(2) == 'sasaran'
-    || Request::segment(2) == 'program'
-    || Request::segment(2) == 'kegiatan'
-    || Request::segment(2) == 'subkegiatan'
-    || Request::segment(2) == 'tujuan') show @endif">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (Request::segment(2) == 'pegawai' ||
+            Request::segment(2) == 'opd' ||
+            Request::segment(2) == 'sasaran' ||
+            Request::segment(2) == 'program' ||
+            Request::segment(2) == 'kegiatan' ||
+            Request::segment(2) == 'subkegiatan' ||
+            Request::segment(2) == 'tujuan') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -61,7 +62,7 @@
             <!--begin:Menu item-->
             <div class="menu-item">
                 <!--begin:Menu link-->
-                @role ('admin|Super-Admin')
+                @role('admin|Super-Admin')
                     <a class="menu-link @if (Request::segment(2) == 'opd') active @endif" href="{{ route('opd.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -76,8 +77,7 @@
                     </span>
                     <span class="menu-title">Pegawai</span>
                 </a>
-                <a class="menu-link @if (Request::segment(2) == 'tujuan') active @endif"
-                    href="{{ route('tujuan.index') }}">
+                <a class="menu-link @if (Request::segment(2) == 'tujuan') active @endif" href="{{ route('tujuan.index') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
@@ -120,9 +120,7 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(Request::segment(2) == 'target'
-    || Request::segment(2) == 'realisasi'
-    || Request::segment(2) == 'capaian') show @endif">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (Request::segment(2) == 'target' || Request::segment(2) == 'realisasi' || Request::segment(2) == 'capaian') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -158,20 +156,20 @@
                     </span>
                     <span class="menu-title">Realisasi</span>
                 </a>
-                <a class="menu-link @if (Request::segment(2) == 'capaian') active @endif"
-                    href="{{ route('capaian') }}">
+                <a class="menu-link @if (Request::segment(2) == 'capaian') active @endif" href="{{ route('capaian') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">Capaian</span>
                 </a>
-                <a class="menu-link @if (Request::segment(2) == 'dok-renaksi') active @endif"
-                    href="{{ route('capaian') }}">
-                    <span class="menu-bullet">
-                        <span class="bullet bullet-dot"></span>
-                    </span>
-                    <span class="menu-title">Dok. Renaksi</span>
-                </a>
+                @hasrole('Super-Admin')
+                    <a class="menu-link @if (Request::segment(2) == 'dok-renaksi') active @endif" href="{{ route('capaian') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Dok. Renaksi</span>
+                    </a>
+                @endhasrole
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
@@ -181,9 +179,10 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (Request::get('jenis_file') == 'RPJMD'
-    || Request::get('jenis_file') == 'RENSTRA'
-    || Request::get('jenis_file') == 'LAKIP') show @endif">
+    <div data-kt-menu-trigger="click"
+        class="menu-item menu-accordion @if (Request::get('jenis_file') == 'RPJMD' ||
+                Request::get('jenis_file') == 'RENSTRA' ||
+                Request::get('jenis_file') == 'LAKIP') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -234,7 +233,7 @@
     </div>
     <!--end:Menu item-->
 
-    @role ('admin|Super-Admin')
+    @role('admin|Super-Admin')
         <!--begin:Menu item-->
         <div class="menu-item pt-5">
             <!--begin:Menu content-->
@@ -259,7 +258,8 @@
             </span>
             <!--end:Menu link-->
             <!--begin:Menu sub-->
-            <div class="menu-sub menu-sub-accordion
+            <div
+                class="menu-sub menu-sub-accordion
             @if (Request::segment(2) == 'roles' ||
                     Request::segment(2) == 'permissions' ||
                     Request::segment(2) == 'assignable' ||
@@ -311,7 +311,7 @@
     <!--end:Menu item-->
 
     <!--begin:Menu item-->
-    @role ('admin|Super-Admin')
+    @role('admin|Super-Admin')
         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
             <!--begin:Menu link-->
             <span class="menu-link">
@@ -353,7 +353,7 @@
     <!--begin:Menu item-->
     <div class="menu-item">
         <!--begin:Menu link-->
-        <a class="menu-link" href="{{route('lhe.index')}}">
+        <a class="menu-link" href="{{ route('lhe.index') }}">
             <span class="menu-icon">
                 <i class="ki-duotone ki-rocket fs-2">
                     <span class="path1"></span>
