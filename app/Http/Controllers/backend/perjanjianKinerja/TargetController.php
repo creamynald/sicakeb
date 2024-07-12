@@ -181,6 +181,8 @@ class TargetController extends Controller
 
         $request->request->add(['anggaran'=>$a]);
 
+        // dd($request->all());
+
         $data = Target::updateOrCreate(
             ['id' => $request->dataId],
             $request->all()

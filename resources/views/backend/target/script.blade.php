@@ -93,6 +93,8 @@
             $('#parent_id').val('');
             // empty has child
             $('#has_child').val('');
+            // d-none on select jenis child
+            $('.form-jenis-child').css('display', 'none');
             // open modal
             $('#formModal').modal('show');
         });
@@ -105,17 +107,37 @@
             $('#dataId').val('');
             $('#master_id').val('');
             $('#parent_id').val(id);
+            $('.form-jenis-child').css('display', '');
+            $('.indikator').css('display', 'none');
+            $('.nonindikator').css('display', 'none');
 
             // Fetch data based on data-id
             $.get('{{ url('admin/target') }}/' + id, function(data) {
                 $('#sasaran').val(data.sasaran);
-                $('#indikator').val(data.indikator);
+                // $('#indikator').val(data.indikator);
                 $('#tahun').val(data.tahun);
                 $('#jenis_master').val(data.jenis_master);
+
                 updateMasterDropdown(data.master_id);
+
+                $('#jenis_child').change(function() {
+                    if ($(this).val() == 'indikator') {
+                        $('.indikator').css('display', '');
+                        $('.nonindikator').css('display', '');
+                        $('#indikator').val('');
+                    } else if ($(this).val() == 'nonindikator') {
+                        $('.indikator').css('display', 'none');
+                        $('.nonindikator').css('display', '');
+                        $('#indikator').val(data.indikator);
+                        $('#target_kinerja_tahunan').val(data.target_kinerja_tahunan);
+                        $('#satuan').val(data.satuan);
+                    }
+                });
             });
 
             $('#formModal').modal('show');
+
+
         });
         // end::add child
 
@@ -123,10 +145,20 @@
         $(document).on('click', '.btn-edit', function() {
             $('#formData')[0].reset();
             var id = $(this).data('id');
+            var parentId = $(this).data('parent-id');
+
+            if (parentId) {
+                $('.form-jenis-child').css('display', '');
+                $('.indikator').css('display', '');
+            } else {
+                $('.form-jenis-child').css('display', 'none');
+            }
+
             // url get data based on id
             $.get('{{ url('admin/target') }}/' + id, function(data) {
                 // begin::fill value based on id from url to form
                 $('#parent_id').val(data.parent_id);
+                $('#jenis_child').val(data.jenis_child);
                 $('#dataId').val(data.id);
                 $('#pegawai_id').val(data.pegawai_id);
                 $('#jenis_master').val(data.jenis_master);

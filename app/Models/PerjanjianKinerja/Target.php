@@ -33,6 +33,7 @@ class Target extends Model
         'anggaran',
         'target_kinerja_tahunan',
         'has_child',
+        'jenis_child',
         'parent_id'
     ];
 
@@ -53,6 +54,7 @@ class Target extends Model
                 'anggaran',
                 'target_kinerja_tahunan',
                 'has_child',
+                'jenis_child',
                 'parent_id'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('target');

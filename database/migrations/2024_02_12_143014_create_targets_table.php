@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('target_kinerja_tahunan')->nullable();
             $table->string('has_child')->nullable();
             $table->string('parent_id')->nullable();
+            $table->string('jenis_child')->nullable();
 
             $table->timestamps();
         });
