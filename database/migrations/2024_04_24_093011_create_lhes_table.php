@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('lhes', function (Blueprint $table) {
             $table->id();
             $table->integer('opd_id');
-            $table->string('rekomendasi_lhe');
+            $table->text('rekomendasi_lhe');
             $table->year('tahun');
-            $table->string('tindak_lanjut')->nullable();
+            $table->text('tindak_lanjut')->nullable();
             $table->string('target_penyelesaian')->nullable();
             $table->string('progres')->nullable();
             $table->string('bukti_dukung')->nullable();
