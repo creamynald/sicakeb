@@ -79,7 +79,7 @@
                                     <th class="text-center" colspan="2">TW II</th>
                                     <th class="text-center" colspan="2">TW III</th>
                                     <th class="text-center" colspan="2">TW IV</th>
-                                    <th class="text-center">Program/Kegiatan/Subkegiatan</th>
+                                    <th class="text-center" rowspan="2">Program/Kegiatan/Subkegiatan</th>
                                     <th class="text-center middle-align" rowspan="2">Realisasi Anggaran</th>
                                     <th class="text-center middle-align" rowspan="2">Penghambat</th>
                                     <th class="text-center middle-align" rowspan="2">Pendukung</th>
