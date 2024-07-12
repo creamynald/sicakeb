@@ -18,6 +18,7 @@ use App\Http\Controllers\backend\perjanjianKinerja\RealisasiController;
 use App\Http\Controllers\backend\perjanjianKinerja\TargetController;
 use App\Http\Controllers\backend\perjanjianKinerja\CapaianController;
 use App\Http\Controllers\backend\dokumen\FileController;
+use App\Http\Controllers\backend\dokumen\dokRenaksiController;
 use App\Http\Controllers\backend\lhe\LheController;
 
 use Illuminate\Support\Facades\Route;
@@ -191,6 +192,11 @@ Route::prefix('admin')
             // end:additional route
         });
         // end::capaian controller
+
+        // begin::dok renaksi controller
+        Route::group(['middleware' => ['role:Super-Admin']], function () {
+            Route::resource('dok-renaksi', dokRenaksiController::class);
+        });
 
         // for super admin & admin
 
