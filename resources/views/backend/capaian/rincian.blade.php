@@ -59,7 +59,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table id="" class="table align-middle table-bordered fs-6 gy-5">
+                        <table id="" class="table table-responsive align-middle table-bordered fs-6 gy-5">
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="text-center middle-align">No</th>
@@ -85,6 +85,7 @@
                             </thead>
                             <tbody class="fs-6 text-gray-600">
                                 @foreach ($target as $data => $item)
+                                @if ($item->has_child == null)
                                     <tr>
                                         <td class="text-center fw-bold">{{ $data + 1 }}</td>
                                         <td>{{ $item->sasaran }}</td>
@@ -129,7 +130,7 @@
                                                 @endif
                                             @endif
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             @if ($item->jenis_master == 'program')
                                                 {{ $item->program->nama }}
                                             @elseif ($item->jenis_master == 'kegiatan')
@@ -168,9 +169,101 @@
                                                 @endif
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung ?? '-' }}</td>
-                                        <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat ?? '-' }}</td>
+                                        <td>{{ $realisasi->getRealisasi($item->id)->pendukung ?? '-' }}</td>
+                                        <td>{{ $realisasi->getRealisasi($item->id)->penghambat ?? '-' }}</td>
                                     </tr>
+                                @endif
+                                    @foreach ($target as $subItem)
+                                    @if ($subItem->parent_id == $item->id)
+                                    <tr>
+                                        <td colspan="@if ($subItem->jenis_child == 'indikator') 2 @else 6 @endif"></td>
+                                        @if ($subItem->jenis_child == 'indikator')
+                                        <td>{{ $item->indikator }}</td>
+                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                        <td class="text-center">
+                                            @if (is_numeric($item->target_kinerja_tahunan))
+                                                @php
+                                                    echo $realisasi->converTw(
+                                                        $realisasi->getRealisasi($item->id)->tw1 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw2 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw3 ?? '',
+                                                        ) +
+                                                        $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw4 ?? '',
+                                                        );
+                                                @endphp
+                                            @else
+                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($realisasi->getRealisasi($item->id)?->capaian != null && $realisasi->getRealisasi($item->id)->capaian != '-' && $realisasi->getRealisasi($item->id)->capaian != 0)
+                                                {{ $realisasi->getRealisasi($item->id)?->capaian .'%' ?? '-'}}
+                                            @else
+                                                @if (is_numeric($item->target_kinerja_tahunan))
+                                                    {{ round(
+                                                        (($realisasi->converTw($realisasi->getRealisasi($item->id)->tw1 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw2 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw3 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw4 ?? '')) /
+                                                            $item->target_kinerja_tahunan) *
+                                                            100,
+                                                        2,
+                                                    ) . '%' }}
+                                                @else
+                                                    {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                @endif
+                                            @endif
+                                        </td>
+                                        @endif
+                                        <td>
+                                            @if ($subItem->jenis_master == 'program')
+                                                {{ $subItem->program->nama }}
+                                            @elseif ($subItem->jenis_master == 'kegiatan')
+                                                {{ $subItem->kegiatan->nama }}
+                                            @elseif ($subItem->jenis_master == 'subkegiatan')
+                                                {{ $subItem->subkegiatan->nama }}
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($subItem->anggaran == '' || $subItem->anggaran == null || $subItem->anggaran == 0 || $subItem->anggaran == '-')
+                                            -
+                                            @else
+                                                @if (is_numeric($subItem->anggaran))
+                                                    @rp($subItem->anggaran)
+                                                @else
+                                                    {{$subItem->anggaran}}
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($subItem->anggaran == '' || $subItem->anggaran == null || $subItem->anggaran == 0 || $subItem->anggaran == '-')
+                                                -
+                                            @else
+                                                @if ($realisasi->getRealisasi($subItem->id) == null)
+                                                    <span style="color: red;">Realisasi Belum Diisi</span>
+                                                @else
+                                                    @if ($realisasi->getRealisasi($subItem->id)->realisasi_anggaran == null || $realisasi->getRealisasi($subItem->id)->realisasi_anggaran == '' || $realisasi->getRealisasi($subItem->id)->realisasi_anggaran == '-')
+                                                        -
+                                                    @else
+                                                        @if ($subItem->anggaran > $realisasi->getRealisasi($subItem->id)->realisasi_anggaran)
+                                                            Efisien
+                                                        @elseif ($subItem->anggaran < $realisasi->getRealisasi($subItem->id)->realisasi_anggaran)
+                                                            Tidak Efisien
+                                                        @endif
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>{{ $realisasi->getRealisasi($subItem->id)->pendukung ?? '-' }}</td>
+                                        <td>{{ $realisasi->getRealisasi($subItem->id)->penghambat ?? '-' }}</td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>
