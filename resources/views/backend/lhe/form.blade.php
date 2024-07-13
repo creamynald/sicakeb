@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="rekomendasi_lhe" class="required fs-6 fw-semibold mb-2">Rekomendasi LHE</label>
-                        <input type="text" class="form-control" id="rekomendasi_lhe" name="rekomendasi_lhe">
+                        <textarea class="form-control" id="rekomendasi_lhe" name="rekomendasi_lhe"></textarea>
                     </div>
                     <div class="form-group mb-4">
                         <label for="tindak_lanjut" class="required fs-6 fw-semibold mb-2">Tindak Lanjut</label>
-                        <input type="text" class="form-control" id="tindak_lanjut" name="tindak_lanjut">
+                        <textarea class="form-control" id="tindak_lanjut" name="tindak_lanjut" rows="5"></textarea>
                     </div>
                     <div class="form-group mb-4">
                         <label for="target_penyelesaian" class="required fs-6 fw-semibold mb-2">Target Penyelesaian</label>

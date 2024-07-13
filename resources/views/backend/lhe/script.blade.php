@@ -5,6 +5,7 @@
             processing: true,
             serverSide: true,
             searching: true,
+            resposive: true,
             // url get data
             ajax: "{{ route('lhe.index') }}",
             // begin::column in data table
@@ -13,8 +14,16 @@
                     name: 'DT_RowIndex',
                     orderable : false
                 },
+                @role('admin|Super-Admin'){
+                    data: 'opd.nama',
+                    name: 'opd.nama'
+                },
+                @endrole
                 {
                     data: 'rekomendasi_lhe', name: 'rekomendasi_lhe'
+                },
+                {
+                    data: 'tahun', name: 'tahun'
                 },
                 {
                     data: 'tindak_lanjut', name: 'tindak_lanjut'

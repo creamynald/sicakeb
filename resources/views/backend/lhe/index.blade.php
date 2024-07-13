@@ -197,13 +197,17 @@
                         <table id="myTable" class="table align-middle table-row-dashed fs-6 gy-5">
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="min-w-30px">No</th>
-                                    <th class="min-w-30px">Rekomendasi LHE</th>
-                                    <th class="min-w-125px">Tindak Lanjut</th>
-                                    <th class="min-w-125px">Target Penyelesaian</th>
-                                    <th class="min-w-125px">Progres</th>
-                                    <th class="min-w-125px">Link Bukti Dukung</th>
-                                    <th class="text-end min-w-70px">Aksi</th>
+                                    <th class="text-center align-middle">No</th>
+                                    @role('admin|Super-Admin')
+                                        <th class="text-center align-middle">Nama OPD</th>
+                                    @endrole
+                                    <th class="align-middle">Rekomendasi LHE</th>
+                                    <th class="text-center align-middle">Tahun</th>
+                                    <th class="align-middle">Tindak Lanjut</th>
+                                    <th class="align-middle">Target Penyelesaian</th>
+                                    <th class="text-center align-middle">Progres</th>
+                                    <th class="align-middle">Link Bukti Dukung</th>
+                                    <th class="text-center align-middle">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="fw-bold fs-6 text-gray-600">
