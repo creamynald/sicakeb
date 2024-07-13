@@ -162,14 +162,13 @@
                     </span>
                     <span class="menu-title">Capaian</span>
                 </a>
-                @hasrole('Super-Admin|admin')
-                    <a class="menu-link @if (Request::segment(2) == 'dok-renaksi') active @endif" href="{{ route('capaian') }}">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Dok. Renaksi</span>
-                    </a>
-                @endhasrole
+                <a class="menu-link @if (Request::segment(2) == 'dok-renaksi') active @endif"
+                    href="{{ route('dok-renaksi.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Dok. Renaksi</span>
+                </a>
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->

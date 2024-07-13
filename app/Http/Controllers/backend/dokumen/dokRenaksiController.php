@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class dokRenaksiController extends Controller
 {
-    //
+    public function index()
+    {
+        dd('dokumen rencana aksi');
+    }
 }
