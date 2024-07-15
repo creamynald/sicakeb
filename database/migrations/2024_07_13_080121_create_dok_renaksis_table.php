@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dok_renaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('opd_id')->constrained()->onDelete('cascade');
             $table->string('urutan', 10);
             $table->string('link', 255);
             $table->string('tahun', 4);

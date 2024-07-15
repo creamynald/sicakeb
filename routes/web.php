@@ -198,8 +198,10 @@ Route::prefix('admin')
         // end::capaian controller
 
         // begin::dok renaksi controller
-        Route::group(['middleware' => ['role:Super-Admin']], function () {
+        Route::group(['middleware' => ['role:Super-Admin|admin|operator']], function () {
             Route::resource('dok-renaksi', dokRenaksiController::class);
+            Route::post('dok-renaksi/save', [dokRenaksiController::class, 'saveData']);
+            Route::get('dok-renaksi/get-data/{id}', [dokRenaksiController::class, 'show']);
         });
 
         // for super admin & admin
@@ -221,7 +223,6 @@ Route::prefix('admin')
             // begin:additional route (!= resource)
             Route::post('lhe/save', [LheController::class, 'saveData']);
             // end:additional route
-
         });
         // end::lhe controller
     });

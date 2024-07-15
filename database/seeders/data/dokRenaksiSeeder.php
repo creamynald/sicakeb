@@ -13,21 +13,21 @@ class dokRenaksiSeeder extends Seeder
      */
     public function run(): void
     {
-        dokRenaksi::created([
+        dokRenaksi::insert([
             [
-                'user_id' => 1,
+                'opd_id' => 1,
                 'urutan' => '1',
                 'link' => 'https://www.google.com',
                 'tahun' => '2024',
             ],
             [
-                'user_id' => 2,
+                'opd_id' => 2,
                 'urutan' => '2',
                 'link' => 'https://www.google.com',
                 'tahun' => '2024',
             ],
             [
-                'user_id' => 3,
+                'opd_id' => 1,
                 'urutan' => '3',
                 'link' => 'https://www.google.com',
                 'tahun' => '2024',

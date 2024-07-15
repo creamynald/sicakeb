@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             account\userSeeder::class,
             data\opdSeeder::class,
             data\pegawaiSeeder::class,
-            data\dokRenaksi::class,
+            data\dokRenaksiSeeder::class,
         ]);
     }
 }
