@@ -13,6 +13,8 @@ use App\Models\Opd\Tujuan;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\User;
+use App\Models\PerjanjianKinerja\Target;
+use App\Models\PerjanjianKinerja\Realisasi;
 use DataTables;
 use Carbon\Carbon;
 
@@ -165,4 +167,127 @@ class dashboardController extends Controller
             abort(403);
         }
     }
+
+    public function rekapCapaianOpd(){
+        if (isset($_GET['tahun'])){
+            $tahun = $_GET['tahun'];
+        }
+        else{
+            $tahun = date('Y');
+        }
+
+        $opdId = auth()->user()->opd_id;
+
+        $target = Target::join('pegawais', 'targets.pegawai_id', '=', 'pegawais.id')
+            ->where('pegawais.opd_id', $opdId)
+            ->where(function($query) {
+                $query->whereNull('targets.jenis_child')
+                    ->orWhere('targets.jenis_child', 'indikator');
+            })
+            ->where('targets.tahun', $tahun)
+            ->orderBy('pegawais.eselon') // Sort by eselon
+            ->select('targets.*') // Select only columns from target
+            ->get();
+
+        $realisasi = new Realisasi();
+        return view('backend.capaian.index1',compact('target', 'realisasi'));
+    }
+
+    public function rekapCapaianPemda(Request $request){
+        if ($request->ajax()) {
+            // BUTUH KOREKSI UNTUK KEMUDIAN HARI KETIKA OPERATOR OPD TELAH DIBUAT MAKA HARUS ADA KONDISI WHERE UNTUK MENAMPILKAN DATA SESUAI YANG LOGIN
+            $data = Opd::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '
+                    <div class="d-flex justify-content-end flex-shrink-0">
+                        <a href="' . route('capaianPemdaById', $row->id) . '" class="btn btn-sm btn-light btn-active-light-primary">Rincian</a>
+                    </div>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('backend.capaian.indexRekapPemda');
+    }
+
+    public function getCapaianPemdaById($opdId){
+        if (isset($_GET['tahun'])){
+            $tahun = $_GET['tahun'];
+        }
+        else{
+            $tahun = date('Y');
+        }
+
+        $target = Target::join('pegawais', 'targets.pegawai_id', '=', 'pegawais.id')
+            ->where('pegawais.opd_id', $opdId)
+            ->where(function($query) {
+                $query->whereNull('targets.jenis_child')
+                    ->orWhere('targets.jenis_child', 'indikator');
+            })
+            ->where('targets.tahun', $tahun)
+            ->orderBy('pegawais.eselon') // Sort by eselon
+            ->select('targets.*') // Select only columns from target
+            ->get();
+
+        $realisasi = new Realisasi();
+        $opd = opd::where('id', $opdId)->first();
+        return view('backend.capaian.rekapCapaianPemda',compact('target', 'realisasi', 'opd'));
+    }
+
+
+    // // Fungsi untuk menghitung capaian
+    // private function calculateCapaian($target)
+    // {
+    //     $realisasiModel = new Realisasi();
+    //     $realisasi = $realisasiModel->getRealisasi($target->id);
+    //     $totalRealisasi = $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw1 ?? '') +
+    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw2 ?? '') +
+    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw3 ?? '') +
+    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw4 ?? '');
+
+    //     if (is_numeric($target->target_kinerja_tahunan)) {
+    //         $capaian = round(($totalRealisasi / $target->target_kinerja_tahunan) * 100);
+    //         return $capaian;
+    //     }
+
+    //     return 0;
+    // }
+
+    // public function showTargets()
+    // {
+    //     $opdId = auth()->user()->opd_id;
+
+    //     // Mengambil data target dengan kondisi tertentu
+    //     $targets = Target::where(function($query) {
+    //             $query->whereNull('jenis_child')
+    //                 ->orWhere('jenis_child', 'indikator');
+    //         })
+    //         ->whereHas('pegawai', function($query) use ($opdId) {
+    //             $query->where('opd_id', $opdId);
+    //         })
+    //         ->get();
+
+    //     // Mengelompokkan data berdasarkan persentase
+    //     $groupedTargets = [
+    //         '50' => [],
+    //         '75' => [],
+    //         '100' => []
+    //     ];
+
+    //     foreach ($targets as $target) {
+    //         $capaian = $this->calculateCapaian($target); // Fungsi untuk menghitung capaian
+    //         if ($capaian == 50) {
+    //             $groupedTargets['50'][] = $target;
+    //         } elseif ($capaian == 75) {
+    //             $groupedTargets['75'][] = $target;
+    //         } elseif ($capaian == 100) {
+    //             $groupedTargets['100'][] = $target;
+    //         }
+    //     }
+
+    //     // Mengirimkan data ke view
+    //     return view('backend.capaian.groupedTargets', compact('groupedTargets'));
+    // }
 }
