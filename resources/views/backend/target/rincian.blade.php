@@ -113,11 +113,11 @@
                                         <td>{{ $item->tw4 }}</td>
                                         <td>
                                             @if ($item->jenis_master == 'program')
-                                                {{$item->program->nama}}
+                                                {{$item->program?->nama}}
                                             @elseif ($item->jenis_master == 'kegiatan')
-                                                {{$item->kegiatan->nama}}
+                                                {{$item->kegiatan?->nama}}
                                             @elseif ($item->jenis_master == 'subkegiatan')
-                                                {{$item->subkegiatan->nama}}
+                                                {{$item->subkegiatan?->nama}}
                                             @endif
                                         </td>
                                         <td>
@@ -178,11 +178,11 @@
 
                                             <td>
                                                 @if ($subItem->jenis_master == 'program')
-                                                    {{$subItem->program->nama}}
+                                                    {{$subItem->program?->nama}}
                                                 @elseif ($subItem->jenis_master == 'kegiatan')
-                                                    {{$subItem->kegiatan->nama}}
+                                                    {{$subItem->kegiatan?->nama}}
                                                 @elseif ($subItem->jenis_master == 'subkegiatan')
-                                                    {{$subItem->subkegiatan->nama}}
+                                                    {{$subItem->subkegiatan?->nama}}
                                                 @endif
                                             </td>
                                             <td class="text-center">
