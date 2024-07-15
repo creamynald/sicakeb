@@ -20,12 +20,21 @@
                     },
                     {
                         data: 'link',
-                        name: 'link'
+                        name: 'link',
+                        render: function(data, type, row) {
+                            if (!/^https?:\/\//i.test(data) && !/^www\./i.test(data)) {
+                                data = 'http://' + data;
+                            }
+                            return '<button class="btn btn-primary" onclick="window.open(\'' +
+                                data + '\', \'_blank\')">Akses Tautan</button>';
+                        }
                     },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
+                    @role('Super-Admin')
+                        {
+                            data: 'action',
+                            name: 'action'
+                        }
+                    @endrole
                 ],
             });
 
@@ -38,6 +47,23 @@
 
     {{-- begin::create and edit js --}}
     <script>
+        // Disable input minus one
+        document.addEventListener('DOMContentLoaded', function() {
+            const tahunInput = document.getElementById('tahun');
+            const urutanInput = document.getElementById('urutan');
+
+            function disableNegativeNumbers(input) {
+                input.addEventListener('input', function() {
+                    if (input.value < 0) {
+                        input.value = '';
+                    }
+                });
+            }
+
+            disableNegativeNumbers(tahunInput);
+            disableNegativeNumbers(urutanInput);
+        });
+
         $(document).ready(function() {
             // Tambah Data
             $('#btnTambah').click(function() {

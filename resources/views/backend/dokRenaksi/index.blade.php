@@ -37,12 +37,6 @@
                     <!--begin::Filter menu-->
                     <div class="m-0">
                         <!--begin::Menu toggle-->
-                        {{-- <a href="#" class="btn btn-sm btn-flex btn-secondary fw-bold" data-kt-menu-trigger="click"
-                            data-kt-menu-placement="bottom-end">
-                            <i class="ki-duotone ki-filter fs-6 text-muted me-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>Filter</a> --}}
                         <!--end::Menu toggle-->
                         <!--begin::Menu 1-->
                         <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
@@ -173,8 +167,11 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                                 <!--begin::Add customer-->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    id="btnTambah">Tambah Data</button>
+                                {{-- only Super-Admin Role can Access Tambah Data --}}
+                                @role('Super-Admin')
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        id="btnTambah">Tambah Data</button>
+                                @endrole
                                 <!--end::Add customer-->
                             </div>
                             <!--end::Toolbar-->
@@ -199,10 +196,12 @@
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-30px">No</th>
-                                    <th class="min-w-125px">opd_id</th>
-                                    <th class="min-w-125px">tahun</th>
-                                    <th class="min-w-125px">link</th>
-                                    <th class="text-end min-w-70px">Aksi</th>
+                                    <th class="min-w-125px">Organisasi Perangkat Daerah (OPD)</th>
+                                    <th class="min-w-125px">Tahun</th>
+                                    <th class="min-w-125px">Link</th>
+                                    @role('Super-Admin')
+                                        <th class="text-end min-w-70px">Aksi</th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody class="fw-bold fs-6 text-gray-600">
@@ -215,50 +214,8 @@
                 <!--end::Card-->
                 <!--begin::Modals-->
                 <!-- Modal Tambah/Edit -->
-                <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="formModalLabel">Form Data @urlSegment(2)</h5>
-                            </div>
-                            <form id="formData" method="POST">
-                                <div class="modal-body">
-                                    @csrf
-                                    <input type="hidden" id="dataId" name="dataId">
-                                    <div class="form-group">
-                                        <label for="opd_id" class="required fs-6 fw-semibold mb-2">opd_id</label>
-                                        <input type="text" class="form-control" id="opd_id" name="opd_id">
-                                    </div>
-                                    <div class="row form-group mt-4">
-                                        <div class="col-md-6">
-                                            <label for="tahun" class="required fs-6 fw-semibold mb-2">tahun</label>
-                                            <input type="number" class="form-control" id="tahun" name="tahun">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="urutan" class="required fs-6 fw-semibold mb-2">Urutan</label>
-                                            <input type="number" class="form-control" id="urutan" name="urutan">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mt-4">
-                                        <label for="link" class="required fs-6 fw-semibold mb-2">link</label>
-                                        <input type="text" class="form-control" id="link" name="link">
-                                    </div>
-                                </div>
-                                <div class="modal-footer flex-center">
-                                    <button type="button" id="kt_modal_add_customer_cancel" class="btn btn-warning me-3"
-                                        data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="indicator-label" id="btnSimpan">Simpan</span>
-                                        <span class="indicator-progress">Please wait...
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                @include('backend.dokRenaksi.form')
+                <!--end::Modals-->
 
             </div>
             <!--end::Content container-->

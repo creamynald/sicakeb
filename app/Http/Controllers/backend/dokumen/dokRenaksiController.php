@@ -21,13 +21,17 @@ class dokRenaksiController extends Controller
             if (
                 auth()
                     ->user()
-                    ->hasAnyRole(['admin', 'Super-Admin'])
+                    ->hasAnyRole(['Super-Admin'])
             ) {
-                $data = dokRenaksi::with('opd')->orderBy('urutan', 'asc')->get();
+                $data = dokRenaksi::with('opd')
+                    ->orderBy('tahun', 'desc') // Mengurutkan berdasarkan tahun, terbaru di atas
+                    ->orderBy('urutan', 'asc') // Mengurutkan berdasarkan urutan, terkecil di atas
+                    ->get();
             } else {
                 $data = dokRenaksi::with('opd')
                     ->where('opd_id', auth()->user()->opd_id)
-                    ->orderBy('urutan', 'asc')
+                    ->orderBy('tahun', 'desc') // Mengurutkan berdasarkan tahun, terbaru di atas
+                    ->orderBy('urutan', 'asc') // Mengurutkan berdasarkan urutan, terkecil di atas
                     ->get();
             }
             \Log::info($data); // Log the data for debugging
