@@ -92,23 +92,27 @@
                                         <td>{{ $item->indikator }}</td>
                                         <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
                                         <td class="text-center">
-                                            @if (is_numeric($item->target_kinerja_tahunan))
-                                                @php
-                                                    echo $realisasi->converTw(
-                                                        $realisasi->getRealisasi($item->id)->tw1 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw2 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw3 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw4 ?? '',
-                                                        );
-                                                @endphp
+                                            @if ($realisasi->getRealisasi($item->id)?->realisasi_manual != null && $realisasi->getRealisasi($item->id)->realisasi_manual != '-' && $realisasi->getRealisasi($item->id)->realisasi_manual != 0)
+                                                {{ $realisasi->getRealisasi($item->id)?->realisasi_manual ?? '-'}}
                                             @else
-                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                @if (is_numeric($item->target_kinerja_tahunan))
+                                                    @php
+                                                        echo $realisasi->converTw(
+                                                            $realisasi->getRealisasi($item->id)->tw1 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($item->id)->tw2 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($item->id)->tw3 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($item->id)->tw4 ?? '',
+                                                            );
+                                                    @endphp
+                                                @else
+                                                    {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                @endif
                                             @endif
                                         </td>
                                         <td class="text-center">
@@ -178,44 +182,48 @@
                                     <tr>
                                         <td colspan="@if ($subItem->jenis_child == 'indikator') 2 @else 6 @endif"></td>
                                         @if ($subItem->jenis_child == 'indikator')
-                                        <td>{{ $item->indikator }}</td>
-                                        <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                        <td>{{ $subItem->indikator }}</td>
+                                        <td class="text-center">{{ $subItem->target_kinerja_tahunan }}</td>
                                         <td class="text-center">
-                                            @if (is_numeric($item->target_kinerja_tahunan))
-                                                @php
-                                                    echo $realisasi->converTw(
-                                                        $realisasi->getRealisasi($item->id)->tw1 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw2 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw3 ?? '',
-                                                        ) +
-                                                        $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw4 ?? '',
-                                                        );
-                                                @endphp
+                                            @if ($realisasi->getRealisasi($subItem->id)?->realisasi_manual != null && $realisasi->getRealisasi($subItem->id)->realisasi_manual != '-' && $realisasi->getRealisasi($subItem->id)->realisasi_manual != 0)
+                                                {{ $realisasi->getRealisasi($subItem->id)?->realisasi_manual ?? '-'}}
                                             @else
-                                                {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                @if (is_numeric($subItem->target_kinerja_tahunan))
+                                                    @php
+                                                        echo $realisasi->converTw(
+                                                            $realisasi->getRealisasi($subItem->id)->tw1 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($subItem->id)->tw2 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($subItem->id)->tw3 ?? '',
+                                                            ) +
+                                                            $realisasi->converTw(
+                                                                $realisasi->getRealisasi($subItem->id)->tw4 ?? '',
+                                                            );
+                                                    @endphp
+                                                @else
+                                                    {{ $realisasi->getRealisasi($subItem->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                @endif
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($realisasi->getRealisasi($item->id)?->capaian != null && $realisasi->getRealisasi($item->id)->capaian != '-' && $realisasi->getRealisasi($item->id)->capaian != 0)
-                                                {{ $realisasi->getRealisasi($item->id)?->capaian .'%' ?? '-'}}
+                                            @if ($realisasi->getRealisasi($subItem->id)?->capaian != null && $realisasi->getRealisasi($subItem->id)->capaian != '-' && $realisasi->getRealisasi($subItem->id)->capaian != 0)
+                                                {{ $realisasi->getRealisasi($subItem->id)?->capaian .'%' ?? '-'}}
                                             @else
-                                                @if (is_numeric($item->target_kinerja_tahunan))
+                                                @if (is_numeric($subItem->target_kinerja_tahunan))
                                                     {{ round(
-                                                        (($realisasi->converTw($realisasi->getRealisasi($item->id)->tw1 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw2 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw3 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw4 ?? '')) /
-                                                            $item->target_kinerja_tahunan) *
+                                                        (($realisasi->converTw($realisasi->getRealisasi($subItem->id)->tw1 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($subItem->id)->tw2 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($subItem->id)->tw3 ?? '') +
+                                                            $realisasi->converTw($realisasi->getRealisasi($subItem->id)->tw4 ?? '')) /
+                                                            $subItem->target_kinerja_tahunan) *
                                                             100,
                                                         2,
                                                     ) . '%' }}
                                                 @else
-                                                    {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
+                                                    {{ $realisasi->getRealisasi($subItem->id)->tw4 ?? 'Menunggu TW IV' }}
                                                 @endif
                                             @endif
                                         </td>
