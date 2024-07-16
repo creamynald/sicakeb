@@ -68,6 +68,7 @@
                     <div class="form-group mb-4">
                         <label for="realisasi_manual" class="fs-6 fw-semibold mb-2">Realisasi Manual</label>
                         <input type="text" class="form-control" id="realisasi_manual" name="realisasi_manual">
+                        <small style="color: green;">Di isi apabila ingin menghitung jumlah realisasi secara manual, jika bilangan berkoma atau desimal gunakan titik(.) sebagai pengganti koma (,)</small>
                     </div>
                     <div class="input-group">
                         <label for="capaian" class="fs-6 fw-semibold mb-2">Capaian</label>
