@@ -24,6 +24,7 @@ class Realisasi extends Model
         'realisasi_anggaran',
         'penghambat',
         'pendukung',
+        'realisasi_manual',
         'solusi',
         'capaian'
     ] ;
@@ -39,6 +40,7 @@ class Realisasi extends Model
                 'realisasi_anggaran',
                 'penghambat',
                 'pendukung',
+                'realisasi_manual',
                 'solusi', 'capaian'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")
                 ->useLogName('realisasi');

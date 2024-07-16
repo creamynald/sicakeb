@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('penghambat')->nullable();
             $table->string('solusi')->nullable();
             $table->string('capaian')->nullable();
+            $table->string('realisasi_manual')->nullable();
             $table->timestamps();
         });
     }

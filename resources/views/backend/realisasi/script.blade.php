@@ -70,6 +70,7 @@
                 $('#penghambat').val(data.penghambat);
                 $('#solusi').val(data.solusi);
                 $('#capaian').val(data.capaian);
+                $('#realisasi_manual').val(data.realisasi_manual);
                 // end::fill value based on id from url to form
                 // open modal
                 $('#formModal').modal('show');

@@ -130,6 +130,7 @@ class RealisasiController extends Controller
             'penghambat' => 'nullable|string',
             'solusi' => 'nullable|string',
             'capaian' => 'nullable|string',
+            'realisasi_manual' => 'nullable|string',
         ];
 
         $customMessages = [
@@ -140,10 +141,11 @@ class RealisasiController extends Controller
             'tw2.string' => 'Triwulan II harus berupa huruf, angka dan tanda penghubung(-)',
             'tw3.string' => 'Triwulan III harus berupa huruf, angka dan tanda penghubung(-)',
             'tw4.string' => 'Triwulan IV harus berupa huruf, angka dan tanda penghubung(-)',
-            'pendukung' => 'Pendukung harus berupa string',
-            'penghambat' => 'Penghambat harus berupa string',
-            'solusi' => 'Solusi harus berupa string',
-            'capaian' => 'Capaian harus berupa string',
+            'pendukung.string' => 'Pendukung harus berupa string',
+            'penghambat.string' => 'Penghambat harus berupa string',
+            'solusi.string' => 'Solusi harus berupa string',
+            'capaian.string' => 'Capaian harus berupa string',
+            'realisasi_manual.string' => 'Realisasi harus berupa string',
 
         ];
 
@@ -170,7 +172,8 @@ class RealisasiController extends Controller
                 'pendukung' => $request->pendukung,
                 'penghambat' => $request->penghambat,
                 'solusi' => $request->solusi,
-                'capaian' => $request->capaian
+                'capaian' => $request->capaian,
+                'realisasi_manual' => $request->realisasi_manual
             ]
         );
         return response()->json($data);

@@ -65,6 +65,10 @@
                         <label for="solusi" class="fs-6 fw-semibold mb-2">Solusi</label>
                         <input type="text" class="form-control" id="solusi" name="solusi">
                     </div>
+                    <div class="form-group mb-4">
+                        <label for="realisasi_manual" class="fs-6 fw-semibold mb-2">Realisasi Manual</label>
+                        <input type="text" class="form-control" id="realisasi_manual" name="realisasi_manual">
+                    </div>
                     <div class="input-group">
                         <label for="capaian" class="fs-6 fw-semibold mb-2">Capaian</label>
                         {{-- <input type="text" class="form-control" id="capaian" name="capaian"> --}}
