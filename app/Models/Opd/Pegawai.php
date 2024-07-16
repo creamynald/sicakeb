@@ -54,5 +54,9 @@ class Pegawai extends Model
     }
     // end::relation to opd model
 
+    // Model Relasi Ke Target
+    public function targets() {
+        return $this->hasMany(Target::class);
+    }
 
 }
