@@ -77,6 +77,7 @@
                 $('#jabatan').val(data.jabatan);
                 $('#golongan').val(data.golongan);
                 $('#eselon').val(data.eselon);
+                $('#kepala_opd').val(data.kepala_opd);
                 $('#formModal').modal('show');
             });
         });

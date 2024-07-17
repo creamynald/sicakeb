@@ -93,6 +93,7 @@ class pegawaiController extends Controller
                 'nip' => $request->nip,
                 'jabatan' => $request->jabatan,
                 'golongan' => $request->golongan,
+                'kepala_opd' => $request->kepala_opd,
                 'eselon' => $request->eselon
             ]
         );

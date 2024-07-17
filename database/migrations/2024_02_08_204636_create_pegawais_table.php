@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nip');
             $table->string('jabatan');
             $table->string('golongan');
+            $table->string('kepala_opd')->nullable();
             $table->string('eselon');
             $table->timestamps();
         });

@@ -22,6 +22,7 @@ class Pegawai extends Model
         'nip',
         'jabatan',
         'golongan',
+        'kepala_opd',
         'eselon'
     ];
     // end::define column that fillable
@@ -34,6 +35,7 @@ class Pegawai extends Model
                 'nama',
                 'nip',
                 'jabatan',
+                'kepala_opd',
                 'golongan',
                 'eselon'])
                 ->setDescriptionForEvent(fn(string $eventName) => "{$eventName}")

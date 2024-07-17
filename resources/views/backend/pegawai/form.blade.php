@@ -43,6 +43,15 @@
                             <option value="IV">IV</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="kepala_opd" class="fs-6 fw-semibold mb-2">Kepala OPD</label>
+                        <select name="kepala_opd" id="kepala_opd" class="form-select form-select-solid">
+                            <option value="">--Pilih--</option>
+                            <option value="1">Ya</option>
+                            <option value="0">Tidak</option>
+                        </select>
+                        <small style="color: green">Opsional, diisi jika menjabat sbg kepala perangkat daerah</small>
+                    </div>
                 </div>
                 <!--begin::Modal footer-->
                 <div class="modal-footer flex-center">
