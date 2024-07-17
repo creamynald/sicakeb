@@ -66,8 +66,11 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
         Route::get('rekap-capaian-opd', [dashboardController::class, 'rekapCapaianOpd'])->name('capaianOpd');
+        // BUTUH DIPISAHKAN UNTUK MASUK DI SUPER ADMIN DAN ADMIN SAJA
         Route::get('rekap-capaian-pemda', [dashboardController::class, 'rekapCapaianPemda'])->name('capaianPemda');
         Route::get('rekap-capaian-pemda-byid/{opdId}', [dashboardController::class, 'getCapaianPemdaById'])->name('capaianPemdaById');
+        Route::get('rekap-capaian-pemda-byeselon', [dashboardController::class, 'rekapCapaianEselon2'])->name('rekapCapaianEselon2');
+        // BATAS ===
         // Route::get('persentase-capaian', [dashboardController::class, 'showTargets'])->name('showTargets');
         Route::get('dashboard', [dashboardController::class, 'index']);
         Route::get('/dashboard/activities', [dashboardController::class, 'getActivities'])->name('activities');
