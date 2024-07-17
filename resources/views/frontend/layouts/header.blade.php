@@ -40,7 +40,7 @@
       <!-- Navbar & Hero Start -->
       <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="" class="navbar-brand p-0">
+            <a href="{{ url('/')}}" class="navbar-brand p-0">
                 {{-- <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>SICAKEB</h1> --}}
                 <img src="{{asset('assets/favicon/Logo_SiCakeb.png')}}" alt="Logo">
             </a>
@@ -53,10 +53,10 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dokumen Sakip</a>
                         <div class="dropdown-menu m-0">
-                            <a href="/perencanaan" class="dropdown-item">Perencanaan Kinerja</a>
-                            <a href="/pengukuran" class="dropdown-item">Pengukuran Kinerja</a>
+                            <a href="{{ url('/perencanaan')}}" class="dropdown-item">Perencanaan Kinerja</a>
+                            <a href="{{ url('/pengukuran')}}" class="dropdown-item">Pengukuran Kinerja</a>
                             <a href="{{ url('pelaporan').'?jenis_file=LAKIP'}}" class="dropdown-item">Pelaporan Kinerja</a>
-                            <a href="/evaluasi" class="dropdown-item">Evaluasi Kinerja</a>
+                            <a href="{{ url('/evaluasi')}}" class="dropdown-item">Evaluasi Kinerja</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
