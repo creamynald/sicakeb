@@ -39,6 +39,30 @@ use Illuminate\Support\Facades\Storage;
 // frontend
 Route::get('/', [frontendController::class, 'index']);
 
+// Frontend Detail
+// Mulai Data Perencanaan Kinerja
+Route::get('/perencanaan', [frontendController::class, 'getOpdData'])->name('perencanaan');
+Route::get('/perencanaan/get-data/{opd_id}', [frontendController::class, 'getTargetData'])->name('perencanaan.get-data');
+Route::get('/perencanaan/target/rincian/{id}', [frontendController::class, 'rincianTarget'])->name('perencanaan.rincianTarget');
+// Selesai Data Perencanaan Kinerja
+
+// Mulai Data Pengukuran kinerja
+Route::get('/pengukuran', [frontendController::class, 'getOpdDataPengukuran'])->name('pengukuran');
+Route::get('/pengukuran/get-data/{opd_id}', [frontendController::class, 'getCapaianData'])->name('pengukuran.get-data');
+Route::get('/pengukuran/capaian/rincian/{id}', [frontendController::class, 'rincianCapaian'])->name('pengukuran.rincianCapaian');
+// Selesai Data Pengukuran kinerja
+
+// Mulai Data Pelaporan kinerja dan Dokumen Lain
+Route::get('/pelaporan', [frontendController::class, 'getOpdDataPelaporan'])->name('pelaporan');
+Route::get('/pelaporan/get-data/{opd_id}', [frontendController::class, 'getFileData'])->name('pelaporan.get-data');
+Route::get('/download/{folder}/{filename}', [frontendController::class, 'download'])->name('downloadfile');
+// Selesai Data Pelaporan kinerja dan Dokumen Lain
+
+// Mulai Data Evaluasi Kinerja
+Route::get('/evaluasi', [frontendController::class, 'getOpdDataEvaluasi'])->name('evaluasi');
+Route::get('/evaluasi/get-data/{opd_id}', [frontendController::class, 'getLheData'])->name('evaluasi.get-data');
+// Selesai Data Evaluasi kinerja
+
 // Route::get('/', function () {
 //     return redirect('/login');
 // });

@@ -332,6 +332,35 @@
             });
         </script>
         <!--end::Modal-->
+        <script>
+            document.getElementById('yourFormId').addEventListener('submit', function(e) {
+                e.preventDefault();
+        
+                let formData = new FormData(this);
+        
+                fetch('/save-data-endpoint', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Refresh the page after successful save
+                        window.location.reload();
+                    } else {
+                        // Handle error
+                        alert(data.error || 'An error occurred.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred.');
+                });
+            });
+        </script>        
     @endpush
     @push('scripts')
         @include('backend.uploadfile.script')

@@ -14,18 +14,17 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
               <div class="footer-item d-flex flex-column">
                   <h4 class="mb-4 text-white">Dokumen Sakip</h4>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Perencanaan Kinerja</a>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Pengukuran Kinerja</a>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Pelaporan Kinerja</a>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Evaluasi Kinerja</a>
+                  <a href="/perencanaan"><i class="fas fa-angle-right me-2"></i> Perencanaan Kinerja</a>
+                  <a href="/pengukuran"><i class="fas fa-angle-right me-2"></i> Pengukuran Kinerja</a>
+                  <a href="{{ url('pelaporan').'?jenis_file=LAKIP'}}"><i class="fas fa-angle-right me-2"></i> Pelaporan Kinerja</a>
+                  <a href="/evaluasi"><i class="fas fa-angle-right me-2"></i> Evaluasi Kinerja</a>
               </div>
           </div>
           <div class="col-md-6 col-lg-6 col-xl-3">
               <div class="footer-item d-flex flex-column">
                   <h4 class="mb-4 text-white">Dokumen Lain</h4>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> RPJMD</a>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Renstra</a>
-                  <a href=""><i class="fas fa-angle-right me-2"></i> Lakip</a>
+                  <a href="{{ url('pelaporan').'?jenis_file=RPJMD'}}"><i class="fas fa-angle-right me-2"></i> RPJMD</a>
+                  <a href="{{ url('pelaporan').'?jenis_file=RENSTRA'}}"><i class="fas fa-angle-right me-2"></i> Renstra</a>
               </div>
           </div>
           <div class="col-md-6 col-lg-6 col-xl-3">

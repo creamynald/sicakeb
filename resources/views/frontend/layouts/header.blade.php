@@ -53,18 +53,17 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dokumen Sakip</a>
                         <div class="dropdown-menu m-0">
-                            <a href="#" class="dropdown-item">Perencanaan Kinerja</a>
-                            <a href="#" class="dropdown-item">Pengukuran Kinerja</a>
-                            <a href="#" class="dropdown-item">Pelaporan Kinerja</a>
-                            <a href="#" class="dropdown-item">Evaluasi Kinerja</a>
+                            <a href="/perencanaan" class="dropdown-item">Perencanaan Kinerja</a>
+                            <a href="/pengukuran" class="dropdown-item">Pengukuran Kinerja</a>
+                            <a href="{{ url('pelaporan').'?jenis_file=LAKIP'}}" class="dropdown-item">Pelaporan Kinerja</a>
+                            <a href="/evaluasi" class="dropdown-item">Evaluasi Kinerja</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dokumen Lain</a>
                         <div class="dropdown-menu m-0">
-                            <a href="#" class="dropdown-item">RPJMD</a>
-                            <a href="#" class="dropdown-item">Renstra</a>
-                            <a href="#" class="dropdown-item">Lakip</a>
+                            <a href="{{ url('pelaporan').'?jenis_file=RPJMD'}}" class="dropdown-item">RPJMD</a>
+                            <a href="{{ url('pelaporan').'?jenis_file=RENSTRA'}}" class="dropdown-item">Renstra</a>
                         </div>
                     </div>
                 </div>

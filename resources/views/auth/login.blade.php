@@ -10,7 +10,7 @@
             <h1 class="text-gray-900 fw-bolder mb-3">Masuk Akun</h1>
             <!--end::Title-->
             <!--begin::Subtitle-->
-            <div class="text-gray-500 fw-semibold fs-6">dengan menggunakan e-mail</div>
+            <div class="text-gray-500 fw-semibold fs-6">Dengan Menggunakan Email</div>
             <!--end::Subtitle=-->
         </div>
         <!--begin::Heading-->
@@ -41,7 +41,7 @@
         <div class="d-grid mb-10">
             <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
                 <!--begin::Indicator label-->
-                <span class="indicator-label">Masuk</span>
+                <span class="indicator-label">Masuk Akun</span>
                 <!--end::Indicator label-->
                 <!--begin::Indicator progress-->
                 <span class="indicator-progress">Mohon Menunggu...
