@@ -224,7 +224,7 @@ class dashboardController extends Controller
             ->where('pegawais.opd_id', $opdId)
             ->where(function($query) {
                 $query->whereNull('targets.jenis_child')
-                    ->orWhere('targets.jenis_child', 'indikator');
+                ->orWhere('targets.jenis_child', 'indikator');
             })
             ->where('targets.tahun', $tahun)
             ->orderBy('pegawais.eselon') // Sort by eselon
@@ -236,58 +236,76 @@ class dashboardController extends Controller
         return view('backend.capaian.rekapCapaianPemda',compact('target', 'realisasi', 'opd'));
     }
 
+    // MENGHITUNG RATA RATA CAPAIAN ESELON II UNTUK KEBUTUHAN BUPATI
+    public function rekapCapaianEselon2(){
+        // Get Tahun
+        if (isset($_GET['tahun'])){
+            $tahun = $_GET['tahun'];
+        }
+        else{
+            $tahun = date('Y');
+        }
+        // Fetch all OPDs
+        $opds = opd::all();
 
-    // // Fungsi untuk menghitung capaian
-    // private function calculateCapaian($target)
-    // {
-    //     $realisasiModel = new Realisasi();
-    //     $realisasi = $realisasiModel->getRealisasi($target->id);
-    //     $totalRealisasi = $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw1 ?? '') +
-    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw2 ?? '') +
-    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw3 ?? '') +
-    //                     $realisasiModel->converTw($realisasiModel->getRealisasi($target->id)->tw4 ?? '');
+        // Initialize an array to store average capaian for each OPD
+        $opdAverages = [];
+        foreach ($opds as $opd) {
+            // Fetch targets grouped by OPD
+            $targets = Target::join('pegawais', 'targets.pegawai_id', '=', 'pegawais.id')
+                ->where('pegawais.opd_id', $opd->id)
+                ->where('pegawais.eselon', 'II')
+                ->where(function($query) {
+                    $query->whereNull('jenis_child')
+                        ->orWhere('jenis_child', 'indikator');
+                })
+                ->where('targets.tahun', $tahun)
+                ->get(['targets.*']); // Ensure we're getting targets columns
 
-    //     if (is_numeric($target->target_kinerja_tahunan)) {
-    //         $capaian = round(($totalRealisasi / $target->target_kinerja_tahunan) * 100);
-    //         return $capaian;
-    //     }
+            $totalCapaian = 0;
+            $jumlahItem = 0;
 
-    //     return 0;
-    // }
+            foreach ($targets as $target) {
+                $realisasi = Realisasi::where('target_id', $target->id)->first();
 
-    // public function showTargets()
-    // {
-    //     $opdId = auth()->user()->opd_id;
+                if ($realisasi) {
+                    $capaian = null;
 
-    //     // Mengambil data target dengan kondisi tertentu
-    //     $targets = Target::where(function($query) {
-    //             $query->whereNull('jenis_child')
-    //                 ->orWhere('jenis_child', 'indikator');
-    //         })
-    //         ->whereHas('pegawai', function($query) use ($opdId) {
-    //             $query->where('opd_id', $opdId);
-    //         })
-    //         ->get();
+                    if ($realisasi->capaian != null && $realisasi->capaian != '-' && $realisasi->capaian != 0) {
+                        $capaian = $realisasi->capaian;
+                    } else {
+                        if (is_numeric($target->target_kinerja_tahunan)) {
+                            $tw1 = $realisasi->tw1 ?? 0;
+                            $tw2 = $realisasi->tw2 ?? 0;
+                            $tw3 = $realisasi->tw3 ?? 0;
+                            $tw4 = $realisasi->tw4 ?? 0;
 
-    //     // Mengelompokkan data berdasarkan persentase
-    //     $groupedTargets = [
-    //         '50' => [],
-    //         '75' => [],
-    //         '100' => []
-    //     ];
+                            $tw1 = ($tw1 === null || $tw1 === '-' || $tw1 === '') ? 0 : $tw1;
+                            $tw2 = ($tw2 === null || $tw2 === '-' || $tw2 === '') ? 0 : $tw2;
+                            $tw3 = ($tw3 === null || $tw3 === '-' || $tw3 === '') ? 0 : $tw3;
+                            $tw4 = ($tw4 === null || $tw4 === '-' || $tw4 === '') ? 0 : $tw4;
 
-    //     foreach ($targets as $target) {
-    //         $capaian = $this->calculateCapaian($target); // Fungsi untuk menghitung capaian
-    //         if ($capaian == 50) {
-    //             $groupedTargets['50'][] = $target;
-    //         } elseif ($capaian == 75) {
-    //             $groupedTargets['75'][] = $target;
-    //         } elseif ($capaian == 100) {
-    //             $groupedTargets['100'][] = $target;
-    //         }
-    //     }
+                            if (is_numeric($tw1) && is_numeric($tw2) && is_numeric($tw3) && is_numeric($tw4)) {
+                                $capaian = round(($tw1 + $tw2 + $tw3 + $tw4) / $target->target_kinerja_tahunan * 100, 2);
+                            }
+                        }else{
+                            $capaian = 0;
+                        }
+                    }
 
-    //     // Mengirimkan data ke view
-    //     return view('backend.capaian.groupedTargets', compact('groupedTargets'));
-    // }
+                    if ($capaian !== null) {
+                        $totalCapaian += $capaian;
+                        $jumlahItem++;
+                    }
+                }
+            }
+
+            // Calculate the average capaian for the OPD
+            $averageCapaian = ($jumlahItem > 0) ? round($totalCapaian / $jumlahItem, 2) : 0;
+            $opdAverages[$opd->nama] = $averageCapaian;
+            // end
+        }
+        return view('backend.capaian.rekapCapaianEselon2', compact('opds', 'opdAverages', 'tahun'));
+    }
+    // BATAS RATA-RATA CAPAIAN ESELON II UNTUK KEBUTUHAN BUPATI
 }
