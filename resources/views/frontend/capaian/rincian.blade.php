@@ -6,7 +6,7 @@
         <h3 class="text-white display-3 mb-4">Pengukuran Kinerja</h1>
         <ol class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-            <li class="breadcrumb-item active text-white">Perangkat Daerah</li>
+            <li class="breadcrumb-item active text-white">{{$pegawai->opd?->nama}}</li>
         </ol>    
     </div>
 </div>
