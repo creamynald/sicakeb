@@ -244,7 +244,7 @@
     @endpush
     {{-- begin::custom js --}}
     @push('scripts')
-        @include('backend.' . Request::segment(2) . '.script')
+        @include('backend.capaian.script')
     @endpush
     {{-- end::custom js --}}
     {{-- end::aditional js --}}
