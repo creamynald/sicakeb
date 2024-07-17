@@ -254,7 +254,10 @@ class dashboardController extends Controller
             // Fetch targets grouped by OPD
             $targets = Target::join('pegawais', 'targets.pegawai_id', '=', 'pegawais.id')
                 ->where('pegawais.opd_id', $opd->id)
-                ->where('pegawais.eselon', 'II')
+                ->where(function($query) {
+                    $query->where('pegawais.eselon', 'II')
+                    ->orWhere('pegawais.kepala_opd', '1');
+                })
                 ->where(function($query) {
                     $query->whereNull('jenis_child')
                         ->orWhere('jenis_child', 'indikator');
