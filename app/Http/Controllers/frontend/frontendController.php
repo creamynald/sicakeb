@@ -32,7 +32,7 @@ class frontendController extends Controller
     {   
         // begin::get data using yajra
         if($request->ajax()){
-            $data = opd::latest()->get();
+            $data = opd::orderBy('urutan')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -100,7 +100,7 @@ class frontendController extends Controller
     {   
         // begin::get data using yajra
         if($request->ajax()){
-            $data = opd::latest()->get();
+            $data = opd::orderBy('urutan')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -155,7 +155,7 @@ class frontendController extends Controller
         // begin::get data using yajra
         if($request->ajax()){
             $jenis_file = isset($_GET['jenis_file']) ? $_GET['jenis_file'] : null;
-            $data = opd::latest()->get();
+            $data = opd::orderBy('urutan')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) use ($jenis_file){
@@ -206,7 +206,7 @@ class frontendController extends Controller
     {   
         // begin::get data using yajra
         if($request->ajax()){
-            $data = opd::latest()->get();
+            $data = opd::orderBy('urutan')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
