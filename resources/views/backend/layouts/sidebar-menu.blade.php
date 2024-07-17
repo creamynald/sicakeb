@@ -1,7 +1,7 @@
 <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu"
     data-kt-menu="true" data-kt-menu-expand="false">
     <!--begin:Menu item-->
-    <div data-kt-menu-trigger="click" class="menu-item menu-accordion  @if (Request::segment(2) == 'dashboard' || Request::segment(2) == 'rekap-capaian-pemda' || Request::segment(2) == 'rekap-capaian-opd') show @endif">
+    <div data-kt-menu-trigger="click" class="menu-item menu-accordion  @if (Request::segment(2) == 'dashboard' || Request::segment(2) == 'rekap-capaian-pemda' || Request::segment(2) == 'rekap-capaian-opd' || Request::segment(2) == 'rekap-capaian-pemda-byeselon') show @endif">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">
@@ -33,15 +33,23 @@
                     </span>
                     <span class="menu-title">Rekap Capaian</span>
                 </a>
+                <a class="menu-link @if (Request::segment(2) == 'rekap-capaian-pemda-byeselon') active @endif"
+                    href="{{ route('rekapCapaianEselon2') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Rata-Rata Capaian</span>
+                </a>
                 @endrole
 
-                @if (auth()->user()->opd_id != null)
+
+                @if (auth()->user()->opd_id != 36)
                 <a class="menu-link @if (Request::segment(2) == 'rekap-capaian-opd') active @endif"
                     href="{{ route('capaianOpd') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                    <span class="menu-title">Rekap Capaian</span>
+                    <span class="menu-title">Rekap Capaian OPD</span>
                 </a>
                 @endif
                 <!--end:Menu link-->
