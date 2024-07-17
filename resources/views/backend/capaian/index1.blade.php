@@ -67,99 +67,244 @@
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
-                    <div class="card-body pt-0">
+                    <div class="card-body pt-0 table-responsive">
                         <!--begin::Table-->
-                        <table id="" class="table align-middle table-bordered fs-6 gy-5">
-                            <thead>
+                        <table id="" class="table align-middle table-bordered fs-6 gy-5 table-striped w-auto">
+                            <thead class="sticky-top">
                                 <tr class="text-start text-gray-500 fw-bold align-middle fs-7 text-uppercase gs-0">
-                                    <th class="text-center">No</th>
-                                    <th>Sasaran</th>
-                                    <th class="text-center">Program/Kegiatan/Subkegiatan</th>
-                                    <th class="text-center">Indikator</th>
-                                    <th class="text-center">Anggaran</th>
-                                    <th class="text-center">Target Kinerja Tahunan</th>
-                                    <th class="text-center">Realisasi</th>
-                                    <th class="text-center">Capaian</th>
+                                    <th class="text-center" rowspan="2">No</th>
+                                    <th rowspan="2">Sasaran</th>
+                                    {{-- <th class="text-center">Program/Kegiatan/Subkegiatan</th> --}}
+                                    <th class="text-center" rowspan="2">Indikator</th>
+                                    <th class="text-center" rowspan="2">Anggaran</th>
+                                    <th class="text-center" rowspan="2">Target Kinerja Tahunan</th>
+                                    <th class="text-center" colspan="2">TW I</th>
+                                    <th class="text-center" colspan="2">TW II</th>
+                                    <th class="text-center" colspan="2">TW III</th>
+                                    <th class="text-center" colspan="2">TW IV</th>
+                                    <th class="text-center" rowspan="2">Realisasi</th>
+                                    <th class="text-center" rowspan="2">Capaian</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">T</th>
+                                    <th class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">R</th>
+                                    <th class="text-center">T</th>
+                                    <th class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">R</th>
+                                    <th class="text-center">T</th>
+                                    <th class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">R</th>
+                                    <th class="text-center">T</th>
+                                    <th class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">R</th>
                                 </tr>
                             </thead>
                             <tbody class="fs-6 text-gray-600">
+                                @php
+                                    $totalCapaian = 0;
+                                    $jumlahItem = 0;
+                                @endphp
                                 @foreach ($target as $data => $item)
+                                @php
+                                    $realisasiItem = $realisasi->getRealisasi($item->id);
+                                    $capaianValid = false;
+                                @endphp
                                     <tr>
                                         <td class="text-center align-middle">{{ $data + 1 }}</td>
                                         <td>{{$item->sasaran}}</td>
-                                        <td>
+                                        {{-- <td>
                                             @if ($item->jenis_master == 'program')
-                                                {{ $item->program->nama }}
+                                                {{ $item->program?->nama }}
                                             @elseif ($item->jenis_master == 'kegiatan')
-                                                {{ $item->kegiatan->nama }}
+                                                {{ $item->kegiatan?->nama }}
                                             @elseif ($item->jenis_master == 'subkegiatan')
-                                                {{ $item->subkegiatan->nama }}
+                                                {{ $item->subkegiatan?->nama }}
+                                            @endif
+                                        </td> --}}
+                                        <td>{{ $item->indikator }}</td>
+                                        <td class="text-center">
+                                            @if ($item->anggaran == '' || $item->anggaran == null)
+                                                -
+                                            @elseif(is_numeric($item->anggaran))
+                                                @rp($item->anggaran)
+                                            @else
+                                                {{$item->anggaran}}
                                             @endif
                                         </td>
-                                        <td>{{ $item->indikator }}</td>
-                                        <td class="text-center">@if ($item->anggaran == '' || $item->anggaran == null)
-                                            -
-                                            @else
-                                            @rp($item->anggaran)
-                                        @endif</td>
                                         <td class="text-center">
                                             {{ $item->target_kinerja_tahunan }}@if (is_numeric($item->target_kinerja_tahunan))
                                                 {{ $item->satuan }}
                                             @endif
                                         </td>
+                                        {{-- Target dan realisasi per TW --}}
+                                        <td class="text-center">{{$item->tw1}}</td>
+                                        <td class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">{{$realisasi->getRealisasi($item->id)->tw1 ?? ''}}</td>
+                                        <td class="text-center">{{$item->tw2}}</td>
+                                        <td class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">{{$realisasi->getRealisasi($item->id)->tw2 ?? ''}}</td>
+                                        <td class="text-center">{{$item->tw3}}</td>
+                                        <td class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">{{$realisasi->getRealisasi($item->id)->tw3 ?? ''}}</td>
+                                        <td class="text-center">{{$item->tw4}}</td>
+                                        <td class="text-center" style="background-color: rgba(155, 155, 155, 0.162);">{{$realisasi->getRealisasi($item->id)->tw4 ?? ''}}</td>
+                                        {{-- Target dan realisasi per TW --}}
                                         {{-- Realisasi --}}
                                         <td class="text-center">
                                             @if ($realisasi->getRealisasi($item->id) == null)
                                                 <span style="color: red;">Realisasi Belum Diisi</span>
                                             @else
-                                                @if (is_numeric($item->target_kinerja_tahunan))
-                                                    @php
-                                                        echo $realisasi->converTw(
-                                                            $realisasi->getRealisasi($item->id)->tw1 ?? '',
-                                                            ) +
-                                                            $realisasi->converTw(
-                                                                $realisasi->getRealisasi($item->id)->tw2 ?? '',
-                                                            ) +
-                                                            $realisasi->converTw(
-                                                                $realisasi->getRealisasi($item->id)->tw3 ?? '',
-                                                            ) +
-                                                            $realisasi->converTw(
-                                                                $realisasi->getRealisasi($item->id)->tw4 ?? '',
-                                                            );
-                                                    @endphp
-                                                @else
-                                                    {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
-                                                @endif
-                                            @endif
-                                        </td>
-                                        {{-- End::Realisasi --}}
-                                        {{-- Capaian --}}
-                                        <td class="text-center">
-                                            @if ($realisasi->getRealisasi($item->id) == null)
-                                                <span style="color: red;">Realisasi Belum Diisi</span>
-                                            @else
-                                                @if ($realisasi->getRealisasi($item->id)?->capaian != null && $realisasi->getRealisasi($item->id)->capaian != '-' && $realisasi->getRealisasi($item->id)->capaian != 0)
-                                                    {{ $realisasi->getRealisasi($item->id)?->capaian .'%' ?? '-'}}
+                                                @if ($realisasi->getRealisasi($item->id)?->realisasi_manual != null && $realisasi->getRealisasi($item->id)->realisasi_manual != '-' && $realisasi->getRealisasi($item->id)->realisasi_manual != 0)
+                                                    {{ $realisasi->getRealisasi($item->id)?->realisasi_manual ?? '-'}}
                                                 @else
                                                     @if (is_numeric($item->target_kinerja_tahunan))
-                                                        {{ round(( $realisasi->converTw($realisasi->getRealisasi($item->id)->tw1 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw2 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw3 ?? '') +
-                                                            $realisasi->converTw($realisasi->getRealisasi($item->id)->tw4 ?? '')) /
-                                                            $item->target_kinerja_tahunan * 100, 2) . '%'
-                                                        }}
+                                                        @php
+                                                            $tw1 = $realisasi->getRealisasi($item->id)->tw1 ?? '';
+                                                            $tw2 = $realisasi->getRealisasi($item->id)->tw2 ?? '';
+                                                            $tw3 = $realisasi->getRealisasi($item->id)->tw3 ?? '';
+                                                            $tw4 = $realisasi->getRealisasi($item->id)->tw4 ?? '';
+
+                                                            $tw1 = ($tw1 === null || $tw1 === '-' || $tw1 === '') ? 0 : $tw1;
+                                                            $tw2 = ($tw2 === null || $tw2 === '-' || $tw2 === '') ? 0 : $tw2;
+                                                            $tw3 = ($tw3 === null || $tw3 === '-' || $tw3 === '') ? 0 : $tw3;
+                                                            $tw4 = ($tw4 === null || $tw4 === '-' || $tw4 === '') ? 0 : $tw4;
+
+                                                            $non_numeric_tw = [];
+
+                                                            if (!is_numeric($tw1)) {
+                                                                $non_numeric_tw[] = 'TW1';
+                                                            }
+                                                            if (!is_numeric($tw2)) {
+                                                                $non_numeric_tw[] = 'TW2';
+                                                            }
+                                                            if (!is_numeric($tw3)) {
+                                                                $non_numeric_tw[] = 'TW3';
+                                                            }
+                                                            if (!is_numeric($tw4)) {
+                                                                $non_numeric_tw[] = 'TW4';
+                                                            }
+                                                        @endphp
+                                                        {{-- jika ada salah satu tw yang non numeric --}}
+                                                        @if (!empty($non_numeric_tw))
+                                                            @php
+                                                                $tw_message = implode(', ', $non_numeric_tw);
+                                                            @endphp
+                                                            {{-- cetak mana saja yang non numeric --}}
+                                                            <div class="alert alert-warning">
+                                                                TW berikut tidak bersifat numerik: {{ $tw_message }}. Mohon periksa.
+                                                            </div>
+                                                        @else
+                                                        {{-- jika semua numeric lalu lakukan perhitungan --}}
+                                                            @php
+                                                                echo $realisasi->converTw(
+                                                                    $realisasi->getRealisasi($item->id)->tw1 ?? '',
+                                                                    ) +
+                                                                    $realisasi->converTw(
+                                                                        $realisasi->getRealisasi($item->id)->tw2 ?? '',
+                                                                    ) +
+                                                                    $realisasi->converTw(
+                                                                        $realisasi->getRealisasi($item->id)->tw3 ?? '',
+                                                                    ) +
+                                                                    $realisasi->converTw(
+                                                                        $realisasi->getRealisasi($item->id)->tw4 ?? '',
+                                                                    );
+                                                            @endphp
+                                                        @endif
                                                     @else
                                                         {{ $realisasi->getRealisasi($item->id)->tw4 ?? 'Menunggu TW IV' }}
                                                     @endif
                                                 @endif
                                             @endif
                                         </td>
+                                        {{-- End::Realisasi --}}
+                                        {{-- Capaian --}}
+                                        <td class="text-center">
+                                            {{-- Cek realisasi sudah di isi? --}}
+                                            @if ($realisasi->getRealisasi($item->id) == null)
+                                                <span style="color: red;">Realisasi Belum Diisi</span>
+                                            @else
+                                                {{-- Jika sudah diisi cek apakah persen manual diisi --}}
+                                                @if ($realisasi->getRealisasi($item->id)?->capaian != null && $realisasi->getRealisasi($item->id)->capaian != '-' && $realisasi->getRealisasi($item->id)->capaian != 0)
+                                                    {{-- tampilkan persen manual --}}
+                                                    {{ $realisasi->getRealisasi($item->id)?->capaian .'%' ?? '-'}}
+                                                @else
+                                                    {{-- jika persen manual tidak di isi maka lakukan perhitungan --}}
+                                                    {{-- cek apakah target kinerja tahunan berbentuk numerik --}}
+                                                    @if (is_numeric($item->target_kinerja_tahunan))
+                                                        {{-- cek setiap tw apakah ada yang non numeric --}}
+                                                        @php
+                                                            $tw1 = $realisasi->getRealisasi($item->id)->tw1 ?? '';
+                                                            $tw2 = $realisasi->getRealisasi($item->id)->tw2 ?? '';
+                                                            $tw3 = $realisasi->getRealisasi($item->id)->tw3 ?? '';
+                                                            $tw4 = $realisasi->getRealisasi($item->id)->tw4 ?? '';
+
+                                                            $tw1 = ($tw1 === null || $tw1 === '-' || $tw1 === '') ? 0 : $tw1;
+                                                            $tw2 = ($tw2 === null || $tw2 === '-' || $tw2 === '') ? 0 : $tw2;
+                                                            $tw3 = ($tw3 === null || $tw3 === '-' || $tw3 === '') ? 0 : $tw3;
+                                                            $tw4 = ($tw4 === null || $tw4 === '-' || $tw4 === '') ? 0 : $tw4;
+
+                                                            $non_numeric_tw = [];
+
+                                                            if (!is_numeric($tw1)) {
+                                                                $non_numeric_tw[] = 'TW1';
+                                                            }
+                                                            if (!is_numeric($tw2)) {
+                                                                $non_numeric_tw[] = 'TW2';
+                                                            }
+                                                            if (!is_numeric($tw3)) {
+                                                                $non_numeric_tw[] = 'TW3';
+                                                            }
+                                                            if (!is_numeric($tw4)) {
+                                                                $non_numeric_tw[] = 'TW4';
+                                                            }
+                                                        @endphp
+                                                        {{-- jika ada salah satu tw yang non numeric --}}
+                                                        @if (!empty($non_numeric_tw))
+                                                            @php
+                                                                $tw_message = implode(', ', $non_numeric_tw);
+                                                            @endphp
+                                                            {{-- cetak mana saja yang non numeric --}}
+                                                            <div class="alert alert-warning">
+                                                                TW berikut tidak bersifat numerik: {{ $tw_message }}. Mohon periksa.
+                                                            </div>
+                                                        @else
+                                                        {{-- jika semua numeric lalu lakukan perhitungan --}}
+                                                            @php
+                                                            $capaian = round(( $realisasi->converTw($tw1) +
+                                                                $realisasi->converTw($tw2) +
+                                                                $realisasi->converTw($tw3) +
+                                                                $realisasi->converTw($tw4)) /
+                                                                $item->target_kinerja_tahunan * 100, 2);
+
+                                                                $totalCapaian += $capaian;
+                                                                $jumlahItem++;
+                                                                $capaianValid = true;
+                                                            @endphp
+                                                            {{ $capaian . '%' }}
+                                                        @endif
+                                                    @else
+                                                    {{-- Jika Kinerja tahunan non numeric lalu cetak menunggu tw 4 --}}
+                                                        Menunggu TW IV
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        </td>
                                         {{-- End::Capaian --}}
                                     </tr>
+                                    @if (!$capaianValid)
+                                        @php
+                                            // Pastikan item ini tidak dihitung dalam total capaian atau jumlah item
+                                            $totalCapaian += $realisasiItem->capaian ?? 0;
+                                            $jumlahItem++;
+                                        @endphp
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
                         <!--end::Table-->
+                        @php
+                            $rataRataCapaian = $jumlahItem > 0 ? round($totalCapaian / $jumlahItem, 2) : 0;
+                        @endphp
+
+                        {{-- <div class="alert alert-info">
+                            total Capaian : {{$totalCapaian}},
+                            jumlah Item : {{$jumlahItem}},
+                            Rata-rata Capaian: {{ $rataRataCapaian . '%' }}
+                        </div> --}}
                     </div>
                     <!--end::Card body-->
                 </div>
