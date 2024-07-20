@@ -31,7 +31,7 @@
                         {{-- <input type="number" class="form-control" min="0" max="100" id="progres" name="progres"> --}}
                     </div>
                     <div class="input-group mb-4">
-                        <input type="number" class="form-control" min="0" max="100" style="width: 50px;" placeholder="Hitung capaian manual" id="progres" name="progres" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <input type="number" class="form-control" min="0" max="100" style="width: 50px;" placeholder="Progess Tindak Lanjut LHE Dalam Persen" id="progres" name="progres" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
                         <span class="input-group-text" id="basic-addon2">
                             %
                         </span>
