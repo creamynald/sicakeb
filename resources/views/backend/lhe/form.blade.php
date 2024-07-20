@@ -26,9 +26,16 @@
                         <label for="target_penyelesaian" class="required fs-6 fw-semibold mb-2">Target Penyelesaian</label>
                         <input type="text" class="form-control" id="target_penyelesaian" name="target_penyelesaian">
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="form-group">
                         <label for="progres" class="required fs-6 fw-semibold mb-2">Progres</label>
-                        <input type="text" class="form-control" id="progres" name="progres">
+                        {{-- <input type="number" class="form-control" min="0" max="100" id="progres" name="progres"> --}}
+                    </div>
+                    <div class="input-group mb-4">
+                        <input type="number" class="form-control" min="0" max="100" style="width: 50px;" placeholder="Hitung capaian manual" id="progres" name="progres" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <span class="input-group-text" id="basic-addon2">
+                            %
+                        </span>
+                        <br>
                     </div>
                     <div class="form-group mb-4">
                         <label for="bukti_dukung" class="required fs-6 fw-semibold mb-2">Link Bukti Dukung</label>

@@ -18,6 +18,10 @@
                         name: 'nama'
                     },
                     {
+                        data: 'total_progres',
+                        name: 'total_progres'
+                    },
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,

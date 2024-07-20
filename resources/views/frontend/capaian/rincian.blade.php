@@ -48,12 +48,31 @@
                 <table id="" class="table table-responsive align-middle table-bordered fs-6 gy-5">
                     <thead>
                         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="text-center middle-align">No</th>
-                            <th class="text-center middle-align">Sasaran</th>
-                            <th class="text-center middle-align">Indikator Kinerja</th>
-                            <th class="text-center middle-align">Target Kinerja Tahunan</th>
-                            <th class="text-center middle-align">Realisasi Kinerja</th>
-                            <th class="text-center middle-align">Capaian Kinerja</th>
+                            <th class="text-center middle-align" rowspan="2">No</th>
+                            <th class="text-center middle-align" rowspan="2">Sasaran</th>
+                            <th class="text-center middle-align" rowspan="2">Indikator Kinerja</th>
+                            <th class="text-center middle-align" rowspan="2">Target Kinerja Tahunan</th>
+                            <th class="text-center" colspan="2">TW I</th>
+                            <th class="text-center" colspan="2">TW II</th>
+                            <th class="text-center" colspan="2">TW III</th>
+                            <th class="text-center" colspan="2">TW IV</th>
+                            <th class="text-center middle-align" rowspan="2">Realisasi Kinerja</th>
+                            <th class="text-center middle-align" rowspan="2">Capaian Kinerja</th>
+                            <th class="text-center middle-align" rowspan="2">Penghambat</th>
+                            <th class="text-center middle-align" rowspan="2">Pendukung</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">T</th>
+                            <th class="text-center">R</th>
+
+                            <th class="text-center">T</th>
+                            <th class="text-center">R</th>
+
+                            <th class="text-center">T</th>
+                            <th class="text-center">R</th>
+
+                            <th class="text-center">T</th>
+                            <th class="text-center">R</th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 text-gray-600">
@@ -64,6 +83,14 @@
                                 <td>{{ $item->sasaran }}</td>
                                 <td>{{ $item->indikator }}</td>
                                 <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                <td class="text-center">{{ $item->tw1 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw1??'' }}</td>
+                                <td class="text-center">{{ $item->tw2 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw2??'' }}</td>
+                                <td class="text-center">{{ $item->tw3 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw3??'' }}</td>
+                                <td class="text-center">{{ $item->tw4 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->tw4??'' }}</td>
                                 <td class="text-center">
                                     @if (is_numeric($item->target_kinerja_tahunan))
                                         @php
@@ -103,6 +130,8 @@
                                         @endif
                                     @endif
                                 </td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->penghambat??'' }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($item->id)->pendukung??'' }}</td>
                             </tr>
                         @endif
                             @foreach ($target as $subItem)
@@ -112,6 +141,14 @@
                                 @if ($subItem->jenis_child == 'indikator')
                                 <td>{{ $item->indikator }}</td>
                                 <td class="text-center">{{ $item->target_kinerja_tahunan }}</td>
+                                <td class="text-center">{{ $subItem->tw1 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw1??'' }}</td>
+                                <td class="text-center">{{ $subItem->tw2 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw2??'' }}</td>
+                                <td class="text-center">{{ $subItem->tw3 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw3??'' }}</td>
+                                <td class="text-center">{{ $subItem->tw4 }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->tw4??'' }}</td>
                                 <td class="text-center">
                                     @if (is_numeric($item->target_kinerja_tahunan))
                                         @php
@@ -151,6 +188,8 @@
                                         @endif
                                     @endif
                                 </td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->penghambat??'' }}</td>
+                                <td class="text-center">{{ $realisasi->getRealisasi($subItem->id)->pendukung??'' }}</td>
                                 @endif
                             </tr>
                             @endif

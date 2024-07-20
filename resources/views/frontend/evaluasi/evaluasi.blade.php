@@ -54,6 +54,7 @@
                         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                             <th class="min-w-30px">No</th>
                             <th class="min-w-125px">Perangkat Daerah</th>
+                            <th class="min-w-125px">Progres</th>
                             <th class="text-end min-w-70px">Aksi</th>
                         </tr>
                     </thead>

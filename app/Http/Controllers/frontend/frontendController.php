@@ -204,11 +204,36 @@ class frontendController extends Controller
     // Data Mulai Evaluasi Kinerja
     public function getOpdDataEvaluasi(Request $request)
     {   
+        $jml_progress = Lhe::with('opd')
+                        ->selectRaw('opd_id, SUM(progres) as total_progres')
+                        ->groupBy('opd_id')
+                        ->get();
+        $jml_lhe = Lhe::groupBy('opd_id')->selectRaw('opd_id, COUNT(*) as total_lhe')->get();
+
+        // Menggabungkan data jml_progress dan jml_lhe
+        $data_opd = $jml_progress->map(function($item) use ($jml_lhe) {
+            $lhe = $jml_lhe->firstWhere('opd_id', $item->opd_id);
+            $item->average_progress = $lhe ? round($item->total_progres / $lhe->total_lhe, 2) : 0;
+            return $item;
+        });
+
         // begin::get data using yajra
         if($request->ajax()){
-            $data = opd::orderBy('urutan')->get();
+            $data = opd::orderBy('urutan')->get()->map(function($item) use ($data_opd) {
+                $opd_data = $data_opd->firstWhere('opd_id', $item->id);
+                $item->average_progress = $opd_data ? $opd_data->average_progress : 0;
+                return $item;
+            });
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('total_progres', function ($row) {
+                    $progressbar = '
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: '.$row->average_progress.'%;" aria-valuenow="'.$row->average_progress.'" aria-valuemin="0" aria-valuemax="100">'.$row->average_progress.'%</div>
+                    </div>
+                    ';
+                    return $progressbar;
+                })
                 ->addColumn('action', function($row){
                     $actionBtn = '
                     <div class="d-flex justify-content-end flex-shrink-0">
@@ -216,7 +241,7 @@ class frontendController extends Controller
                     </div>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','total_progres'])
                 ->make(true);
         }
         // end::get data using yajra
