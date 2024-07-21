@@ -270,7 +270,10 @@ class frontendController extends Controller
                 ->editColumn('tindak_lanjut', function ($row) {
                     return '<div style="text-align: justify;">'. nl2br(e($row->tindak_lanjut))  .'</div>';
                 })
-                ->rawColumns(['action','bukti_dukung','rekomendasi_lhe','tindak_lanjut'])
+                ->editColumn('progres', function ($row) {
+                    return '<div style="text-align: center;">'.$row->progres.'%' .'</div>';
+                })
+                ->rawColumns(['action','bukti_dukung','rekomendasi_lhe','tindak_lanjut','progres'])
                 ->make(true);
         }
         $lhe = Lhe::whereOpdId($opd_id)->get();
